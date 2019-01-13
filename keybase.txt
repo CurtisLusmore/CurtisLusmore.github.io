@@ -1,0 +1,68 @@
+==================================================================
+https://keybase.io/curtislusmore
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://lusmo.re
+  * I am curtislusmore (https://keybase.io/curtislusmore) on keybase.
+  * I have a public key with fingerprint 01ED 63F4 A7B5 B3C3 35B7  EBC2 6BBF 0196 D568 EC77
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01010d51c261ea9bf52eec859b58c5d35759b9de6dd53735dd524f90c4b2b1c9765d0a",
+      "fingerprint": "01ed63f4a7b5b3c335b7ebc26bbf0196d568ec77",
+      "host": "keybase.io",
+      "key_id": "6bbf0196d568ec77",
+      "kid": "01010d51c261ea9bf52eec859b58c5d35759b9de6dd53735dd524f90c4b2b1c9765d0a",
+      "uid": "a96167f9b99138e3823caf32a326b919",
+      "username": "curtislusmore"
+    },
+    "service": {
+      "hostname": "lusmo.re",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1526554629,
+  "expire_in": 157680000,
+  "prev": "e80e39c50bb5c1d61a56e6150056ca5107732880f5cb3783835e1a5644e79b35",
+  "seqno": 28,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.77
+Comment: https://keybase.io/crypto
+
+yMIiAnicrZJ7SBRBHMfP0sTrSVQg9KCNqOiqnZ2bfRyU1D8hF2kJQQ+5dmZndfNu
+99zdO5WyECpUojelYQ960IOI/iqlP9ToyVFGBIqZ9E5J0KgkSLHZw/7rz2b+mNfn
++53vb5gHUyf6/BnDXzcOHC4YSmak2hsTvm2jO7N2c9jSqrjQbq6Mpgca1ajjRsoM
+jQtxPGBdQ4AIIqCqgnUkUEpkpGAkE6RBJLGpolFR0xCUIGKDENQVngSxgAFRJBFp
+vMoFON0wS6gdtw3TTdtSTYR6UJUwwpBAiLBEMbsEY50HiqghUaZEkpiw1HI8BQuH
+VYeuNCy2xxaRdLx/8P85dyJtpyoiECWdSRQAZQplARJVh4IKWWQFKB7oUNtUY5TR
+JGG7hhNNODHLplx1gGNHSYNQ73W9csaxNLCSEQEubluuRawo2y113bgT8lRuVdzD
+KiiOjBtEsGFq7CGZIkltx7BMLgQYSVzDcwRIEBEKioIS4Ghl3LBpxPAIJIkyz5p3
+D00ySyrzFCoE8RgjAjQRqEikIkA8j0SiIsBLEhRkmdcRwVCSoQwR9ZhgkEoKhojz
+Sio3LS4kyCynWsI8HaPEVN2EV/D9th2Zvgy/b1LWBO+H+fw5M/7+u8m+7JHpb4tD
+70e2Nzk5Y4eeVpQsDLaeCffVfJiW8hVcHAt/UKfzd9o2n++Z2XCgd0r965t7hptX
+BGr7P13d2378yWOUXJNIledVj7YeO+1W7MpfWldYDfozP9tbLpHU+cu346e0jO75
++blFS2ve3BLaCwMnrrfP3lK0efD5j+VHlnUpN8aWLFvd3Htua+x72WDTquilY/h3
+Ydncxqwwf+HcleKz2V+GKsvNRZMexpzG8KzMORsqIp1F/pf+9X0tPR3zOuP1j4R3
+PUO9L7oavh3p3D+8+PVeEMvr67i37+DdW2htS4f8ir9zkl8Qvvbz16rsOnsgd11W
+8abjR5ueddOTox9T11PR2j+WOkl4
+=5JmF
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/curtislusmore
+
+==================================================================
