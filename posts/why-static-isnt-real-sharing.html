@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Why Static Isn't Real Sharing | lusmo.re</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <article>
+      <header>
+        <h1>Why Static Isn't Real Sharing</h1>
+      </header>
+      <section>
+        <p>
+          The static keyword has origins as far back as C, and has carried
+          across to C++, Java and C#, among others—although its meaning has
+          changed a bit along the way. In C# and Java, one of the common uses
+          is for class-level sharing of members. Static members don’t belong to
+          any instance, and can only be accessed directly from the class or
+          from another definition in the same class.
+        </p>
+        <p>
+          And this is all well and good for sharing within a class, but the
+          problem is that it doesn’t play well with inheritance, because static
+          members cannot be overridden. And inheritance is another common
+          method of achieving code sharing. Consider the following snippet,
+          which shows how one might hope to override static members in C#.
+        </p>
+        <pre>
+public class Base
+{
+    public static virtual string Value => "Base";
+    public static virtual void Display() =>
+        Console.WriteLine(Value);
+}
+
+public class Sub1 : Base
+{
+    public static override string Value => "Sub1";
+}
+
+public class Sub2 : Base
+{
+    public static override void Display() =>
+        Console.WriteLine($">>> {Value}");
+}
+
+new Sub1().Display(); // Sub1
+
+new Sub2().Display(); // >>> Base
+</pre>
+          <p>
+            We would like to be able to override one or both of the
+            <code>Value</code> and <code>Display</code> members, but
+            unfortunately this won’t compile because static members can’t be
+            virtual. Python, on the other hand, got this exactly right—thanks
+            to the <code>classmethod</code> decorator.
+          </p>
+          <pre>
+class Base:
+    value = 'base'
+    @classmethod
+    def display(cls):
+        print(cls.vlaue)
+
+class Sub1(Base):
+    value = 'Sub1'
+
+class Sub2(Base):
+    @classmethod
+    def display(cls):
+        print('>>>', cls.value)
+
+Sub1().display() # Sub1
+
+Sub2().display() # >>> Base
+          </pre>
+          <p>
+            So how come Python can do this but C# can’t? Notice that we used
+            the <code>classmethod</code> decorator, not the
+            <code>staticmethod</code> decorator. The <code>classmethod</code>
+            decorator benefits from the fact that it is passed a reference to
+            the class, whereas in the case of the staticmethod decorator you
+            need to hard-code it into source. This distinction really
+            highlights the real meaning of the word static—the static of static
+            analysis, static type checking, static libraries, and static memory
+            allocation. Static as in not dynamic, known before run-time, often
+            at compile-time.
+          </p>
+          <p>
+            The reason why static members can’t be overridden is because doing
+            so requires knowing at run-time which override to use, which goes
+            against the definition of the word static. Even in a language like
+            Python without compilation, the concept of static still exists and
+            still has the same restrictions.
+          </p>
+          <p>
+            So if we want to get truly shareable members, both horizontally
+            across members of a class and vertically across a type hierarchy,
+            we are going to need another solution.
+        </p>
+      </section>
+      <footer>
+        <p>
+          Posted by Curtis Lusmore on
+          <time datetime="2016-04-08">8 April 2016</time>.
+        </p>
+      </footer>
+    </article>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/archive">Archive</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/reading-list">Reading List</a></li>
+        <li><a href="/resume">Résumé</a></li>
+      </ul>
+    </nav>
+  </body>
+</html>

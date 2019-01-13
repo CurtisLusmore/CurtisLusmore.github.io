@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Imitating Classes | lusmo.re</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <article>
+      <header>
+        <h1>Imitating Classes</h1>
+      </header>
+      <section>
+        <p>
+          In this post, we are going to explore how you might imitate classes
+          in a language that doesn’t have them, to get a better feel for how
+          various object-oriented language features actually work. We will use
+          JavaScript, but ban ourselves from using
+        </p>
+        <ul>
+          <li>the class keyword (obviously),</li>
+          <li>the new keyword (we will construct all of our own objects),</li>
+          <li>the this keyword,</li>
+          <li>prototypal inheritance (we will build our own inheritance
+            mechanism).</li>
+        </ul>
+        <p>
+        The main language features we will be using are functions (including
+        higher-order functions), closures, and object literals (including some
+        of the nice new syntactic sugar for constructing objects).
+        </p>
+        <p>
+          To start off with, let’s create a really basic collection class.
+        </p>
+        <pre>
+// Create a new collection, initially with the given items.
+function collection(items = []) {
+    const _items = [...items];
+
+    // Clear the collection, removing all items.
+    function clear() {
+        _items.splice(0);
+    };
+
+    // Determine whether the given item is in the collection.
+    function contains(item) {
+        return _items.includes(item);
+    };
+
+    // Add the given item to the collection.
+    function add(item) {
+        _items.push(item);
+    };
+
+    // Remove the given item from the collection.
+    function remove(item) {
+        const index = _items.indexOf(item);
+        if (index >= 0) _items.splice(index, 1);
+    };
+
+    return {
+        clear,
+        contains,
+        add,
+        remove
+    };
+};
+</pre>
+        <p>
+          Each time we call the collection function, we get a new collection
+          object with its own copy of the four methods, <code>clear</code>,
+          <code>contains</code>, <code>add</code>, and <code>remove</code>,
+          that each close over the private array of items. The
+          <code>_items</code> array is private because it isn’t included as a
+          member of the returned object.
+        </p>
+        <p>
+          It’s also worth mentioning that although we haven’t made use of this,
+          the fact that methods are defined as local functions means that they
+          can all refer to each other.
+        </p>
+        <p>
+          Next, we’ll create a class which extends collection. Let’s add some
+          methods for adding and removing items transactionally.
+        </p>
+        <pre>
+// Create a new collection, initially with the given items.
+function transactionalCollection(...args) {
+    const _added = [];
+    const _removed = [];
+
+    const base = collection(...args);
+
+    // Add an item with the current transaction.
+    function addOnSubmit(item) {
+        _added.push(item);
+    };
+
+    // Remove an item with the current transaction.
+    function removeOnSubmit(item) {
+        _removed.push(item);
+    };
+
+    // Submit the current transaction
+    function submit() {
+        _added.forEach(base.add);
+        _removed.forEach(base.remove);
+        _added.splice(0);
+        _removed.splice(0);
+    };
+
+    // Abandon the current transaction.
+    function abandon() {
+        _added.splice(0);
+        _removed.splice(0);
+    };
+
+    return {
+        ...base,
+        addOnSubmit,
+        removeOnSubmit,
+        submit,
+        abandon
+    };
+};
+</pre>
+        <p>
+          Here we have added four additional methods—<code>addOnSubmit</code>,
+          <code>removeOnSubmit</code>, <code>submit</code>, and
+          <code>abandon</code>, and the additional methods are able to
+          reference the exising methods. It’s also worth noting that aside from
+          assuming that <code>collection</code> has an <code>add</code> and a
+          <code>remove</code> method, <code>transactionalCollection</code>
+          makes no other assumptions about <code>collection</code>, it will
+          continue to work if the constructor is changed or other methods are
+          added, and importantly it will not remove such methods either.
+        </p>
+        <p>
+          Next, let’s consider method overriding. We’ll create another class,
+          <code>localStorageCollection</code>, which also persists the
+          collection of items to local storage so that the collection can be
+          used across sessions. Unfortunately we’re going to want access to the
+          private <code>_items</code> member of <code>collection</code>, so
+          what we really want is to be able to make it protected. More
+          unfortunately still, since public members are just those added to the
+          returned object and private members are those which aren’t, there’s
+          no mechanism left for us to define protected members.
+        </p>
+        <p>
+          We will instead use convention to define protected members, as those
+          whose name starts with an underscore (<code>_</code>). If we want to
+          enforce this, we can define a helper function which removes protected
+          members from a class, as below.
+        </p>
+        <pre>
+// Create a new collection, initially with the given items.
+function collectionBase(items = []) {
+    // Array of items in the collection.
+    const _items = [...items];
+
+    // Clear the collection, removing all items.
+    function clear() {
+        _items.splice(0);
+    };
+
+    // Determine whether the given item is in the collection.
+    function contains(item) {
+        return _items.includes(item);
+    };
+
+    // Add the given item to the collection.
+    function add(item) {
+        _items.push(item);
+    };
+
+    // Remove the given item from the collection.
+    function remove(item) {
+        const index = _items.indexOf(item);
+        if (index >= 0) _items.splice(index, 1);
+    };
+
+    return {
+        _items,
+        clear,
+        contains,
+        add,
+        remove
+    };
+};
+
+// Return a copy of the given object with only its public members.
+function publics(obj) {
+    const newObj = { ...obj };
+    Object.keys(newObj)
+        .filter(m => m.startsWith('_'))
+        .forEach(m => delete base[m]);
+    return newObj;
+};
+
+// Seal a class by removing protected members.
+function seal(cls) {
+    return function (...args) {
+        return publics(cls(...args));
+    }
+};
+
+const collection = seal(collectionBase);
+</pre>
+        <p>
+          The defintion of <code>transactionalCollection</code> from above is
+          fully compatible with this new defintion.
+        </p>
+        <p>
+          We can now define <code>localStorageCollection</code> using
+          <code>collectionBase</code>.
+        </p>
+        <pre>
+// Create a new collection which persists to local storage, initially with the
+// given items.
+function localStorageCollection(keyName, items) {
+    const storage = window.localStorage;
+    items = items || JSON.parse(storage.getItem(keyName) || '[]');
+
+    const base = collectionBase(items);
+
+    function _save() {
+        storage.setItem(keyName, JSON.stringify(base._items));
+    }
+
+    // Clear the collection, removing all items.
+    function clear() {
+        base.clear();
+        _save();
+    };
+
+    // Add the given item to the collection.
+    function add(item) {
+        base.add(item);
+        _save();
+    };
+
+    // Remove the given item from the collection.
+    function remove(item) {
+        base.remove(item);
+        _save();
+    }
+
+    return {
+        ...publics(base),
+        clear,
+        add,
+        remove
+    };
+}
+</pre>
+        <p>
+          The obvious question now is, can we make a transactional collection
+          that also persists to local storage—or to put it another way, do we
+          have multiple inheritance? If you look back at our definitions for
+          <code>transactionalCollection</code> and
+          <code>localStorageCollection</code>, you’ll notice that they “know”
+          what they inherit from—that is, the name of the class that they
+          inherit from appears (in the call to the base constructor) inside the
+          definition of the class. Could we instead rewrite them such that they
+          don’t “know” what they inherit from? That is, can we write them in
+          such a way that they are parameterised over their base class? The
+          answer is yes, easily!
+        </p>
+        <pre>
+// Create a new class which adds transactions to a base collection class.
+function makeTransactionalCollection(collection) {
+    return function (...args) {
+        const _added = [];
+        const _removed = [];
+
+        const base = collection(...args);
+
+        // Add an item with the current transaction.
+        function addOnSubmit(item) {
+            _added.push(item);
+        };
+
+        // Remove an item with the current transaction.
+        function removeOnSubmit(item) {
+            _removed.push(item);
+        };
+
+        // Submit the current transaction.
+        function submit() {
+            _added.forEach(base.add);
+            _removed.forEach(base.remove);
+            _added.splice(0);
+            _removed.splice(0);
+        };
+
+        // Abandon the current transaction.
+        function abandon() {
+            _added.splice(0);
+            _removed.splice(0);
+        };
+
+        return {
+            ...base,
+            addOnSubmit,
+            removeOnSubmit,
+            submit,
+            abandon
+        };
+    };
+};
+
+const transactionalCollection = makeTransactionalCollection(collection);
+const transactionalLocalStorageCollection = makeTransactionalCollection(
+    localStorageCollection);
+</pre>
+        <p>
+          Notice that the core of the body of
+          <code>makeTransactionalCollection</code> is identical to that of
+          <code>transactionalCollection</code> from above. The only difference
+          is that now the variable <code>collection</code> no longer refers to
+          the existing <code>collection</code> class defined in the global
+          scope, but to the <code>collection</code> parameter which refers to
+          whatever argument we choose to supply. This makes it a far more
+          powerful construct.
+        </p>
+      </section>
+      <footer>
+        <p>
+          Posted by Curtis Lusmore on
+          <time datetime="2017-11-13">13 November 2017</time>.
+        </p>
+      </footer>
+    </article>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/archive">Archive</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/reading-list">Reading List</a></li>
+        <li><a href="/resume">Résumé</a></li>
+      </ul>
+    </nav>
+  </body>
+</html>

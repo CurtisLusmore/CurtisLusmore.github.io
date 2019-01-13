@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Intuition of Church Encoding | lusmo.re</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <article>
+      <header>
+        <h1>Intuition of Church Encoding</h1>
+      </header>
+      <section>
+        <p>
+          After first being introduced to the concept of Church numerals in
+          <a target="_blank" href="https://mitpress.mit.edu/sicp/">Structure
+          and Interpretation of Computer Programs</a>, I decided to learn more
+          about them and the more general topic, <a target="_blank"
+          href="https://en.wikipedia.org/wiki/Church_encoding">Church
+          encoding</a>. For those who don’t know, Church encoding defines a way
+          to represent common data types and structures in the
+          <a target="_blank"
+          href="https://en.wikipedia.org/wiki/Lambda_calculus">Lambda
+          calculus</a> using only functions, since functions are the only terms
+          available.
+        </p>
+        <p>
+          I eventually stumbled upon a pretty neat intuition for how Church
+          encodings work, which enables you to create encodings for arbitrary
+          data types very easily. But first, a little on how I got there…
+        </p>
+        <p>
+          I started with the Wikipedia entry, which has a decent amount of
+          examples but is lacking in providing any real intuition into how they
+          work. As an example, the Church encoding for booleans are listed as
+          follows.
+        </p>
+        <pre>
+true  = λa. λb. a
+false = λa. λb. b
+</pre>
+        <p>
+          These two functions are the simplest possible two distinct terms,
+          ignoring the identity function so that there can at least be some
+          symmetry (same number of arguments), so in that sense it may seem
+          intuitive to use them. And I can accept that it’s convention in the
+          Lambda calculus to use single letter identifiers, but still I can’t
+          help but wonder what more meaningful identifiers I would use—what do
+          they actually mean?
+        </p>
+        <p>
+          The Church encoding for natural numbers is a little better.
+        </p>
+        <pre>
+zero = λf. λx. x
+succ = λn. λf. λx. f (n f x)
+</pre>
+        <p>
+          The common intuition for this encoding is that the encoded
+          <code>n</code> represents a function that takes another function
+          <code>f</code> as an argument and returns a new function which
+          applies <code>f</code> to its argument <code>n</code> times. This is
+          backed up by observing that <code>zero</code> takes any function
+          <code>f</code> and simply returns the identity function—application
+          of <code>f</code> zero times does nothing. That’s more satisfying,
+          but I do wonder if it’s a coincidence that zero is alpha equivalent
+          to false.
+        </p>
+        <p>
+          Next up, lists—and this time, an even better standard intuition.
+        </p>
+        <pre>
+          nil = λc. λn. n
+          cons = λh. λt. λc. λn. c h (t c n)
+</pre>
+        <p>
+          The intuition is that a list is encoded as a <a target="_blank"
+          href="https://en.wikipedia.org/wiki/Fold_%28higher-order_function%29">
+          fold function</a>, although it might be difficult to see from these
+          terms. And now I’m really starting to doubt that it’s mere
+          coincidence that yet again we have an alpha equivalence with
+          <code>false</code>, this time in the encoding of <code>nil</code>.
+        </p>
+        <h2 id="1">
+          <a href="#1">Implementation in Haskell</a>
+        </h2>
+        <p>
+          It was about this time that I decided to try implementing them in
+          <a target="_blank" href="https://www.haskell.org/">Haskell</a>. There
+          are a few implementations out there on the internet already but I
+          wanted to try it from scratch. To start with, I figured I’d just bash
+          in the definitions without type signatures and see what I get.
+        </p>
+        <h3>Church booleans</h3>
+        <pre>
+λ let true' = \a b -> a
+λ :t true'
+true' :: t1 -> t -> t1
+
+λ let false' = \a b -> b
+λ :t false'
+false' :: t -> t1 -> t1
+</pre>
+        <p>
+          Defining a type that works in all the ways I would like is a little
+          trickier than I expected, but not too difficult.
+        </p>
+        <pre>
+{-# LANGUAGE RankNTypes #-}
+
+newtype Bool' = Bool' { runBool' :: forall a. a -> a -> a }
+
+true' :: Bool'
+true' = Bool' $ \a b -> a
+
+false' :: Bool'
+false' = Bool' $ \a b -> b
+</pre>
+        <h3>Church numerals</h3>
+        <pre>
+λ let zero' = \f x -> x
+λ :t zero'
+zero' :: t -> t1 -> t1
+
+λ let succ' = \n f x -> f (n f x)
+λ :t succ'
+succ' :: ((t1 -> t) -> t2 -> t1) -> (t1 -> t) -> t2 -> t
+</pre>
+        <p>
+          The trick for this one is in recognising that the first argument to
+          <code>succ’</code> is supposed to be a numeral, so its type signature
+          in <code>succ’</code> should give us a good place to start.
+        </p>
+        <pre>
+newtype Nat' = Nat' { runNat' :: forall a. (a -> a) -> a -> a }
+
+zero' :: Nat'
+zero' = Nat' $ \f x -> x
+
+succ' :: Nat' -> Nat'
+succ' n = Nat' $ \f x -> f (runNat' n f x)
+</pre>
+        <h3>Church lists</h3>
+        <pre>
+λ let nil' = \c n -> n
+λ :t nil'
+nil' :: t -> t1 -> t1
+
+λ let cons' = \h t c n -> c h (t c n)
+λ :t cons'
+cons' :: t1 -> ((t1 -> t2 -> t) -> t3 -> t2) -> (t1 -> t2 -> t) -> t3 -> t
+</pre>
+        <p>
+          Again, the trick here was in recognising that the return type after
+          two arguments is a list.
+        </p>
+        <pre>
+newtype List' a = List'
+    { runList' :: forall b. (a -> b -> b) -> b -> b
+    }
+
+nil' :: List' a
+nil' = List' $ \c n -> n
+
+cons' :: a -> List' a -> List' a
+cons x xs = List' $ \c n -> c x (runList' xs c n)
+</pre>
+        <h2 id="2">
+          <a href="#2">Comparison with standard definitions</a>
+        </h2>
+        <p>
+          At this point I thought it would be interesting to compare these
+          types with the standard type definitions in the Prelude for the
+          actual types. I decided to list out the standard data definitions in
+          <a target="_blank" href="https://en.wikibooks.org/wiki/Haskell/GADT">
+          generalised algebraic datatype format</a>.
+        </p>
+        <pre>
+data Bool
+    = True  :: Bool
+    | False :: Bool
+
+newtype Bool' = Bool' { runBool' :: forall a. a -> a -> a }
+
+
+data Nat
+    = Succ :: Nat -> Nat
+    | Zero :: Nat
+
+newtype Nat' = Nat' { runNat' :: forall a. (a -> a) -> a -> a }
+
+
+data List a
+    = Cons :: a -> List a -> List a
+    | Nil  :: List a
+
+newtype List' a = List'
+    { runList' :: forall b. (a -> b -> b) -> b -> b
+    }
+</pre>
+        <p>
+          And as I did this, I noticed a pattern! If you take the type
+          signature of the <code>run</code> function and replace the quantified
+          type with the type being declared, you get something very
+          interesting.
+        </p>
+        <pre>
+Bool' -> Bool' -> Bool'
+
+(Nat' -> Nat') -> Nat' -> Nat'
+
+(a -> List' a -> List' a) -> List' a -> List' a
+</pre>
+        <p>
+          In all three cases, the final term is the type itself, and the other
+          terms are the types of the data constructors! Go back up and check
+          for yourself.
+        </p>
+        <h2 id="3">
+          <a href="#3">The revelation</a>
+        </h2>
+        <p>
+          What does this mean? It means that the Church encodings are simply
+          abstractions over data constructors! The arguments to the functions
+          of the Church encodings should be data constructors! Let’s go back
+          and try it for ourself.
+        </p>
+        <pre>
+λ runBool' true' True False
+True
+λ runBool' false' True False
+False
+
+λ runNat' zero' (+1) 0
+0
+λ runNat' (succ' (succ' zero')) (+1) 0
+2
+
+λ runList' nil' (:) []
+[]
+λ runList' (cons' 1 (cons' 2 nil')) (:) []
+[1,2]
+</pre>
+        <p>
+          And just like all good revelations, now that I see it it seems so
+          obvious.
+        </p>
+        <p>
+          So with this knowledge in hand, we can go on to define Church
+          encodings for any data type we can think of. Let’s try Haskell’s
+          <code>Maybe</code> and <code>Either</code> types, and while we’re at
+          it we can use more meaningful identifiers for the lambda terms.
+        </p>
+        <pre>
+data Maybe a
+    = Just    :: a -> Maybe a
+   | Nothing :: Maybe a
+
+newtype Maybe' a = Maybe'
+    { runMaybe' :: forall b. (a -> b) -> b -> b
+    }
+
+nothing' :: Maybe' a
+nothing' = Maybe' $ \just nothing -> nothing
+
+just' :: a -> Maybe' a
+just' a = Maybe' $ \just nothing -> just a
+
+
+data Either a b
+    = Left  :: a -> Either a b
+    | Right :: b -> Either a b
+
+newtype Either' a b = Either'
+    { runEither' :: forall c. (a -> c) -> (b -> c) -> c
+    }
+
+left' :: a -> Either' a b
+left' a = Either' $ \left right -> left a
+
+right' :: b -> Either' a b
+right' b = Either' $ \left right -> right b
+</pre>
+        <p>
+          You can find these type definitions and related function definitions
+          in <a target="_blank"
+          href="https://github.com/CurtisLusmore/church-encoding">my GitHub
+          repository</a>.
+        </p>
+      </section>
+      <footer>
+        <p>
+          Posted by Curtis Lusmore on
+          <time datetime="2016-03-26">26 March 2016</time>.
+        </p>
+      </footer>
+    </article>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/archive">Archive</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/reading-list">Reading List</a></li>
+        <li><a href="/resume">Résumé</a></li>
+      </ul>
+    </nav>
+  </body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>The Freedom of Restrictions | lusmo.re</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <article>
+      <header>
+        <h1>The Freedom of Restrictions</h1>
+      </header>
+      <section>
+        <p>
+          One of my great joys when designing things is when I discover that I
+          can lift a restriction and make something both simpler and more
+          powerful at the same time. This can happen at all levels, from
+          something like changing a function signature to make it more generic,
+          right up to unifying high level system components. The more generic
+          something is, the more situations you can use it in, and the more
+          value it can provide.
+        </p>
+        <p>
+          But there comes a point where something can be too general—where it
+          permits far too wide a range of uses, and it starts to cause more
+          problems than it solves. One famous example of this is the
+          <code>goto</code> statement. Edsger Dijkstra wrote about its dangers
+          in 1968 in his letter <a target="_blank"
+          href="http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html">
+          The Go To Statement Considered Harmful</a>, and Donald Knuth wrote in
+          his 1974 paper <a target="_blank"
+          href="https://www.cs.sjsu.edu/%7Emak/CS185C/KnuthStructuredProgrammingGoTo.pdf">
+          Structured Programming with Go To Statements</a> about how the
+          majority of the dangers can be avoided by adding some restrictions to
+          its usage.
+        </p>
+        <p>
+          As we now all know, there are a handful of control structures that
+          the <code>goto</code> statement was used to simulate which are
+          perfectly safe and well understood—<code>if</code>,
+          <code>switch</code>, <code>for</code>, <code>while</code>,
+          <code>break</code>, <code>return</code>, function calls, etc.
+          Anything else was usually too complicated and error prone. The
+          problem with using raw <code>goto</code> statements was that it
+          wasn’t always clear which of the good structures the author was
+          intending to use, and it was easy to make subtle mistakes that went
+          unnoticed and caused huge problems. And so we all agreed that despite
+          the fact that a single statement is more general and can do all the
+          work of the other handful of control structures and more, we’d be
+          better off without it.
+        </p>
+        <p>
+          By restricting ourselves to using only well understood control
+          structures, we free ourselves from the possibility of writing
+          error-prone, incomprehensible spaghetti.
+        </p>
+        <p>
+          It’s worth thinking about whether adding restrictions to other tools
+          and techniques we use could actually make our lives easier. I think
+          we are starting to see that even the <code>for</code> loop is more
+          trouble than its worth, as more and more languages embrace higher
+          level, more expressive forms like <code>map</code>,
+          <code>filter</code> and <code>reduce</code>. Much of the benefit of
+          functional programming comes from restricting use of the assignment
+          operator. Concurrency is another area that I think would benefit from
+          some restrictions. Programming directly with threads and locks is
+          incredibly flexible, but it’s also fraught with potential race
+          conditions, deadlocks and data integrity issues. Restricting
+          ourselves to well understood abstractions like the actor model
+          would free us from the hassle of dealing with these problems.
+        </p>
+      </section>
+      <footer>
+        <p>
+          Posted by Curtis Lusmore on
+          <time datetime="2016-12-26">26 December 2016</time>.
+        </p>
+      </footer>
+    </article>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/archive">Archive</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/reading-list">Reading List</a></li>
+        <li><a href="/resume">Résumé</a></li>
+      </ul>
+    </nav>
+  </body>
+</html>

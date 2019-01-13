@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Diagnostics Anonymous | lusmo.re</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <article>
+      <header>
+        <h1>Diagnostics Anonymous</h1>
+      </header>
+      <section>
+        <p>
+          When working with large systems, especially with software, inevitably
+          something will go wrong and you’ll be stuck trying to diagnose it.
+          My years of developing software have given me a lot of practice
+          diagnosing errors or unintended behaviour in software systems
+          (usually in my own code), and over time I’ve built up a systematic
+          process that I run through to speed up the process. In writing this
+          post, I came to realise that my process actually has quite a lot in
+          common with 12-step programs, so I’ve tweaked the format a little to
+          make the content a little more interesting.
+        </p>
+        <h2 id="1">
+          <a href="#1">1. We admitted that there was a problem—that the system
+            had become unmanageable</a>
+        </h2>
+        <p>
+          The first step is to admit that you have a problem. Sometimes you are
+          working on something and struggling to get it to behave how you want,
+          and you are just reaching the point where you begin to question
+          whether you are taking the right approach. Or perhaps you saw what
+          you thought was an isolated incident that you corrected, but you’re
+          starting to suspect there might be more to it. It’s important to stop
+          and admit that there is a problem if you want to have any hope of
+          understanding it.
+        </p>
+        <p>
+          Hopefully when you started doing whatever went wrong, you had an idea
+          in your head of what you were hoping to achieve. If you didn’t, hey,
+          maybe you don’t need to solve the problem after all. Just leave
+          everything broken and move on. More likely, you were trying to solve
+          a particular problem or achieve a particular outcome. Keep this in
+          the back of your mind because it’s important that you remind yourself
+          of it every so often to make sure you’re on track to actually solving
+          it, that you haven’t gone so far down a rabbit hole that you forget
+          what you were trying to do in the first place.
+        </p>
+        <p>
+          Quite often, when attempting to solve one problem you stumble upon a
+          second problem, and the best solution is to not solve the second
+          problem at all, but to find a better solution to the first problem.
+          This scenario is known as an <a target="_blank"
+          href="https://en.wikipedia.org/wiki/XY_problem">XY problem</a>
+          —where you encounter a problem X, attempt to solve it but encounter
+          problem Y, and then focus on Y. As an example, if you’re stuck trying
+          to figure out how to get cheese to stick to the side of the bread
+          when you put it into the toaster, perhaps you need to realise that
+          the real problem is you want to make grilled cheese and the real
+          solution is to use a sandwich toaster, not a regular toaster.
+        </p>
+        <h2 id="2">
+          <a href="#2">2. Came to believe there must be a way to resolve it</a>
+        </h2>
+        <p>
+          Now that you have admitted that you have a problem, the next step is
+          to understand how things could be better. Ask yourself the following
+          questions. “What do I think should happen? What are the outputs I’m
+          hoping to see?” How will you know when you’ve solved the problem? If
+          you had a magic lamp, what wish would you ask of the genie? Genies
+          can be really pedantic so you need to be as precise and unambiguous
+          as possible.
+        </p>
+        <h2 id="3">
+          <a href="#3">3. Made a decision to turn our will over to resolving it</a>
+        </h2>
+        <p>
+          Unfortunately you probably don’t have a magic lamp, so you’re going
+          to have to resolve the problem yourself. It’s important to commit
+          yourself to solving the problem, adjust your mindset, and make sure
+          you have the best environment for tackling it. Try to clear any
+          clutter off your desk and your screen, pull up any documents that
+          might be useful, and get a pen and paper ready.
+        </p>
+        <h2 id="4">
+          <a href="#4">4. Made a searching and fearless inventory of the system
+            and environment</a>
+        </h2>
+        <p>
+          Gather up any relevant information you can find. Current log files,
+          old log files, error messages, network traces, known issue lists,
+          documentation, requirements, test cases, configuration, patch
+          information, everything. Information is key here and you want as much
+          of it as you can. If you can find historical data, get it because it
+          can help you track changes over time.
+        </p>
+        <h2 id="5">
+          <a href="#5">5. Stated to ourselves the exact nature of the
+            problem</a>
+        </h2>
+        <p>
+          It’s important to take note of what behaviour you’re actually seeing
+          and how to compare it with what you want to happen. As you start
+          trying to solve the problem, you need to know that you’re affecting
+          the system, and if possible, whether you’re making things better or
+          worse. Ask yourself the following questions.
+        </p>
+        <p>
+          What is actually happening? How is this different to what I expected?
+          When does this behaviour occur? Has it always happened, or did it
+          break? If it broke, did anything change around the time that it
+          broke? Did I change something right before it broke? Often the cause
+          of a problem is the last thing you did before you noticed it. Is
+          there a pattern to when it works and when it doesn’t, like a certain
+          number of repetitions, only during certain times of the day, only
+          after some other event, only in certain environments? If it’s
+          environmental, what’s different between the environments? These
+          questions help us to consider external factors that might be causing
+          the problem. It’s good to get these out of the way first, because
+          there’s no point in wasting your time on trial-and-error if the cause
+          ends up being unrelated to the changes you try making.
+        </p>
+        <h2 id="6">
+          <a href="#6">6. Were entirely ready to resolve the problem</a>
+        </h2>
+        <p>
+          At this point you should have all the information available to you
+          that might be useful resolving the problem, you have a clear
+          understanding of the precise nature of the problem and what it means
+          for the problem to be resolved, and all that is left is to get into
+          it. You may have found that in running through all the previous
+          steps, you realised what the problem was and you have already figured
+          out how to solve it. Actually this happens so frequently, people gave
+          a name to this phenomenon—<a target="_blank"
+          href="https://en.wikipedia.org/wiki/Rubber_duck_debugging">rubber
+          ducking</a>. The very act of describing your problem out loud, even
+          to an inanimate object like a rubber duck, often forces you to
+          uncloud your mind and see the problem for what it really is. If
+          you’ve made it this far and you still haven’t solved the problem,
+          it’s finally time to start actually doing something.
+        </p>
+        <h2 id="7">
+          <a href="#7">7. Humbly remove shortcomings</a>
+        </h2>
+        <p>
+          Start by putting out any current fires—anything that is just going to
+          keep causing more problems while you diagnose. You don’t want people
+          hounding you to hurry up while you’re neck deep in diagnostics, and
+          you don’t want the problem to change or get worse while you’re
+          looking at it. Get the system into a nice, stable, safe state so that
+          you can diagnose the problem in peace.
+        </p>
+        <h2 id="8">
+          <a href="#8">8. Made a list of all components that are affected, and
+            how we can amend them</a>
+        </h2>
+        <p>
+          Now it’s time to start narrowing down the search space. What
+          components in the system or features in the software are you using?
+          Think about all the behind-the-scenes processes that might also be
+          running in the background, and requests that might be coming in from
+          other systems. Which of them can you reconfigure, to actually make
+          changes to the system? Which of them can you disable to block the
+          number of interactions? Which of them can you step through slowly,
+          verifying after each step that things are looking good? Which of them
+          can you orchestrate manually? What can you reset between each attempt
+          to eliminate the possibility of interaction between attempts? Make an
+          educated guess as to what will happen for each change you could
+          make—try to avoid just making random changes without understanding
+          what you think will happen.
+        </p>
+        <h2 id="9">
+          <a href="#9">9. Made direct amends to such components wherever
+            possible</a>
+        </h2>
+        <p>
+          Based on your educated guesses, start making some changes. Where
+          possible, try to make only a single change at a time, and monitor to
+          see what effect the change has. If you don’t notice any change, or if
+          the change doesn’t appear to resolve the issue, revert the change and
+          try to get as close to the original state as possible. You want to
+          make sure that when you finally do resolve the issue, you actually
+          know which changes were required. Compare new behaviour, new results
+          and new log entries with those collected during step 4. Compare
+          observed behaviour with what you guessed would happen. Try to be as
+          thorough and systematic as possible, recording your actions and the
+          results. There isn’t really a great deal more general advice I can
+          give on the actions required to resolve arbitrary issues—of course
+          this is going to be far too tightly coupled to the system to be
+          broadly applicable.
+        </p>
+        <h2 id="10">
+          <a href="#10">10. Continued to take inventory, and when things were
+            off, promptly fixed them</a>
+        </h2>
+        <p>
+          During and after resolving the problem, it’s important to keep
+          gathering as much information as you can to continue monitoring the
+          system. As I said before, often the cause of a problem is the last
+          action you took. You’re now in the action-taking phase, and you want
+          to make sure that if you cause any problems, you see them as quickly
+          as possible. You also want to make sure that you don’t accidentally
+          revert the changes that you made to resolve the problem, causing it
+          to occur all over again. Not to mention that the changes that you
+          made to resolve your problem might interact badly with other parts of
+          the system, causing more problems. Keep an eye on the system until
+          you’re satisfied that everything is stable, and run through any tests
+          or validation steps required to convince yourself that the system is
+          now working correctly.
+        </p>
+        <h2 id="11">
+          <a href="#11">11. Sought to improve our contact with the system,
+            knowledge and the ability to act on it</a>
+        </h2>
+        <p>
+          Now that you’ve resolved the problem and started to collect
+          information to monitor the system and ensure there are no
+          regressions, it’s time to understand what really went wrong. Sure,
+          there were visible symptoms that you identified in the earlier steps
+          and those have already been resolved, but beneath the surface there’s
+          always a deeper problem and it might still be there, waiting to
+          surface as a new set of symptoms. This could be a lack of
+          understanding of how the components in the system work or interact
+          with each other, a breakdown in a human process that led to the
+          issue, or a gap in monitoring that meant nobody was alerted to the
+          issue early enough. Have a think about other improvements that can be
+          made to prevent this and similar problems from happening again.
+        </p>
+        <h2 id="12">
+          <a href="#12">12. Having an awakening, we tried to document this
+            knowledge, and practice it in the future</a>
+        </h2>
+        <p>
+          The last step is to document everything you’ve learnt so far. The
+          goal should be to ensure that this problem never happens again, for
+          this environment, for you, and for everybody else who has access to
+          your documentation. If you found any more general improvements to
+          overarching processes or methodologies that could help prevent
+          similar problems too, make sure relevant documentation is updated
+          with the improvements and key learnings. Try to spread the knowledge
+          to others in your organisation or even the wider community (as I’m
+          trying to do now by writing this post). With a small up-front
+          investment of your time in spreading the knowledge, bit by bit we can
+          all work towards eliminating hours of wasted effort diagnosing and
+          resolving known problems with known solutions.
+        </p>
+        <p>
+          Now that you have enjoyed (hopefully) reading my 12 steps, what are
+          your strategies for resolving issues you encounter?
+        </p>
+      </section>
+      <footer>
+        <p>
+          Posted by Curtis Lusmore on
+          <time datetime="2017-12-04">4 December 2017</time>.
+        </p>
+      </footer>
+    </article>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/archive">Archive</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/reading-list">Reading List</a></li>
+        <li><a href="/resume">Résumé</a></li>
+      </ul>
+    </nav>
+  </body>
+</html>
