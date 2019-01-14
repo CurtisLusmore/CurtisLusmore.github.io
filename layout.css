@@ -1,0 +1,90 @@
+body {
+  max-width: 710px;
+  margin: 3rem auto 3rem 20vw;
+}
+
+@media screen and (max-width: 1080px) {
+  body {
+    max-width: 100%;
+    margin: 3rem;
+  }
+}
+
+/* size and layout */
+h1 {
+  font-size: 30px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+h3 {
+  font-size: 22px;
+}
+
+h4 {
+  font-size: 21px;
+}
+
+p, li, td, address {
+  font-size: 20px;
+  line-height: 1.45;
+}
+
+code {
+  font-size: 18px;
+  line-height: 1.45;
+}
+
+pre {
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.cols-2 {
+  column-count: 2;
+}
+
+.cols-3 {
+  column-count: 3;
+}
+
+/* spacing */
+h1, h2, h3, h4, p, pre {
+  margin: 0.5rem 0;
+}
+
+p + p, * + h2 {
+  margin-top: 1em;
+}
+
+td + td {
+  padding-left: 5ch;
+}
+
+* + footer {
+  margin-top: 2rem;
+}
+
+blockquote {
+  padding-left: 5ch;
+  border-left: 2px solid #202020;
+}
+
+article + article {
+  margin-top: 2rem;
+}
+
+/* navbar */
+nav > ul > li {
+  display: inline;
+}
+
+nav > ul {
+  padding-left: 0;
+}
+
+nav > ul > li + li {
+  margin-left: 2ch;
+}
