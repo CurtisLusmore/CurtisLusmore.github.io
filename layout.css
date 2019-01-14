@@ -1,16 +1,9 @@
+/* size and layout */
 body {
   max-width: 710px;
   margin: 3rem auto 3rem 20vw;
 }
 
-@media screen and (max-width: 1080px) {
-  body {
-    max-width: 100%;
-    margin: 3rem;
-  }
-}
-
-/* size and layout */
 h1 {
   font-size: 30px;
 }
@@ -40,6 +33,43 @@ code {
 pre {
   font-size: 16px;
   line-height: 1.45;
+}
+
+@media screen and (max-width: 1080px) {
+  body {
+    max-width: 100%;
+    margin: 3rem;
+  }
+
+  h1 {
+    font-size: 4rem;
+  }
+
+  h2 {
+    font-size: 3rem;
+  }
+
+  h3 {
+    font-size: 2.5rem;
+  }
+
+  h4 {
+    font-size: 2rem;
+  }
+
+  p, li, td, address {
+    font-size: 2rem;
+    line-height: 1.45;
+  }
+
+  code {
+    font-size: 1.9rem;
+  }
+
+  pre {
+    white-space: pre-wrap;
+    font-size: 1.8rem;
+  }
 }
 
 .cols-2 {
