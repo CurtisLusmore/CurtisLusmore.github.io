@@ -27,8 +27,14 @@ a[href^="#"] {
   border: none;
 }
 
-a[href^="#"]:hover {
-  border: none;
+a[href^="#"]::after {
+  margin-left: 0.5ch;
+  content: '#';
+  color: #0080ff;
+}
+
+a[href^="#"]:hover::after {
+  color: #ff4040;
 }
 
 a {
