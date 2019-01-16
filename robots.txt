@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://lusmo.re/sitemap.txt
