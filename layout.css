@@ -74,10 +74,8 @@ pre {
 
 .cols-2 {
   column-count: 2;
-}
-
-.cols-3 {
-  column-count: 3;
+  column-width: 300px;
+  column-gap: 10%;
 }
 
 /* spacing */
