@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <title>Trust Nobody, Not Even Yourself | lusmo.re</title>
-    <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="/layout.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <script src="/js/main.js" defer></script>
   </head>
   <body>
     <article>
@@ -89,7 +90,7 @@
           track down the execution point in the code base. The code (C#) looked
           roughly like this.
         </p>
-        <pre>
+        <pre class="csharp">
 // run on new thread, don't need to wait for completion
 new Thread(() =>
 {
@@ -112,7 +113,7 @@ new Thread(() =>
           Sure enough, that was the problem. The exception? Can’t execute query
           on a closed connection. We were missing a single line.
         </p>
-        <pre>
+        <pre class="csharp">
 connection.Open();
 connection.ExecuteQuery(ClearCacheQuery);
 </pre>
@@ -135,7 +136,7 @@ connection.ExecuteQuery(ClearCacheQuery);
           execution methods off the connection and put them on another class
           which you can only get by opening the connection.
         </p>
-        <pre>
+        <pre class="csharp">
 try
 {
     using (var connection = new SqlConnection())
@@ -172,7 +173,7 @@ catch
           keys and using them to retrieve the wrong types of objects. How can I
           prevent myself from doing something like the following?
         </p>
-        <pre>
+        <pre class="csharp">
 void DoWork(Guid gizmoKey, Guid hoozitKey)
 {
     var gizmo = RetrieveGizmo(hoozitKey);
@@ -195,7 +196,7 @@ void DoWork(Guid gizmoKey, Guid hoozitKey)
           overhead, and with the amazing property that the two types are
           incompatible at compile-time. As an example,
         </p>
-        <pre>
+        <pre class="haskell">
 newtype GizmoKey = GizmoKey UUID
 </pre>
         <p>

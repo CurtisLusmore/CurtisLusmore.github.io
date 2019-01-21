@@ -3,7 +3,7 @@
   <channel>
     <title>lusmo.re</title>
     <link>https://lusmo.re</link>
-    <description>Curtis' homepage</description>
+    <description>Curtis’ homepage</description>
     <item>
       <title>Diagnostics Anonymous</title>
       <link>https://lusmo.re/posts/diagnostics-anonymous</link>
@@ -152,7 +152,7 @@
       <pubDate>Sat, 7 May 2016 00:00:00 GMT</pubDate>
     </item>
     <item>
-      <title>Why Static Isn't Real Sharing</title>
+      <title>Why Static Isn’t Real Sharing</title>
       <link>https://lusmo.re/posts/why-static-isnt-real-sharing</link>
       <guid>https://lusmo.re/posts/why-static-isnt-real-sharing</guid>
       <description>
@@ -206,7 +206,7 @@
       <guid>https://lusmo.re/posts/programming-languages-for-beginners</guid>
       <description>
         <p>
-          What's the best/easiest programming language to learn for a beginner?
+          What’s the best/easiest programming language to learn for a beginner?
           I see this question asked all the time. Usually asked by people who
           want to get into programming, or maybe they’ve just finished learning
           the basics in their first language and are thinking about where to go

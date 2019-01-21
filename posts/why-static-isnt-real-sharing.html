@@ -2,14 +2,15 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Why Static Isn't Real Sharing | lusmo.re</title>
-    <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="/layout.css">
+    <title>Why Static Isn’t Real Sharing | lusmo.re</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <script src="/js/main.js" defer></script>
   </head>
   <body>
     <article>
       <header>
-        <h1>Why Static Isn't Real Sharing</h1>
+        <h1>Why Static Isn’t Real Sharing</h1>
       </header>
       <section>
         <p>
@@ -27,7 +28,7 @@
           method of achieving code sharing. Consider the following snippet,
           which shows how one might hope to override static members in C#.
         </p>
-        <pre>
+        <pre class="csharp">
 public class Base
 {
     public static virtual string Value => "Base";
@@ -57,7 +58,7 @@ new Sub2().Display(); // >>> Base
             virtual. Python, on the other hand, got this exactly right—thanks
             to the <code>classmethod</code> decorator.
           </p>
-          <pre>
+          <pre class="csharp">
 class Base:
     value = 'base'
     @classmethod

@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <title>Intuition of Church Encoding | lusmo.re</title>
-    <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="/layout.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <script src="/js/main.js" defer></script>
   </head>
   <body>
     <article>
@@ -71,8 +72,8 @@ succ = λn. λf. λx. f (n f x)
           Next up, lists—and this time, an even better standard intuition.
         </p>
         <pre>
-          nil = λc. λn. n
-          cons = λh. λt. λc. λn. c h (t c n)
+nil = λc. λn. n
+cons = λh. λt. λc. λn. c h (t c n)
 </pre>
         <p>
           The intuition is that a list is encoded as a <a target="_blank"
@@ -93,7 +94,7 @@ succ = λn. λf. λx. f (n f x)
           in the definitions without type signatures and see what I get.
         </p>
         <h3>Church booleans</h3>
-        <pre>
+        <pre class="haskell">
 λ let true' = \a b -> a
 λ :t true'
 true' :: t1 -> t -> t1
@@ -106,7 +107,7 @@ false' :: t -> t1 -> t1
           Defining a type that works in all the ways I would like is a little
           trickier than I expected, but not too difficult.
         </p>
-        <pre>
+        <pre class="haskell">
 {-# LANGUAGE RankNTypes #-}
 
 newtype Bool' = Bool' { runBool' :: forall a. a -> a -> a }
@@ -118,7 +119,7 @@ false' :: Bool'
 false' = Bool' $ \a b -> b
 </pre>
         <h3>Church numerals</h3>
-        <pre>
+        <pre class="haskell">
 λ let zero' = \f x -> x
 λ :t zero'
 zero' :: t -> t1 -> t1
@@ -132,7 +133,7 @@ succ' :: ((t1 -> t) -> t2 -> t1) -> (t1 -> t) -> t2 -> t
           <code>succ’</code> is supposed to be a numeral, so its type signature
           in <code>succ’</code> should give us a good place to start.
         </p>
-        <pre>
+        <pre class="haskell">
 newtype Nat' = Nat' { runNat' :: forall a. (a -> a) -> a -> a }
 
 zero' :: Nat'
@@ -142,7 +143,7 @@ succ' :: Nat' -> Nat'
 succ' n = Nat' $ \f x -> f (runNat' n f x)
 </pre>
         <h3>Church lists</h3>
-        <pre>
+        <pre class="haskell">
 λ let nil' = \c n -> n
 λ :t nil'
 nil' :: t -> t1 -> t1
@@ -155,7 +156,7 @@ cons' :: t1 -> ((t1 -> t2 -> t) -> t3 -> t2) -> (t1 -> t2 -> t) -> t3 -> t
           Again, the trick here was in recognising that the return type after
           two arguments is a list.
         </p>
-        <pre>
+        <pre class="haskell">
 newtype List' a = List'
     { runList' :: forall b. (a -> b -> b) -> b -> b
     }
@@ -176,7 +177,7 @@ cons x xs = List' $ \c n -> c x (runList' xs c n)
           <a target="_blank" href="https://en.wikibooks.org/wiki/Haskell/GADT">
           generalised algebraic datatype format</a>.
         </p>
-        <pre>
+        <pre class="haskell">
 data Bool
     = True  :: Bool
     | False :: Bool
@@ -205,7 +206,7 @@ newtype List' a = List'
           type with the type being declared, you get something very
           interesting.
         </p>
-        <pre>
+        <pre class="haskell">
 Bool' -> Bool' -> Bool'
 
 (Nat' -> Nat') -> Nat' -> Nat'
@@ -226,7 +227,7 @@ Bool' -> Bool' -> Bool'
           of the Church encodings should be data constructors! Let’s go back
           and try it for ourself.
         </p>
-        <pre>
+        <pre class="haskell">
 λ runBool' true' True False
 True
 λ runBool' false' True False
@@ -252,7 +253,7 @@ False
           <code>Maybe</code> and <code>Either</code> types, and while we’re at
           it we can use more meaningful identifiers for the lambda terms.
         </p>
-        <pre>
+        <pre class="haskell">
 data Maybe a
     = Just    :: a -> Maybe a
    | Nothing :: Maybe a

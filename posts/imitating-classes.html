@@ -3,9 +3,10 @@
   <head>
     <meta charset="UTF-8">
     <title>Imitating Classes | lusmo.re</title>
-    <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="/layout.css">
-</head>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <script src="/js/main.js" defer></script>
+  </head>
   <body>
     <article>
       <header>
@@ -33,7 +34,7 @@
         <p>
           To start off with, let’s create a really basic collection class.
         </p>
-        <pre>
+        <pre class="javascript">
 // Create a new collection, initially with the given items.
 function collection(items = []) {
     const _items = [...items];
@@ -84,7 +85,7 @@ function collection(items = []) {
           Next, we’ll create a class which extends collection. Let’s add some
           methods for adding and removing items transactionally.
         </p>
-        <pre>
+        <pre class="javascript">
 // Create a new collection, initially with the given items.
 function transactionalCollection(...args) {
     const _added = [];
@@ -153,7 +154,7 @@ function transactionalCollection(...args) {
           enforce this, we can define a helper function which removes protected
           members from a class, as below.
         </p>
-        <pre>
+        <pre class="javascript">
 // Create a new collection, initially with the given items.
 function collectionBase(items = []) {
     // Array of items in the collection.
@@ -215,7 +216,7 @@ const collection = seal(collectionBase);
           We can now define <code>localStorageCollection</code> using
           <code>collectionBase</code>.
         </p>
-        <pre>
+        <pre class="javascript">
 // Create a new collection which persists to local storage, initially with the
 // given items.
 function localStorageCollection(keyName, items) {
@@ -267,7 +268,7 @@ function localStorageCollection(keyName, items) {
           such a way that they are parameterised over their base class? The
           answer is yes, easily!
         </p>
-        <pre>
+        <pre class="javascript">
 // Create a new class which adds transactions to a base collection class.
 function makeTransactionalCollection(collection) {
     return function (...args) {
