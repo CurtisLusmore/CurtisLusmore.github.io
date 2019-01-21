@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Programming by Wishful Thinking | lusmo.re</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <script src="/js/main.js" defer></script>
+  </head>
+  <body>
+    <article>
+      <header>
+        <h1>Programming by Wishful Thinking</h1>
+      </header>
+      <section>
+        <p>
+          This is a technique that I discovered several years ago while
+          teaching an introductory programming course, and I was extremely
+          pleased to find out that although it had already been discovered, I
+          had given it the same name. <a target="_blank"
+          href="http://dsoguy.blogspot.com/2007/01/programming-by-wishful-thinking.html">
+          Programming by wishful thinking</a> is a style of top-down
+          program design that helps you improve the structure of your code,
+          isolate the hairy parts from the simple parts, think more clearly
+          about data flow, and work faster. I find it particularly helpful for
+          novice programmers who feel intimidated when starting a new project
+          and aren’t sure how to get started, but I still practise it regularly
+          as well.
+        </p>
+        <p>
+          So how does it work? I think this might be easiest to demonstrate by
+          example. Let’s imagine that you are trying to write a Python program
+          that checks the <a target="_blank"
+          href="https://www.xkcd.com/rss.xml">xkcd RSS feed</a> and downloads
+          new comics. In a bottom-up design, we can think about the different
+          built-in functions of Python and its standard library that we could
+          use. We’ll need to make a web request to the RSS feed, parse XML,
+          download images, sounds pretty complicated. Wouldn’t it be great if
+          Python had a few more built-ins, and we could just do this?
+        </p>
+        <pre class="python">
+items = fetch_rss('https://www.xkcd.com/rss.xml')
+for item in items:
+    src = get_img_from_item(item)
+    download_image(src)
+</pre>
+        <p>
+          We’d be done! Although Python is a <a target="_blank"
+          href="https://www.python.org/dev/peps/pep-0206/">batteries
+          included</a> language, it unfortunately doesn’t include these
+          functions. That’s okay though, because we can just define each of
+          these functions. Let’s start with <code>fetch_rss</code>. This is
+          definitely going to involve a web request, so we should figure out
+          which library to use. Then we’ll need an XML parser to convert the
+          response into a list of items. Sounds pretty complicated, and I
+          really just want to download some images. Can we come back to this
+          later?
+        </p>
+        <p>
+          For now, let’s just fake it. At the time of publication, the xkcd RSS
+          feed contains the following four comics: <a target="_blank"
+          href="https://xkcd.com/2100/">Models of the Atom</a>, <a
+          target="_blank" href="https://xkcd.com/2099/">Missal of Silos</a>, <a
+          target="_blank" href="https://xkcd.com/2098/">Magnetic Pole</a>, and
+          <a target="_blank" href="https://xkcd.com/2098/">Thor Tools</a>. So
+          we know that if we were to actually implement <code>fetch_rss</code>
+          and run it right now, those are the results we’d get.
+        </p>
+        <pre class="python">
+def fetch_rss(url):
+    return [
+        'https://imgs.xkcd.com/comics/models_of_the_atom.png',
+        'https://imgs.xkcd.com/comics/missal_of_silos.png',
+        'https://imgs.xkcd.com/comics/magnetic_pole.png',
+        'https://imgs.xkcd.com/comics/thor_tools.png'
+    ]
+</pre>
+        <p>
+          There we go. Good enough for now. Next up,
+          <code>get_img_from_item</code>. This is supposed to extract from one
+          of the items in the result of <code>fetch_rss</code> the URL of the
+          image to download. Well that’s easy, because each item in the result
+          already is that URL.
+        </p>
+        <pre>
+def get_img_from_item(item):
+    return item
+</pre>
+        <p>
+          The last function to implement is <code>download_image</code>. We
+          actually care about this one working properly, because I actually
+          want to view the images on my harddrive. We don’t have much choice
+          but to implement it properly. We can use <code><a target="_blank"
+          href="https://docs.python.org/3/library/urllib.request.html#urllib.request.urlretrieve">
+          urllib.request.urlretrieve</a></code> for this, but we need to
+          specify the target filename. Let’s just use more wishful thinking and
+          move on.
+        </p>
+        <pre class="python">
+from urllib.request import urlretrieve
+def download_image(src):
+    dst = generate_filename(src)
+    urlretrieve(src, dst)
+</pre>
+        <p>
+          I said the previous function was the last function, but we’ve shifted
+          the goalposts now by introducing yet another imaginary function. No
+          problem, we can implement it too. For now, we’ll just stick the
+          download into the working directory using whatever filename the
+          source URL uses (get the last element in the path). Maybe in the
+          future we’ll want something a bit better than this, but since we’ve
+          tucked it away in its own function it’s completely isolated and we
+          can easily come back and change it.
+        </p>
+        <pre>
+def generate_filename(url):
+    return url.split('/')[-1]
+</pre>
+        <p>
+          Put it all together in a single file (in the right order), run it,
+          and sure enough I have four comics to view locally. From
+          <a target="_blank" href="http://wiki.c2.com/?MakeItWorkMakeItRightMakeItFast">
+          Make it Work, Make it Right, Make it Fast</a>, we’ve made it work,
+          now it’s time to make it right by going back and properly
+          implementing the functions we skipped over.
+        </p>
+        <pre class="python">
+from urllib.request import urlopen
+from xml.etree import ElementTree
+def fetch_rss(url):
+    src = urlopen(url).read()
+    xml = ElementTree.fromstring(src)
+    return xml.findall('channel/item')
+</pre>
+        <p>
+          By correctly implementing <code>fetch_rss</code>, we have changed the
+          return value and thereby broken <code>get_img_from_item</code>, so we
+          should implement it now too.
+        </p>
+        <pre class="python">
+def get_img_from_item(item):
+    desc = item.find('description').text
+    html = ElementTree.fromstring(desc)
+    return html.get('src')
+</pre>
+        <p>
+          And now we’ve made it right. The approach we have just followed
+          pretty accurately reflects the actual process I use when developing
+          software. Here’s why.
+        </p>
+        <ul>
+          <li>Getting to a working solution as quickly as possible is
+            hugely motivating.</li>
+          <li>Helps me to think about the structure of the code first, and
+            worry about implementation details later.</li>
+          <li>Forces me to think about data flow early, by identifying the
+            required parameters and return values of each function, and the
+            links between successive function calls.</li>
+          <li>Helps to isolate the hairier parts of the task in well-specified
+            functions, decreasing coupling with the main program body and
+            making it easier to change or improve the implementations later
+            without breaking things.
+          </li>
+          <li>The hard-coded implementations can easily be converted to unit
+            tests.</li>
+        </ul>
+      </section>
+      <footer>
+        <p>
+          Posted by Curtis Lusmore on
+          <time datetime="2019-01-21">21 January 2019</time>.
+        </p>
+      </footer>
+    </article>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/posts">Posts</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/reading-list">Reading List</a></li>
+        <li><a href="/resume">Résumé</a></li>
+        <li><a href="/rss.xml">RSS</a></li>
+      </ul>
+    </nav>
+  </body>
+</html>

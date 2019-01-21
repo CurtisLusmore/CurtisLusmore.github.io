@@ -5,6 +5,28 @@
     <link>https://lusmo.re</link>
     <description>Curtis’ homepage</description>
     <item>
+      <title>Programming by Wishful Thinking</title>
+      <link>https://lusmo.re/posts/programming-by-wishful-thinking</link>
+      <guid>https://lusmo.re/posts/programming-by-wishful-thinking</guid>
+      <description>
+        <p>
+          This is a technique that I discovered several years ago while
+          teaching an introductory programming course, and I was extremely
+          pleased to find out that although it had already been discovered, I
+          had given it the same name. <a target="_blank"
+          href="http://dsoguy.blogspot.com/2007/01/programming-by-wishful-thinking.html">
+          Programming by wishful thinking</a> is a style of top-down
+          program design that helps you improve the structure of your code,
+          isolate the hairy parts from the simple parts, think more clearly
+          about data flow, and work faster. I find it particularly helpful for
+          novice programmers who feel intimidated when starting a new project
+          and aren’t sure how to get started, but I still practise it regularly
+          as well.
+        </p>
+      </description>
+      <pubDate>Mon, 21 January 2019 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>Diagnostics Anonymous</title>
       <link>https://lusmo.re/posts/diagnostics-anonymous</link>
       <guid>https://lusmo.re/posts/diagnostics-anonymous</guid>
