@@ -1,3 +1,15 @@
+:root {
+  --color-text: #202020;
+  --color-accent-1: #0080ff;
+  --color-accent-2: #ff4040;
+  --color-background: #ffffff;
+}
+
+body.dark {
+  --color-text: #ffffff;
+  --color-background: #202020;
+}
+
 /* fonts */
 h1, h2, h3, h4 {
   font-family: 'Book Antiqua', serif;
@@ -18,17 +30,18 @@ code, pre {
 }
 
 pre {
-  border-left: 2px solid #0080ff;
+  border-left: 2px solid var(--color-accent-1);
   padding-left: 10px;
 }
 
 /* color */
 body {
-  color: #202020;
+  color: var(--color-text);
+  background-color: var(--color-background);
 }
 
 pre.copy:hover {
-  border-left: 2px solid #ff4040;
+  border-left: 2px solid var(--color-accent-2);
   cursor: pointer;
 }
 
@@ -40,28 +53,40 @@ a[href^="#"] {
 a[href^="#"]::after {
   margin-left: 0.5ch;
   content: '#';
-  color: #0080ff;
+  color: var(--color-accent-1);
 }
 
 a[href^="#"]:hover::after {
-  color: #ff4040;
+  color: var(--color-accent-2);
 }
 
 a {
-  color: #202020;
+  color: var(--color-text);
   text-decoration: none;
-  border-bottom: 2px solid #0080ff;
+  border-bottom: 2px solid var(--color-accent-1);
 }
 
 a:hover {
-  border-bottom: 2px solid #ff4040;
+  border-bottom: 2px solid var(--color-accent-2);
 }
 
 a[target='_blank']::after {
-  color: #0080ff;
+  color: var(--color-accent-1);
   content: '↗'
 }
 
 a[target='_blank']:hover::after {
-  color: #ff4040;
+  color: var(--color-accent-2);
+}
+
+svg.icon {
+  height: 0.85em;
+}
+
+a > svg.icon {
+  color: var(--color-accent-1);
+}
+
+a:hover > svg.icon {
+  color: var(--color-accent-2);
 }
