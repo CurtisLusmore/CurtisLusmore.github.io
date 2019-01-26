@@ -75,7 +75,7 @@ a:hover {
 
 a[target='_blank']::after {
   color: var(--color-accent-1);
-  content: '↗'
+  content: '↗';
 }
 
 a[target='_blank']:hover::after {
