@@ -14,7 +14,7 @@ body.dark {
 
 /* fonts */
 h1, h2, h3, h4 {
-  font-family: 'Book Antiqua', serif;
+  font-family: 'Constantia', serif;
 }
 
 h4 {
@@ -92,4 +92,9 @@ a > svg.icon {
 
 a:hover > svg.icon {
   color: var(--color-accent-2);
+}
+
+::selection {
+  color: var(--color-background);
+  background-color: var(--color-accent-1);
 }
