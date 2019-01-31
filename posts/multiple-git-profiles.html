@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Multiple Git Profiles | lusmo.re</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <script src="/js/main.js" defer></script>
+  </head>
+  <body>
+    <article>
+      <header>
+        <h1>Multiple Git Profiles</h1>
+      </header>
+      <section>
+        <p>
+          If like me, you need to make Git commits from multiple email
+          addresses on the same machine (say, from your personal and your work
+          address), here’s a handy trick that will help make sure you make
+          every commit with the right address.
+        </p>
+        <p>
+          Start by creating a directory for each profile, named after the
+          profile. In my case, I have <code>D:/git/home</code> and
+          <code>D:/git/work</code>. Move all your Git repositories into
+          the directory corresponding to the profile that you want to use when
+          making commits to that repository. At the root of your profile
+          directories, create a <code>.gitconfig</code> file with the following
+          content.
+        </p>
+        <pre>
+[user]
+    email = your.email@address.com
+</pre>
+        <p>
+          Obviously, use the correct email address for each profile. Now remove
+          the email config from your global <code>.gitconfig</code> file, which
+          is usually in your user’s home directory. If you’re not sure where it
+          is, you can run
+        </p>
+        <pre>git config --show-origin user.email</pre>
+        <p>
+          to check. Once you’ve removed it, run
+        </p>
+        <pre>git config --get user.email</pre>
+        <p>
+          to confirm that it’s unset. Now add the following sections to your
+          global <code>.gitconfig</code> file.
+        </p>
+        <pre>
+[includeIf "gitdir:D:/git/home/"]
+    path = D:/git/home/.gitconfig
+
+[includeIf "gitdir:D:/git/work/"]
+    path = D:/git/work/.gitconfig
+</pre>
+        <p>
+          Replace <code>D:/git/home/</code> with the paths to the directories
+          you created earlier. Git will now pull in these config files whenever
+          you’re working in a repository inside those directories.
+        </p>
+        <p>
+          You can test this by navigating to a Git repository inside one of
+          your directories and running
+        </p>
+        <pre>git config --get user.email</pre>
+        <p>
+          but note that you need to be inside a Git repository, not just the
+          root directory—Git won’t pull in the conditional configuration files
+          outside of a Git repository.
+        </p>
+        <p>
+          Technically, you don’t need to remove your email configuration from
+          the global <code>.gitconfig</code> file—as long as the
+          <code>includeIf</code> blocks appear below your email configuration,
+          they will take precedent. However, I prefer to remove it to make it
+          clearer that the value there isn’t used, and to force me to put all
+          of my Git repositories inside one of my profile
+          directories—attempting to commit to a repository outside those
+          directories will fail because no email address is configured.
+        </p>
+        <p>
+          And that’s it—never make a commit from the wrong email address again!
+        </p>
+      </section>
+      <footer>
+        <p>
+          Posted by Curtis Lusmore on
+          <time datetime="2016-09-06">31 January 2019</time>.
+        </p>
+        <p>
+          Thoughts? Comments?
+          <a target="_blank" href="mailto:curtis@lusmo.re?subject=My%20Journey">
+            <svg aria-hidden="true" data-prefix="fas" data-icon="envelope-open" class="icon svg-inline--fa fa-envelope-open fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M512 464c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V200.724a48 48 0 0 1 18.387-37.776c24.913-19.529 45.501-35.365 164.2-121.511C199.412 29.17 232.797-.347 256 .003c23.198-.354 56.596 29.172 73.413 41.433 118.687 86.137 139.303 101.995 164.2 121.512A48 48 0 0 1 512 200.724V464zm-65.666-196.605c-2.563-3.728-7.7-4.595-11.339-1.907-22.845 16.873-55.462 40.705-105.582 77.079-16.825 12.266-50.21 41.781-73.413 41.43-23.211.344-56.559-29.143-73.413-41.43-50.114-36.37-82.734-60.204-105.582-77.079-3.639-2.688-8.776-1.821-11.339 1.907l-9.072 13.196a7.998 7.998 0 0 0 1.839 10.967c22.887 16.899 55.454 40.69 105.303 76.868 20.274 14.781 56.524 47.813 92.264 47.573 35.724.242 71.961-32.771 92.263-47.573 49.85-36.179 82.418-59.97 105.303-76.868a7.998 7.998 0 0 0 1.839-10.967l-9.071-13.196z"></path></svg>
+            Email the author.</a>
+        </p>
+      </footer>
+    </article>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/posts">Posts</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/reading-list">Reading List</a></li>
+        <li><a href="/resume">Résumé</a></li>
+        <li><a href="/rss.xml">RSS</a></li>
+        <li><a onclick="switchTheme();">Theme</a></li>
+      </ul>
+    </nav>
+  </body>
+</html>
