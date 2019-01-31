@@ -5,6 +5,29 @@
     <link>https://lusmo.re</link>
     <description>Curtis’ homepage</description>
     <item>
+      <title>Multiple Git Profiles</title>
+      <link>https://lusmo.re/posts/multiple-git-profiles</link>
+      <guid>https://lusmo.re/posts/multiple-git-profiles</guid>
+      <description>
+        <p>
+          If like me, you need to make Git commits from multiple email
+          addresses on the same machine (say, from your personal and your work
+          address), here’s a handy trick that will help make sure you make
+          every commit with the right address.
+        </p>
+        <p>
+          Start by creating a directory for each profile, named after the
+          profile. In my case, I have <code>D:/git/home</code> and
+          <code>D:/git/work</code>. Move all your Git repositories into
+          the directory corresponding to the profile that you want to use when
+          making commits to that repository. At the root of your profile
+          directories, create a <code>.gitconfig</code> file with the following
+          content.
+        </p>
+      </description>
+      <pubDate>Thu, 31 January 2019 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>Programming by Wishful Thinking</title>
       <link>https://lusmo.re/posts/programming-by-wishful-thinking</link>
       <guid>https://lusmo.re/posts/programming-by-wishful-thinking</guid>
