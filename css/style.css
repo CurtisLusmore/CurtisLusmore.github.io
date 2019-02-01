@@ -5,6 +5,9 @@
   --color-accent-2: #ff4040;
   --color-text: var(--color-black);
   --color-background: var(--color-white);
+  --font-head: 'Lora', serif;
+  --font-body: 'Scope One', serif;
+  --font-code: 'Inconsolata', monospace;
 }
 
 body.dark {
@@ -13,18 +16,22 @@ body.dark {
 }
 
 /* fonts */
-h1, h2, h3, h4 {
-  font-family: 'Constantia', serif;
+h1, h2 {
+  font-family: var(--font-head);
+}
+
+h3, h4 {
+  font-family: var(--font-body);
 }
 
 h4 {
   font-weight: normal;
 }
 
-p, li {
+p, li, td {
   text-align: justify;
   hyphens: auto;
-  font-family: 'Book Antiqua', serif;
+  font-family: var(--font-body);
 }
 
 header > p {
@@ -32,7 +39,7 @@ header > p {
 }
 
 code, pre {
-  font-family: Consolas, Monaco, 'Courier New', monospace;
+  font-family: var(--font-code);
 }
 
 pre {
@@ -106,4 +113,19 @@ a:hover > svg.icon {
 ::selection {
   color: var(--color-background);
   background-color: var(--color-accent-1);
+}
+
+@font-face {
+  font-family: 'Lora';
+  src: url('/fonts/Lora-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Scope One';
+  src: url('/fonts/ScopeOne-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Inconsolata';
+  src: url('/fonts/Inconsolata-Regular.ttf');
 }
