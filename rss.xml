@@ -151,11 +151,10 @@
       <pubDate>Tue, 6 September 2016 00:00:00 GMT</pubDate>
     </item>
     <item>
-      <title>199 Days of Git</title>
+      <title>199 Days of Git: Reflections on Git streaking</title>
       <link>https://lusmo.re/posts/199-days-of-git</link>
       <guid>https://lusmo.re/posts/199-days-of-git</guid>
       <description>
-        <h2>Reflections on Git streaking</h2>
         <p>
           May 20, 2016. My Git streak comes to an abrupt end on 199 days.
           Today, GitHub disabled the commit streak feature and left me stranded
