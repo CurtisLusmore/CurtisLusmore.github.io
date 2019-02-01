@@ -99,6 +99,7 @@ a[target='_blank']:hover::after {
 }
 
 svg.icon {
+  vertical-align: middle;
   height: 0.85em;
 }
 
