@@ -47,6 +47,11 @@ pre.copy:hover {
   cursor: pointer;
 }
 
+pre.copy:hover::before {
+  content: '📋';
+  float: right;
+}
+
 /* links */
 a[href^="#"] {
   border: none;
