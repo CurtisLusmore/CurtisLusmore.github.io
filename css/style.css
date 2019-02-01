@@ -61,13 +61,13 @@ a[href^="#"] {
   border: none;
 }
 
-a[href^="#"]::after {
-  margin-left: 0.5ch;
+a[href^="#"]::before {
+  margin-right: 0.5ch;
   content: '#';
   color: var(--color-accent-1);
 }
 
-a[href^="#"]:hover::after {
+a[href^="#"]:hover::before {
   color: var(--color-accent-2);
 }
 
