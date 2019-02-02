@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Multiple Dispatch in Python | lusmo.re</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <script src="/js/main.js" defer></script>
+  </head>
+  <body>
+    <article>
+      <header>
+        <h1>Multiple Dispatch in Python</h1>
+      </header>
+      <section>
+        <p>
+          I recently read <a target="_blank"
+          href="https://www.oreilly.com/programming/free/files/functional-programming-python.pdf">
+          Functional Programming in Python</a> which mentions a library which
+          adds multiple dispatch to Python. One of my biggest hobbies is
+          creating things from scratch, as it really helps me get a better
+          understanding of how they work, so I thought I’d see if I couldn’t
+          figure out how to do it myself.
+        </p>
+        <p>
+          Here’s what I whipped up. I’ll add a disclaimer that in this form, it
+          doesn’t work well for methods or class methods, as they both take a
+          special argument in the first position (namely <code>self</code> or
+          <code>cls</code>), and it doesn’t accept keyword arguments. At some
+          stage I’ll try to make it a bit more rigorous.
+        </p>
+        <pre>
+class Dispatch:
+    _existing = {}
+
+    def _init_(self, *types):
+        self.types = types
+
+    def _call_(self, fn):
+        name = fn.__qualname__
+        if name not in self._existing:
+            table = {}
+            def dispatcher(*args):
+                types = tuple(map(type, args))
+                try:
+                    overload = table[types]
+                except KeyError:
+                    try:
+                        overload = table[(True,)]
+                    except KeyError:
+                        raise NotImplemented from None
+                return overload(*args)
+            self._existing[name] = (table, dispatcher)
+        (table, dispatcher) = self._existing[name]
+        table[self.types] = fn
+        return dispatcher
+</pre>
+        <p>
+          Once you tuck this away in a library somewhere where you don’t have
+          to look at it, you can use it to write some pretty elegant code. See
+          the following implementation of the flatten function.
+        </p>
+        <pre>
+@Dispatch(list)
+def flatten(elems):
+    return reduce(add, map(flatten, elems), [])
+
+@Dispatch(True)
+def flatten(elem):
+    return [elem]
+</pre>
+      </section>
+      <footer>
+        <p>
+          Posted by Curtis Lusmore on
+          <time datetime="2015-07-25">25 July 2015</time>.
+        </p>
+        <p>
+          Thoughts? Comments?
+          <a target="_blank" href="mailto:curtis@lusmo.re?subject=Pre-processing%20Imports%20in%20Python">
+            <svg aria-hidden="true" data-prefix="fas" data-icon="envelope-open" class="icon svg-inline--fa fa-envelope-open fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M512 464c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V200.724a48 48 0 0 1 18.387-37.776c24.913-19.529 45.501-35.365 164.2-121.511C199.412 29.17 232.797-.347 256 .003c23.198-.354 56.596 29.172 73.413 41.433 118.687 86.137 139.303 101.995 164.2 121.512A48 48 0 0 1 512 200.724V464zm-65.666-196.605c-2.563-3.728-7.7-4.595-11.339-1.907-22.845 16.873-55.462 40.705-105.582 77.079-16.825 12.266-50.21 41.781-73.413 41.43-23.211.344-56.559-29.143-73.413-41.43-50.114-36.37-82.734-60.204-105.582-77.079-3.639-2.688-8.776-1.821-11.339 1.907l-9.072 13.196a7.998 7.998 0 0 0 1.839 10.967c22.887 16.899 55.454 40.69 105.303 76.868 20.274 14.781 56.524 47.813 92.264 47.573 35.724.242 71.961-32.771 92.263-47.573 49.85-36.179 82.418-59.97 105.303-76.868a7.998 7.998 0 0 0 1.839-10.967l-9.071-13.196z"></path></svg>
+            Email the author.</a>
+        </p>
+      </footer>
+    </article>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/posts">Posts</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/reading-list">Reading List</a></li>
+        <li><a href="/resume">Résumé</a></li>
+        <li><a href="/rss.xml">RSS</a></li>
+        <li><a onclick="switchTheme();">Theme</a></li>
+      </ul>
+    </nav>
+  </body>
+</html>
