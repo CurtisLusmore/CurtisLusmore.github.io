@@ -117,17 +117,17 @@ a:hover > svg.icon {
 }
 
 @font-face {
-  font-family: 'Lora';
+  font-family: 'Lora', serif;
   src: url('/fonts/Lora-Regular.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: 'Scope One';
+  font-family: 'Scope One', serif;
   src: url('/fonts/ScopeOne-Regular.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: 'Inconsolata';
+  font-family: 'Inconsolata', monospace;
   src: url('/fonts/Inconsolata-Regular.ttf') format('truetype');
 }
 
@@ -148,7 +148,7 @@ body.markdown {
 .markdown code {
   text-align: left;
   font-size: 18px;
-  font-family: 'Inconsolata';
+  font-family: var(--font-code);
   margin: 0;
   padding: 0;
   color: var(--color-text);
