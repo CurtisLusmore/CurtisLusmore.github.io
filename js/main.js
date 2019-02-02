@@ -9,14 +9,15 @@ document
   });
 
 const switchTheme = (function () {
-  let darkTheme = localStorage.getItem('dark') === 'true';
+  const themes = [ 'light', 'dark', 'markdown' ];
+  let theme = localStorage.getItem('theme') || 'light';
   const updateTheme = function () {
-    document.body.className = darkTheme ? 'dark' : 'light';
+    document.body.className = theme;
   };
   updateTheme();
   const switchTheme = function () {
-    darkTheme = !darkTheme;
-    localStorage.setItem('dark', darkTheme);
+    theme = themes[(themes.indexOf(theme) + 1) % themes.length];
+    localStorage.setItem('theme', theme);
     updateTheme();
   };
   return switchTheme;

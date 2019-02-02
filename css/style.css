@@ -130,3 +130,60 @@ a:hover > svg.icon {
   font-family: 'Inconsolata';
   src: url('/fonts/Inconsolata-Regular.ttf');
 }
+
+body.markdown {
+  max-width: 80ch;
+  margin: 3em auto;
+}
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown p,
+.markdown ul,
+.markdown li,
+.markdown td,
+.markdown pre,
+.markdown code {
+  text-align: left;
+  font-size: 18px;
+  font-family: 'Inconsolata';
+  margin: 0;
+  padding: 0;
+  color: var(--color-text);
+}
+
+.markdown * + p,
+.markdown * + pre {
+  margin-top: 1em;
+}
+
+.markdown li { padding-bottom: 0em; }
+.markdown h1::before { content: '# '; }
+.markdown h2::before { content: '## '; }
+.markdown h3::before { content: '### '; }
+.markdown h4::before { content: '#### '; }
+.markdown code::before,
+.markdown code::after { content: '`'; }
+.markdown pre,
+.markdown pre:hover { padding-left: 4ch; border: none; }
+.markdown a { color: var(--color-text); border: none; }
+.markdown a::before { content: '['; }
+.markdown a::after { color: var(--color-text); content: '](' attr(href) ')'; }
+.markdown a::after:hover { color: var(--color-text); }
+.markdown a[target='_blank']:hover::after { color: var(--color-text); }
+.markdown a[href^="#"]::before,
+.markdown a[href^="#"]:hover::before { color: var(--color-text); }
+.markdown ul { list-style: none; padding-left: 0; }
+.markdown ul li { display: block; }
+.markdown ul > li::before { content: '* '; }
+.markdown blockquote { margin: 0; }
+.markdown blockquote::before { content: '> '; float: left; white-space: pre; }
+.markdown a > svg.icon,
+.markdown a:hover > svg.icon { color: var(--color-text); }
+
+.markdown ::selection {
+  color: var(--color-background);
+  background-color: var(--color-text);
+}

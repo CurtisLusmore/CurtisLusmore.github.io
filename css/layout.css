@@ -83,6 +83,16 @@ h1, h2, h3, h4, p, pre {
   margin: 0.5rem 0;
 }
 
+* + section {
+  margin-top: 1em;
+}
+
+* + header,
+* + footer,
+* + nav {
+  margin-top: 2em;
+}
+
 * + p, * + h2, * + pre {
   margin-top: 1.5em;
 }
