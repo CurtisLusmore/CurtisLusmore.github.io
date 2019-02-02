@@ -117,17 +117,17 @@ a:hover > svg.icon {
 }
 
 @font-face {
-  font-family: 'Lora', serif;
+  font-family: 'Lora';
   src: url('/fonts/Lora-Regular.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: 'Scope One', serif;
+  font-family: 'Scope One';
   src: url('/fonts/ScopeOne-Regular.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: 'Inconsolata', monospace;
+  font-family: 'Inconsolata';
   src: url('/fonts/Inconsolata-Regular.ttf') format('truetype');
 }
 
