@@ -156,6 +156,7 @@ body.markdown {
 }
 
 .markdown * + p,
+.markdown * + h2,
 .markdown * + pre {
   margin-top: 1em;
 }
