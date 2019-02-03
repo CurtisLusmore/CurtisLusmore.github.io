@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>The First Great Epiphany | lusmo.re</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <script src="/js/main.js" defer></script>
+  </head>
+  <body>
+    <article>
+      <header>
+        <h1>The First Great Epiphany</h1>
+        <p>My Journey, Part 1</p>
+      </header>
+      <section>
+        <p>
+          My first exposure to programming was some time around the turn of the
+          century with a program called Game Maker, which as the name suggests,
+          was built for making games. Game Maker actually supported a decent
+          amount of graphical programming by dragging-and-dropping icons around
+          the screen to describe the behaviour of different objects in the
+          game, but as soon as I learnt that there was another way to do it
+          that had more features, I wanted to learn that.
+        </p>
+        <p>
+          The tutorial for the scripting language in Game Maker at the time
+          walked you through programming a little game similar to Space
+          Invaders, where you controlled a space ship at the bottom of the
+          screen and the goal was to shoot the enemy ships approaching from the
+          top of the screen. I followed the instructions closely, typing in all
+          the code it supplied to define the behaviour for moving and shooting,
+          including a cooldown for the gun so that you wouldn’t just fire off
+          a shot every game tick. And then they gave you an exercise, to add a
+          second weapon to the ship that was triggered from a separate key and
+          that had its own cooldown. And I was stumped.
+        </p>
+        <p>
+          I looked back over all the code they had supplied to me so far. When
+          you press the Space key, it first checks the value of
+          <code>can_shoot</code>. If it’s <code>true</code>, create a
+          bullet, set <code>can_shoot</code> to <code>false</code>, then start
+          a timer for half a second. When the timer goes off, set
+          <code>can_shoot</code> back to <code>true</code> again. Well that all
+          makes sense and it’s great for the first gun, but what’s the
+          equivalent of <code>can_shoot</code> for the second gun? They didn’t
+          tell me the name of the second cooldown. I tried searching through
+          the documentation for the name of the second cooldown, but couldn’t
+          find it anywhere.
+        </p>
+        <p>
+          This really frustrated me, because I was having so much fun up until
+          this point watching a game come to life on the screen in front of me
+          based on what I was typing with my fingers. And now I was stuck
+          beacuse the tutorial missed such an important detail! I kept staring
+          at what my screen, hoping for a clue.
+        </p>
+        <p>
+          And then I had my first great epiphany of programming. I
+          <em>made</em> <code>can_shoot</code>. It’s not special. It’s not some
+          magical thing built into the language that already knows how to
+          handle the cooldown for a gun. I <em>made</em> it understand how to
+          handle the cooldown for a gun. I explicitly wrote out every single
+          detail of its behaviour. Its starting value, how its value affects
+          the behaviour of the game, how its value changes based on the actions
+          that occur in the game, how the timer resets it. I made it do what it
+          does, and if I wanted to I could make it do something else. And that
+          was it, I was hooked.
+        </p>
+        <p>
+          Years later, when I taught intro to programming to first-year
+          university students, I would have the privilege of seeing this same
+          epiphany occur in the minds of hundreds of budding programmers. But
+          we’ll get to that part of my journey later.
+        </p>
+      </section>
+      <footer>
+        <p>
+          Posted by Curtis Lusmore on
+          <time datetime="2019-02-03">3 February 2019</time>.
+        </p>
+        <p>
+          Thoughts? Comments?
+          <a target="_blank" href="mailto:curtis@lusmo.re?subject=My%20Journey">
+            <svg aria-hidden="true" data-prefix="fas" data-icon="envelope-open" class="icon svg-inline--fa fa-envelope-open fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M512 464c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V200.724a48 48 0 0 1 18.387-37.776c24.913-19.529 45.501-35.365 164.2-121.511C199.412 29.17 232.797-.347 256 .003c23.198-.354 56.596 29.172 73.413 41.433 118.687 86.137 139.303 101.995 164.2 121.512A48 48 0 0 1 512 200.724V464zm-65.666-196.605c-2.563-3.728-7.7-4.595-11.339-1.907-22.845 16.873-55.462 40.705-105.582 77.079-16.825 12.266-50.21 41.781-73.413 41.43-23.211.344-56.559-29.143-73.413-41.43-50.114-36.37-82.734-60.204-105.582-77.079-3.639-2.688-8.776-1.821-11.339 1.907l-9.072 13.196a7.998 7.998 0 0 0 1.839 10.967c22.887 16.899 55.454 40.69 105.303 76.868 20.274 14.781 56.524 47.813 92.264 47.573 35.724.242 71.961-32.771 92.263-47.573 49.85-36.179 82.418-59.97 105.303-76.868a7.998 7.998 0 0 0 1.839-10.967l-9.071-13.196z"></path></svg>
+            Email the author.</a>
+        </p>
+      </footer>
+    </article>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/posts">Posts</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/reading-list">Reading List</a></li>
+        <li><a href="/resume">Résumé</a></li>
+        <li><a href="/rss.xml">RSS</a></li>
+        <li><a onclick="switchTheme();">Theme</a></li>
+      </ul>
+    </nav>
+  </body>
+</html>
