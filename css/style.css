@@ -152,6 +152,7 @@ body.markdown {
   margin: 0;
   padding: 0;
   color: var(--color-text);
+  font-weight: normal;
 }
 
 .markdown * + p,
