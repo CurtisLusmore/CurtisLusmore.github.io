@@ -166,6 +166,12 @@ body.markdown {
 .markdown h2::before { content: '## '; }
 .markdown h3::before { content: '### '; }
 .markdown h4::before { content: '#### '; }
+.markdown header p,
+.markdown em { font-style: normal; }
+.markdown header p::before,
+.markdown header p::after,
+.markdown em::before,
+.markdown em::after { content: '_'; }
 .markdown code::before,
 .markdown code::after { content: '`'; }
 .markdown pre,
