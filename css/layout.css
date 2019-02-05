@@ -93,7 +93,10 @@ h1, h2, h3, h4, p, pre {
   margin-top: 2em;
 }
 
-* + p, * + h2, * + pre {
+* + p,
+* + h2,
+* + pre,
+* + blockquote {
   margin-top: 1.5em;
 }
 

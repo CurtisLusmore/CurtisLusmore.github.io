@@ -145,7 +145,8 @@ body.markdown {
 .markdown li,
 .markdown td,
 .markdown pre,
-.markdown code {
+.markdown code,
+.markdown blockquote {
   text-align: left;
   font-size: 18px;
   font-family: var(--font-code);
@@ -157,7 +158,8 @@ body.markdown {
 
 .markdown * + p,
 .markdown * + h2,
-.markdown * + pre {
+.markdown * + pre,
+.markdown * + blockquote {
   margin-top: 1em;
 }
 
@@ -186,8 +188,8 @@ body.markdown {
 .markdown ul { list-style: none; padding-left: 0; }
 .markdown ul li { display: block; }
 .markdown ul > li::before { content: '* '; }
-.markdown blockquote { margin: 0; }
-.markdown blockquote::before { content: '> '; float: left; white-space: pre; }
+.markdown blockquote { border: none; line-height: 1.45 }
+.markdown blockquote > *::before { content: '> '; float: left; white-space: pre; }
 .markdown a > svg.icon,
 .markdown a:hover > svg.icon { color: var(--color-text); }
 
