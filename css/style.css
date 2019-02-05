@@ -189,7 +189,8 @@ body.markdown {
 .markdown ul li { display: block; }
 .markdown ul > li::before { content: '* '; }
 .markdown blockquote { border: none; line-height: 1.45 }
-.markdown blockquote > *::before { content: '> '; float: left; white-space: pre; }
+.markdown blockquote p::before { content: '> '; float: left; white-space: pre; }
+.markdown blockquote ul > li::before { content: '> * '; float: left; white-space: pre; }
 .markdown a > svg.icon,
 .markdown a:hover > svg.icon { color: var(--color-text); }
 
