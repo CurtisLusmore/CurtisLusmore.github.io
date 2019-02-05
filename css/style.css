@@ -159,6 +159,8 @@ body.markdown {
 .markdown * + p,
 .markdown * + h2,
 .markdown * + pre,
+.markdown * + ul,
+.markdown * + li,
 .markdown * + blockquote {
   margin-top: 1em;
 }
