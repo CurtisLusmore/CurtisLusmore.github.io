@@ -5,6 +5,37 @@
     <link>https://lusmo.re</link>
     <description>Curtis’ homepage</description>
     <item>
+      <title>Find a Purpose: My Journey, Part 2</title>
+      <link>https://lusmo.re/posts/find-a-purpose</link>
+      <guid>https://lusmo.re/posts/find-a-purpose</guid>
+      <description>
+        <p>
+          I continued building tiny, incomplete games with Game Maker for a
+          couple of years, never really making anything substantial but still
+          learning a lot. And while I was enjoying the act of making games, and
+          I certainly enjoyed playing games, I didn’t really enjoy playing my
+          games. Partly because they weren’t very good, but also because I knew
+          how they worked, how to beat them, and I didn’t get the same feeling
+          of discovery that I got playing other games. And as the enjoyment of
+          playing the games diminished, so too did the enjoyment of making
+          them. I wasn’t sure whether I should be programming for the sake of
+          programming, or programming for the outcome.
+        </p>
+        <p>
+          At the same time, I was spending a great deal of time playing an
+          online game, which will remain nameless. The client for playing this
+          game had an IRC chat window below the main game window, which I would
+          use to chat with my friends while playing. One of my friends was also
+          a programmer, and he knew how to make IRC bots. If I recall
+          correctly, his bot simply helped administer the channel—it would
+          grant certain users permissions when they joined, kick people out
+          when they broke the rules, it could even run a little trivia game. It
+          didn’t do anything terribly exciting, but I could see the potential.
+        </p>
+      </description>
+      <pubDate>Wed, 6 February 2019 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>The First Great Epiphany: My Journey, Part 1</title>
       <link>https://lusmo.re/posts/the-first-great-epiphany</link>
       <guid>https://lusmo.re/posts/the-first-great-epiphany</guid>
@@ -31,7 +62,7 @@
           that had its own cooldown. And I was stumped.
         </p>
       </description>
-      <pubDate>Thu, 31 January 2019 00:00:00 GMT</pubDate>
+      <pubDate>Sun, 3 February 2019 00:00:00 GMT</pubDate>
     </item>
     <item>
       <title>Multiple Git Profiles</title>
