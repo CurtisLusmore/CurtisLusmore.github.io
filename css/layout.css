@@ -35,6 +35,19 @@ pre {
   line-height: 1.45;
 }
 
+img.author {
+  height: 54px;
+  float: left;
+  margin-right: 1ch;
+}
+
+img.profile {
+  width: 256px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @media screen and (max-width: 1080px) {
   body {
     max-width: 100%;
@@ -70,6 +83,14 @@ pre {
     white-space: pre-wrap;
     font-size: 1.8rem;
   }
+
+  img.author {
+    height: 5.5rem;
+  }
+
+  img.profile {
+    width: 60%;
+  }
 }
 
 .cols-2 {
@@ -96,7 +117,8 @@ h1, h2, h3, h4, p, pre {
 * + p,
 * + h2,
 * + pre,
-* + blockquote {
+* + blockquote,
+* + img {
   margin-top: 1.5em;
 }
 
@@ -108,13 +130,8 @@ td + td {
   margin-top: 2rem;
 }
 
-blockquote {
-  padding-left: 5ch;
-  border-left: 2px solid #202020;
-}
-
 article + article {
-  margin-top: 2rem;
+  margin-top: 3rem;
 }
 
 header > p {

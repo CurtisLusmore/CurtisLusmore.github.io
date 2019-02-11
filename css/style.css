@@ -47,6 +47,11 @@ pre {
   padding-left: 10px;
 }
 
+blockquote {
+  border-left: 2px solid var(--color-accent-1);
+  padding-left: 5ch;
+}
+
 /* color */
 body {
   color: var(--color-text);
