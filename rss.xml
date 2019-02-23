@@ -5,6 +5,34 @@
     <link>https://lusmo.re</link>
     <description>Curtis’ homepage</description>
     <item>
+      <title>Computer Science as Exploration</title>
+      <link>https://lusmo.re/posts/computer-science-as-exploration</link>
+      <guid>https://lusmo.re/posts/computer-science-as-exploration</guid>
+      <description>
+        <p>
+          What is computer science really about? In the present day, despite
+          being such a relatively young and immature field, computer science
+          employs millions of people all over the world, it produces the
+          technologies that run our lives, and it is responsible for countless
+          billions or trillions of dollars of value. Even going into the
+          near-term future, the software that has been built over the last few
+          decades will continue to affect the daily lives of people for
+          generations to come.
+        </p>
+        <p>
+          But to me, that’s just commercial success. At the end of the day, or
+          perhaps better to say at the end of the millenium, will anybody
+          really care? If we made contact with an alien race, would we brag
+          about our ability to share cat photos with millions of strangers, or
+          even our ability to build billion dollar companies? There must be
+          some deeper meaning to this all. I can feel it. When I’m programming
+          or problem solving, I feel like I’m exploring. But what am I
+          exploring?
+        </p>
+      </description>
+      <pubDate>Sun, 24 February 2019 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>Accidental Agility</title>
       <link>https://lusmo.re/posts/accidental-agility</link>
       <guid>https://lusmo.re/posts/accidental-agility</guid>
