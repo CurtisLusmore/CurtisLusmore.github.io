@@ -24,3 +24,15 @@ document
     updateTheme();
   };
 }());
+
+(function () {
+  const location = document.location.pathname;
+  const referrer = document.referrer;
+  fetch(
+    'https://log-lusmo-re.azurewebsites.net/api/log',
+    {
+      method: 'POST',
+      body: JSON.stringify({ location, referrer })
+    }
+  );
+}());
