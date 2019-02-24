@@ -27,7 +27,7 @@ document
 
 (function () {
   const location = document.location.pathname;
-  const referrer = document.referrer;
+  const referrer = new URLSearchParams(document.location.search).get('ref') || document.referrer;
   fetch(
     'https://log-lusmo-re.azurewebsites.net/api/log',
     {
