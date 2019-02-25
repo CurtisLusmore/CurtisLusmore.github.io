@@ -1,0 +1,47 @@
+body { margin: 0; }
+header, section, footer {
+  height: 100vh;
+  padding: 0 5vw;
+}
+header > *,
+section > *,
+footer > * { margin: 0; }
+header > h1 {
+  padding-top: 35vh;
+  text-align: center;
+  font-size: 10vh;
+}
+header > p,
+footer > p {
+  text-align: center;
+  font-size: 5vh;
+}
+section > h2 {
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  text-align: center;
+  font-size: 7vh;
+}
+section > p,
+section > ul,
+section > ol {
+  font-size: 5vh;
+}
+section > h3 {
+  font-size: 7vh;
+}
+header, section, footer {
+  background-position: center;
+  background-size: cover;
+}
+body.block {
+  opacity: 0;
+}
+img.profile {
+  width: 25vw;
+  padding: 0 5vw 0 15vw;
+  float: left;
+}
+section.center {
+  padding-top: 35vh;
+}
