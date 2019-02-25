@@ -2,6 +2,7 @@ body { margin: 0; }
 header, section, footer {
   height: 100vh;
   padding: 0 5vw;
+  box-sizing: border-box;
 }
 header > *,
 section > *,
@@ -43,5 +44,5 @@ img.profile {
   float: left;
 }
 section.center {
-  padding-top: 35vh;
+  padding-top: 30vh;
 }
