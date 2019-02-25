@@ -130,6 +130,7 @@ td + td {
   margin-top: 2rem;
 }
 
+section + article,
 article + article {
   margin-top: 3rem;
 }
