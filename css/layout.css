@@ -146,8 +146,5 @@ nav > ul > li {
 
 nav > ul {
   padding-left: 0;
-}
-
-nav > ul > li + li {
-  margin-left: 2ch;
+  text-align-last: justify;
 }
