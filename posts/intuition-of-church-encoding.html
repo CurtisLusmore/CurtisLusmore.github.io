@@ -87,8 +87,8 @@ cons = λh. λt. λc. λn. c h (t c n)
 </pre>
         <p>
           The intuition is that a list is encoded as a <a target="_blank"
-          href="https://en.wikipedia.org/wiki/Fold_%28higher-order_function%29">
-          fold function</a>, although it might be difficult to see from these
+          href="https://en.wikipedia.org/wiki/Fold_%28higher-order_function%29"
+          >fold function</a>, although it might be difficult to see from these
           terms. And now I’m really starting to doubt that it’s mere
           coincidence that yet again we have an alpha equivalence with
           <code>false</code>, this time in the encoding of <code>nil</code>.
@@ -184,8 +184,8 @@ cons x xs = List' $ \c n -> c x (runList' xs c n)
           At this point I thought it would be interesting to compare these
           types with the standard type definitions in the Prelude for the
           actual types. I decided to list out the standard data definitions in
-          <a target="_blank" href="https://en.wikibooks.org/wiki/Haskell/GADT">
-          generalised algebraic datatype format</a>.
+          <a target="_blank" href="https://en.wikibooks.org/wiki/Haskell/GADT"
+          >generalised algebraic datatype format</a>.
         </p>
         <pre class="haskell">
 data Bool
@@ -303,8 +303,8 @@ right' b = Either' $ \left right -> right b
       <footer>
         <p>
           Thoughts? Comments?
-          <a target="_blank" href="mailto:curtis@lusmo.re?subject=Intuition%20of%20Church%20Encoding">
-            Email the author.</a>
+          <a target="_blank" href="mailto:curtis@lusmo.re?subject=Intuition%20of%20Church%20Encoding"
+          >Email the author.</a>
         </p>
       </footer>
     </article>

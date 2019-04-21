@@ -78,8 +78,8 @@
           come a long way in that time. What started as scribblings on a
           blackboard in a meeting of seventeen programmers has since grown to
           take the business world by storm. Some would even say it’s grown out
-          of control <a target="_blank" href="https://www.youtube.com/watch?v=a-BOSpxYJ9M">
-          (some of the original authors, no less)</a>.
+          of control <a target="_blank" href="https://www.youtube.com/watch?v=a-BOSpxYJ9M"
+          >(some of the original authors, no less)</a>.
         </p>
         <p>
           In this post, I want to rediscover the essence of agility by looking
@@ -188,8 +188,8 @@
           teaching an introductory programming course, and I was extremely
           pleased to find out that although it had already been discovered, I
           had given it the same name. <a target="_blank"
-          href="http://dsoguy.blogspot.com/2007/01/programming-by-wishful-thinking.html">
-          Programming by wishful thinking</a> is a style of top-down
+          href="http://dsoguy.blogspot.com/2007/01/programming-by-wishful-thinking.html"
+          >Programming by wishful thinking</a> is a style of top-down
           program design that helps you improve the structure of your code,
           isolate the hairy parts from the simple parts, think more clearly
           about data flow, and work faster. I find it particularly helpful for
@@ -419,8 +419,8 @@
       <description>
         <p>
           I recently read <a target="_blank"
-          href="https://www.oreilly.com/programming/free/files/functional-programming-python.pdf">
-          Functional Programming in Python</a> which mentions a library which
+          href="https://www.oreilly.com/programming/free/files/functional-programming-python.pdf"
+          >Functional Programming in Python</a> which mentions a library which
           adds multiple dispatch to Python. One of my biggest hobbies is
           creating things from scratch, as it really helps me get a better
           understanding of how they work, so I thought I’d see if I couldn’t
