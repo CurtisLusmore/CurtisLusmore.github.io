@@ -48,6 +48,13 @@ img.profile {
   margin-right: auto;
 }
 
+img.post {
+  width: 75%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @media screen and (max-width: 1080px) {
   body {
     max-width: 100%;
@@ -148,3 +155,4 @@ nav > ul {
   padding-left: 0;
   text-align-last: justify;
 }
+.markdown nav > ul { text-align-last: left; }
