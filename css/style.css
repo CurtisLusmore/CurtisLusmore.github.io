@@ -205,3 +205,8 @@ body.markdown {
   color: var(--color-background);
   background-color: var(--color-text);
 }
+
+.markdown img.author { display: none; }
+.markdown img.author + *::before { content: '🧑'; }
+.markdown img.profile { display: none; }
+.markdown img.profile + *::before { content: '🧑\A'; white-space: pre; }
