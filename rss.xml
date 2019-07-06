@@ -5,6 +5,29 @@
     <link>https://lusmo.re</link>
     <description>Curtis’ homepage</description>
     <item>
+      <title>Take a Step Back</title>
+      <link>https://lusmo.re/posts/take-a-step-back</link>
+      <guid>https://lusmo.re/posts/take-a-step-back</guid>
+      <description>
+        <p>
+          In my time so far working in software development, as a developer and
+          as a product manager, I’ve made and seen a lot of mistakes. I spent
+          some time recently reflecting on some of the biggest mistakes, the
+          ones that ultimately cost the most time or money, that caused the
+          most frustration and heartache, and tried to devise some lessons
+          learnt. In the end I realised that the vast majority of mistakes were
+          actually variants of the same core mistake, and that one main lesson
+          applied to all of them.
+        </p>
+        <p>
+          In this post I will discuss this mistake, some examples of where it
+          comes up in software development, some thoughts on why it keeps
+          happening, and some tips on how to avoid it.
+        </p>
+      </description>
+      <pubDate>Tue, 9 July 2019 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>Impostor Syndrome</title>
       <link>https://lusmo.re/posts/impostor-syndrome</link>
       <guid>https://lusmo.re/posts/impostor-syndrome</guid>
