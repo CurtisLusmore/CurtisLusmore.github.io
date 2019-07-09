@@ -26,6 +26,7 @@ document
 }());
 
 (function () {
+  if (navigator.doNotTrack) return;
   const location = document.location.pathname;
   const referrer = new URLSearchParams(document.location.search).get('ref') || document.referrer;
   fetch(
