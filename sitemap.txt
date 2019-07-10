@@ -1,6 +1,5 @@
 https://lusmo.re
 https://lusmo.re/contact
+https://lusmo.re/external
 https://lusmo.re/posts
 https://lusmo.re/projects
-https://lusmo.re/reading-list
-https://lusmo.re/resume
