@@ -13,6 +13,12 @@ document
   let theme = localStorage.getItem('theme') || 'light';
   const updateTheme = function () {
     document.body.className = theme;
+    if (theme === 'markdown') {
+      document.querySelectorAll('img').forEach(node => { node.dataset.src = node.src; node.src = ''; });
+    }
+    else {
+      document.querySelectorAll('img').forEach(node => { node.src = node.dataset.src || node.src; });
+    }
   };
   updateTheme();
 

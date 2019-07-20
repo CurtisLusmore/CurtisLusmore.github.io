@@ -151,7 +151,8 @@ body.markdown {
 .markdown td,
 .markdown pre,
 .markdown code,
-.markdown blockquote {
+.markdown blockquote,
+.markdown img {
   text-align: left;
   font-size: 18px;
   font-family: var(--font-code);
@@ -159,6 +160,10 @@ body.markdown {
   padding: 0;
   color: var(--color-text);
   font-weight: normal;
+}
+
+.markdown img {
+  white-space: pre;
 }
 
 .markdown * + p,
@@ -203,10 +208,5 @@ body.markdown {
 
 .markdown ::selection {
   color: var(--color-background);
-  background-color: var(--color-text);
+  background-color: var(--color-text);  
 }
-
-.markdown img.author { display: none; }
-.markdown img.author + *::before { content: '🧑'; }
-.markdown img.profile { display: none; }
-.markdown img.profile + *::before { content: '🧑\A'; white-space: pre; }
