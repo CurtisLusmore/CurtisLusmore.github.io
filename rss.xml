@@ -5,6 +5,36 @@
     <link>https://lusmo.re</link>
     <description>Curtis’ homepage</description>
     <item>
+      <title>People and Purpose</title>
+      <link>https://lusmo.re/posts/people-and-purpose</link>
+      <guid>https://lusmo.re/posts/people-and-purpose</guid>
+      <description>
+        <p>
+          Whenever I interview for a job at a company, there’s one question
+          that I make sure to ask every single person I can.
+        </p>
+        <blockquote>
+          <p>
+            What’s the one thing you would miss the most if you left
+            $COMPANY_NAME?
+          </p>
+        </blockquote>
+        <p>
+          When I interviewed at <a target="_blank" href="https://readify.net"
+          >Readify</a>, everybody said it was the people. Not in the “these
+          people are my best friends” sense, although that may very well be the
+          case, but more importantly in the “this is the smartest, most
+          passionate, most supportive, most inspiring bunch of people I’ve
+          ever worked with” sense. Seeing a handful of Readifarians present at
+          <a target="_blank" href="https://www.dddbrisbane.com/">DDD
+          Brisbane</a> in 2017 is what attracted me to Readify in the first
+          place, so I had a strong feeling this was going to be a common
+          answer when I was asking the question.
+        </p>
+      </description>
+      <pubDate>Wed, 4 September 2019 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>Take a Step Back</title>
       <link>https://lusmo.re/posts/take-a-step-back</link>
       <guid>https://lusmo.re/posts/take-a-step-back</guid>
