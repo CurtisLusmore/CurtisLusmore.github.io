@@ -193,7 +193,6 @@ body.markdown {
 .markdown a { color: var(--color-text); border: none; }
 .markdown a::before { content: '['; }
 .markdown a::after { color: var(--color-text); content: '](' attr(href) ')'; }
-.markdown a::after:hover { color: var(--color-text); }
 .markdown a[target='_blank']:hover::after { color: var(--color-text); }
 .markdown a[href^="#"]::before,
 .markdown a[href^="#"]:hover::before { color: var(--color-text); }

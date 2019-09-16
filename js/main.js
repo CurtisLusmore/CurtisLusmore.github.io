@@ -32,7 +32,7 @@ document
 }());
 
 (function () {
-  if (navigator.doNotTrack) return;
+  if (navigator.doNotTrack || localStorage.getItem('dnt')) return;
   const location = document.location.pathname;
   const referrer = new URLSearchParams(document.location.search).get('ref') || document.referrer;
   fetch(
