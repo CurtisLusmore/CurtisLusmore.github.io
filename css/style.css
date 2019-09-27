@@ -94,12 +94,12 @@ a:hover {
   border-bottom: 2px solid var(--color-accent-2);
 }
 
-a[target='_blank']::after {
+a[href^="http"]::after {
   color: var(--color-accent-1);
   content: '↗';
 }
 
-a[target='_blank']:hover::after {
+a[href^="http"]:hover::after {
   color: var(--color-accent-2);
 }
 
@@ -193,7 +193,7 @@ body.markdown {
 .markdown a { color: var(--color-text); border: none; }
 .markdown a::before { content: '['; }
 .markdown a::after { color: var(--color-text); content: '](' attr(href) ')'; }
-.markdown a[target='_blank']:hover::after { color: var(--color-text); }
+.markdown a[href^="http"]:hover::after { color: var(--color-text); }
 .markdown a[href^="#"]::before,
 .markdown a[href^="#"]:hover::before { color: var(--color-text); }
 .markdown ul { list-style: none; padding-left: 0; }

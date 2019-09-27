@@ -27,7 +27,7 @@
           This is a technique that I discovered several years ago while
           teaching an introductory programming course, and I was extremely
           pleased to find out that although it had already been discovered, I
-          had given it the same name. <a target="_blank"
+          had given it the same name. <a
           href="http://dsoguy.blogspot.com/2007/01/programming-by-wishful-thinking.html"
           >Programming by wishful thinking</a> is a style of top-down
           program design that helps you improve the structure of your code,
@@ -40,13 +40,13 @@
         <p>
           So how does it work? I think this might be easiest to demonstrate by
           example. Let’s imagine that you are trying to write a Python program
-          that checks the <a target="_blank"
-          href="https://www.xkcd.com/rss.xml">xkcd RSS feed</a> and downloads
-          new comics. In a bottom-up design, we can think about the different
-          built-in functions of Python and its standard library that we could
-          use. We’ll need to make a web request to the RSS feed, parse XML,
-          download images, sounds pretty complicated. Wouldn’t it be great if
-          Python had a few more built-ins, and we could just do this?
+          that checks the <a href="https://www.xkcd.com/rss.xml">xkcd RSS
+          feed</a> and downloads new comics. In a bottom-up design, we can
+          think about the different built-in functions of Python and its
+          standard library that we could use. We’ll need to make a web request
+          to the RSS feed, parse XML, download images, sounds pretty
+          complicated. Wouldn’t it be great if Python had a few more built-ins,
+          and we could just do this?
         </p>
         <pre class="python">
 items = fetch_rss('https://www.xkcd.com/rss.xml')
@@ -55,7 +55,7 @@ for item in items:
     download_image(src)
 </pre>
         <p>
-          We’d be done! Although Python is a <a target="_blank"
+          We’d be done! Although Python is a <a
           href="https://www.python.org/dev/peps/pep-0206/">batteries
           included</a> language, it unfortunately doesn’t include these
           functions. That’s okay though, because we can just define each of
@@ -68,13 +68,13 @@ for item in items:
         </p>
         <p>
           For now, let’s just fake it. At the time of publication, the xkcd RSS
-          feed contains the following four comics: <a target="_blank"
-          href="https://xkcd.com/2100/">Models of the Atom</a>, <a
-          target="_blank" href="https://xkcd.com/2099/">Missal of Silos</a>, <a
-          target="_blank" href="https://xkcd.com/2098/">Magnetic Pole</a>, and
-          <a target="_blank" href="https://xkcd.com/2098/">Thor Tools</a>. So
-          we know that if we were to actually implement <code>fetch_rss</code>
-          and run it right now, those are the results we’d get.
+          feed contains the following four comics:
+          <a href="https://xkcd.com/2100/">Models of the Atom</a>,
+          <a href="https://xkcd.com/2099/">Missal of Silos</a>,
+          <a href="https://xkcd.com/2098/">Magnetic Pole</a>, and
+          <a href="https://xkcd.com/2098/">Thor Tools</a>. So we know that if
+          we were to actually implement <code>fetch_rss</code> and run it right
+          now, those are the results we’d get.
         </p>
         <pre class="python">
 def fetch_rss(url):
@@ -100,7 +100,7 @@ def get_img_from_item(item):
           The last function to implement is <code>download_image</code>. We
           actually care about this one working properly, because I actually
           want to view the images on my harddrive. We don’t have much choice
-          but to implement it properly. We can use <code><a target="_blank"
+          but to implement it properly. We can use <code><a
           href="https://docs.python.org/3/library/urllib.request.html#urllib.request.urlretrieve"
           >urllib.request.urlretrieve</a></code> for this, but we need to
           specify the target filename. Let’s just use more wishful thinking and
@@ -129,10 +129,10 @@ def generate_filename(url):
         <p>
           Put it all together in a single file (in the right order), run it,
           and sure enough I have four comics to view locally. From
-          <a target="_blank" href="http://wiki.c2.com/?MakeItWorkMakeItRightMakeItFast"
-          >Make it Work, Make it Right, Make it Fast</a>, we’ve made it work,
-          now it’s time to make it right by going back and properly
-          implementing the functions we skipped over.
+          <a href="http://wiki.c2.com/?MakeItWorkMakeItRightMakeItFast">Make it
+          Work, Make it Right, Make it Fast</a>, we’ve made it work, now it’s
+          time to make it right by going back and properly implementing the
+          functions we skipped over.
         </p>
         <pre class="python">
 from urllib.request import urlopen
@@ -178,7 +178,7 @@ def get_img_from_item(item):
       <footer>
         <p>
           Thoughts? Comments?
-          <a target="_blank" href="mailto:curtis@lusmo.re?subject=Programming%20by%20Wishful%20Thinking"
+          <a href="mailto:curtis@lusmo.re?subject=Programming%20by%20Wishful%20Thinking"
           >Email the author.</a>
         </p>
       </footer>

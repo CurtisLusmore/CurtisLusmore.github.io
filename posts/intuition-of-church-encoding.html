@@ -25,14 +25,13 @@
       <section>
         <p>
           After first being introduced to the concept of Church numerals in
-          <a target="_blank" href="https://mitpress.mit.edu/sicp/">Structure
-          and Interpretation of Computer Programs</a>, I decided to learn more
-          about them and the more general topic, <a target="_blank"
-          href="https://en.wikipedia.org/wiki/Church_encoding">Church
+          <a href="https://mitpress.mit.edu/sicp/">Structure and Interpretation
+          of Computer Programs</a>, I decided to learn more about them and the
+          more general topic,
+          <a href="https://en.wikipedia.org/wiki/Church_encoding">Church
           encoding</a>. For those who don’t know, Church encoding defines a way
           to represent common data types and structures in the
-          <a target="_blank"
-          href="https://en.wikipedia.org/wiki/Lambda_calculus">Lambda
+          <a href="https://en.wikipedia.org/wiki/Lambda_calculus">Lambda
           calculus</a> using only functions, since functions are the only terms
           available.
         </p>
@@ -86,7 +85,7 @@ nil = λc. λn. n
 cons = λh. λt. λc. λn. c h (t c n)
 </pre>
         <p>
-          The intuition is that a list is encoded as a <a target="_blank"
+          The intuition is that a list is encoded as a <a
           href="https://en.wikipedia.org/wiki/Fold_%28higher-order_function%29"
           >fold function</a>, although it might be difficult to see from these
           terms. And now I’m really starting to doubt that it’s mere
@@ -98,10 +97,10 @@ cons = λh. λt. λc. λn. c h (t c n)
         </h2>
         <p>
           It was about this time that I decided to try implementing them in
-          <a target="_blank" href="https://www.haskell.org/">Haskell</a>. There
-          are a few implementations out there on the internet already but I
-          wanted to try it from scratch. To start with, I figured I’d just bash
-          in the definitions without type signatures and see what I get.
+          <a href="https://www.haskell.org/">Haskell</a>. There are a few
+          implementations out there on the internet already but I wanted to try
+          it from scratch. To start with, I figured I’d just bash in the
+          definitions without type signatures and see what I get.
         </p>
         <h3>Church booleans</h3>
         <pre class="haskell">
@@ -184,8 +183,8 @@ cons x xs = List' $ \c n -> c x (runList' xs c n)
           At this point I thought it would be interesting to compare these
           types with the standard type definitions in the Prelude for the
           actual types. I decided to list out the standard data definitions in
-          <a target="_blank" href="https://en.wikibooks.org/wiki/Haskell/GADT"
-          >generalised algebraic datatype format</a>.
+          <a href="https://en.wikibooks.org/wiki/Haskell/GADT">generalised
+          algebraic datatype format</a>.
         </p>
         <pre class="haskell">
 data Bool
@@ -295,15 +294,14 @@ right' b = Either' $ \left right -> right b
 </pre>
         <p>
           You can find these type definitions and related function definitions
-          in <a target="_blank"
-          href="https://github.com/CurtisLusmore/church-encoding">my GitHub
-          repository</a>.
+          in <a href="https://github.com/CurtisLusmore/church-encoding">my
+          GitHub repository</a>.
         </p>
       </section>
       <footer>
         <p>
           Thoughts? Comments?
-          <a target="_blank" href="mailto:curtis@lusmo.re?subject=Intuition%20of%20Church%20Encoding"
+          <a href="mailto:curtis@lusmo.re?subject=Intuition%20of%20Church%20Encoding"
           >Email the author.</a>
         </p>
       </footer>
