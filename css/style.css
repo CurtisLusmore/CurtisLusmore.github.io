@@ -15,6 +15,10 @@ body.dark {
   --color-background: var(--color-black);
 }
 
+body.dark img.post {
+  filter: invert(100%);
+}
+
 /* fonts */
 h1, h2 {
   font-family: var(--font-head);
