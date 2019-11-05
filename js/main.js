@@ -36,7 +36,7 @@ document
   const location = document.location.pathname;
   const referrer = new URLSearchParams(document.location.search).get('ref') || document.referrer;
   fetch(
-    'https://log-lusmo-re.azurewebsites.net/api/log',
+    'https://log.lusmo.re/api/log',
     {
       method: 'POST',
       body: JSON.stringify({ location, referrer })

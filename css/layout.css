@@ -25,6 +25,10 @@ p, li, td, address {
   line-height: 1.45;
 }
 
+li + li {
+  margin-top: 0.5em;
+}
+
 code {
   font-size: 18px;
   line-height: 1.45;
