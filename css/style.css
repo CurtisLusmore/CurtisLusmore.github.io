@@ -98,12 +98,16 @@ a:hover {
   border-bottom: 2px solid var(--color-accent-2);
 }
 
-a[href^="http"]::after {
+a[href^="http://"]::after,
+a[href^="https://"]::after,
+a[href^="mailto:"]::after {
   color: var(--color-accent-1);
   content: '↗';
 }
 
-a[href^="http"]:hover::after {
+a[href^="http://"]:hover::after,
+a[href^="https://"]:hover::after,
+a[href^="mailto:"]:hover::after {
   color: var(--color-accent-2);
 }
 
