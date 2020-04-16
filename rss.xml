@@ -5,6 +5,24 @@
     <link>https://lusmo.re</link>
     <description>Curtis’ homepage</description>
     <item>
+      <title>Make it Work, Make it Right, Make it Fast</title>
+      <link>https://lusmo.re/posts/make-it-work-make-it-right-make-it-fast</link>
+      <guid>https://lusmo.re/posts/make-it-work-make-it-right-make-it-fast</guid>
+      <description>
+        This is an expression originally used to describe a process for
+        writing code. Make it work—get something, anything, running as
+        quickly as possible. Make it right—get the program to do what you
+        want it to. Make it fast—get the program to do what you want it to
+        fast enough for your needs. What’s important here is the order. If
+        you do these in the wrong order, you’re gonna have a bad time. The
+        easiest time to make code compile and run is when there’s barely any
+        of it and it doesn’t really matter what it does. It’s really hard to
+        fix bugs in tightly optimised code, because it’s likely a lot more
+        complicated than it was before you optimised it.
+      </description>
+      <pubDate>Thu, 16 April 2020 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>People and Purpose</title>
       <link>https://lusmo.re/posts/people-and-purpose</link>
       <guid>https://lusmo.re/posts/people-and-purpose</guid>
