@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta property="og:title" content="Meeting Companion">
+    <meta property="og:image" content="https://lusmo.re/imgs/cover.jpg">
+    <title>Meeting Companion | lusmo.re</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <script src="/js/main.js" defer></script>
+  </head>
+  <body>
+    <article>
+      <header>
+        <h1>Meeting Companion</h1>
+        <p>Building a Real-Time Chatroom with SignalR and React</p>
+      </header>
+      <section>
+        <img class="author" src="/imgs/profile.png" title="Curtis Lusmore" alt="👨">
+        <p>
+          Curtis Lusmore
+          <br>
+          <time datetime="2020-04-22">22 April 2020</time>
+        </p>
+      </section>
+      <section>
+        <p>
+          In this post we’re going to build a real-time web application with
+          <a href="https://dotnet.microsoft.com/apps/aspnet/signalr"
+          >SignalR</a> and <a href="https://reactjs.org">React</a> that lets
+          you create chatrooms and send noises to each other, perfect as a
+          meeting companion when you don’t want everybody coming off mute. If
+          you follow along, you’ll be able to build and deploy your very own
+          copy of <a href="https://meeting-companion.azurewebsites.net"
+          >Meeting Companion</a> and run it completely free on
+          <a href="https://azure.microsoft.com">Microsoft Azure</a>. All of the
+          code is available in my <a href="https://github.com/CurtisLusmore/meeting-companion"
+          >GitHub repository</a>. This is a slightly simplified version of
+          another webapp I built, <a href="https://soundroom.azurewebsites.net"
+          >Soundroom</a>, which can also be found in my
+          <a href="https://github.com/CurtisLusmore/soundroom">GitHub
+          repository</a>. 
+        </p>
+      </section>
+      <section>
+        <h2 id="1">
+          <a href="#1">Project setup</a>
+        </h2>
+        <p>
+          Let’s get started by creating our project directory and adding the
+          required boilerplate. Open up your favourite terminal and run the
+          following commands to create a blank React app for the front-end and
+          a .NET Core web application for the back-end.
+        </p>
+        <pre>
+mkdir meeting-companion
+cd meeting-companion
+npx create-react-app .
+dotnet new web
+yarn build
+</pre>
+        <p>
+          Next we need to enable static file serving on our backend so that it
+          can serve our front-end. In <code>Program.cs</code>, make the following change.
+        </p>
+        <pre>
+@@ -21,6 +21,7 @@ namespace meeting_companion
+                 .ConfigureWebHostDefaults(webBuilder =&gt;
+                 {
+                     webBuilder.UseStartup<Startup>();
++                    webBuilder.UseWebRoot("build");
+                 });
+     }
+ }
+</pre>
+        <p>
+          In <code>Startup.cs</code>, make the following two changes.
+        </p>
+        <pre>
+@@ -26,14 +26,11 @@ namespace meeting_companion
+                 app.UseDeveloperExceptionPage();
+             }
+
++            app.UseFileServer();
+             app.UseRouting();
+
+             app.UseEndpoints(endpoints =&gt;
+             {
+-                endpoints.MapGet("/", async context =&gt;
+-                {
+-                    await context.Response.WriteAsync("Hello World!");
+-                });
+             });
+         }
+     }
+</pre>
+        <p>
+          Now we can build and run the front-end and back-end.
+        </p>
+        <pre>
+yarn build
+dotnet run
+</pre>
+        <p>
+          You should now be able to open your browser to
+          <a href="http://localhost:5000">http://localhost:5000</a> and see the
+          default React app landing page.
+        </p>
+        <p>
+          If you’re planning to version-control this project, now would be a
+          good time to add the <code>bin/</code> and <code>obj/</code>
+          directories to <code>.gitignore</code>. Add the following two lines
+          anywhere to <code>.gitignore</code>.
+        </p>
+        <pre>
+bin/
+obj/
+</pre>
+      </section>
+      <section>
+        <h2 id="2">
+          <a href="#2">Adding SignalR to the back-end</a>
+        </h2>
+        <p>
+          Next up, we will add SignalR to the backend. The first thing we need
+          to do is create a <a href="https://docs.microsoft.com/en-us/aspnet/signalr/overview/guide-to-the-api/hubs-api-guide-server"
+          >Hub</a>. Hubs are similar to controllers in that they accept
+          incoming messages and decide how they get processed. Our app is very
+          simple and will only require a single hub, so create a new file
+          called <code>MeetingHub.cs</code> and add the following code.
+        </p>
+        <pre>
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.SignalR;
+
+namespace meeting_companion
+{
+    public class MeetingHub : Hub
+    {
+        public Task Send(string sound) =&gt; Clients.All.SendAsync(sound);
+    }
+}
+</pre>
+        <p>
+          This hub can receive <code>Send</code> messages which contain a
+          <code>sound</code> parameter. When it receives one of these messages,
+          it will forward it straight through to all connected clients. We
+          don’t need to add any code for storing incoming connections or
+          anything like that—this is all handled by the <code>Hub</code> base
+          class. Next we need to register the hub and connect it to the ASP.NET
+          routing middleware. Back in <code>Startup.cs</code>, make the
+          following two change.
+        </p>
+        <pre>
+@@ -16,6 +16,7 @@ namespace meeting_companion
+         // ...
+         public void ConfigureServices(IServiceCollection services)
+         {
++            services.AddSignalR();
+         }
+
+         // ...
+@@ -31,6 +32,7 @@ namespace meeting_companion
+
+             app.UseEndpoints(endpoints =&gt;
+             {
++                endpoints.MapHub<MeetingHub>("/meeting");
+             });
+         }
+     }
+</pre>
+        <p>
+          That’s all we need to add to the back-end! You could build and run
+          again, but we haven’t added any observable changes yet.
+        </p>
+      </section>
+      <section>
+        <h2 id="3">
+          <a href="#3">Adding SignalR to the front-end</a>
+        </h2>
+        <p>
+          Next up, we’ll add SignalR to the front-end. The first thing we need
+          to do is add the <a href="https://www.npmjs.com/package/@microsoft/signalr"
+          >signalr</a> package.
+        </p>
+        <pre>
+yarn add @microsoft/signalr
+</pre>
+        <p>
+          Now we’ll import the <code>signalr</code> package and create a
+          connection to our hub. We're also going to create a helper object to
+          hide some of the details of interacting with the connection from the
+          rest of our application. Open <code>src/index.js</code> and make the
+          following two changes.
+        </p>
+        <pre>
+@@ -3,10 +3,21 @@ import ReactDOM from 'react-dom';
+ import './index.css';
+ import App from './App';
+ import * as serviceWorker from './serviceWorker';
++import { HubConnectionBuilder } from '@microsoft/signalr';
++
++const connection = new HubConnectionBuilder()
++  .withUrl('/meeting')
++  .build();
++connection.start();
++
++const connectionProxy = {
++  send: sound =&gt; connection.invoke('send', sound),
++  recv: (sound, callback) =&gt; connection.on(sound, callback)
++};
+
+ ReactDOM.render(
+   &lt;React.StrictMode&gt;
+-    &lt;App /&gt;
++    &lt;App connection={connectionProxy} /&gt;
+   &lt;/React.StrictMode&gt;,
+   document.getElementById('root')
+ );
+</pre>
+        <p>
+          Our application can now use the <code>send</code> method of this
+          object to send a message to the <code>Send</code> message handler of
+          our <code>MeetingHub</code>, and the <code>recv</code> method to
+          register a callback that will fire any time a response message is
+          received from the server.
+        </p>
+        <p>
+          Our front-end will now connect to our back-end, but because we
+          haven’t written any logic to send messages, we still won’t be able to
+          observe any interesting behaviour from running the app. Hang in there
+          just a little bit longer.
+        </p>
+      </section>
+      <section>
+        <h2 id="4">
+          <a href="#4">Building out the front-end</a>
+        </h2>
+        <p>
+          Now it’s time to add some interactivity to the front-end of the app
+          so we can actually have fun with it. We’re going to add a few
+          buttons to the screen, and when you press the button it should play a
+          sound for everybody also connected. This is going to involve using
+          the <code>send</code> method of our connection proxy to send a
+          message to the server, and then the <code>recv</code> method to
+          hook up incoming messages from the server to audio players.
+        </p>
+        <p>
+          The first thing we’ll do is create a <code>Button</code> component
+          which displays a button on the screen, adds an audio player, and
+          wires them both up to the connection, so create a new file called
+          <code>src/Button.js</code> and add the following code.
+        </p>
+        <pre>
+import React from 'react';
+
+export default function Button ({ icon, src, alt, connection }) {
+  const audio = React.createRef();
+  connection.recv(icon, () => audio.current.play());
+  return &lt;&gt;
+    &lt;button aria-title={alt} onClick={() =&gt; connection.send(icon)}&gt;{icon}&lt;/button&gt;
+    &lt;audio ref={audio} src={src} /&gt;
+  &lt;/&gt;;
+};
+</pre>
+        <p>
+          The button takes as properties an emoji to display on the button, the
+          filename of the audio, a title for accessibility, and the connection
+          object. When the client-side connection receives the icon back as a
+          message from the server, it will cause the audio player to fire, and
+          pressing the button will cause the connection to send the icon to the
+          server’s <code>Send</code> message handler (which we previously
+          programmed to forward the message through to all connections).
+        </p>
+        <p>
+          Next up we need to add a bunch of these buttons to the app. Open up
+          <code>src/App.js</code> and replace the <code>App</code> definition
+          with the following.
+        </p>
+        <pre>
+import Button from './Button';
+
+function App({ connection }) {
+  return (
+    &lt;div className="App"&gt;
+      &lt;Button connection={connection} icon="👏" alt="Clap" src="/audio/clap.mp3" /&gt;
+      &lt;Button connection={connection} icon="👍" alt="Yes" src="/audio/yes.mp3" /&gt;
+      &lt;Button connection={connection} icon="👎" alt="No" src="/audio/no.mp3" /&gt;
+      &lt;Button connection={connection} icon="🔍" alt="Zoom" src="/audio/zoom.mp3" /&gt;
+      &lt;Button connection={connection} icon="🧏‍♀️" alt="Louder" src="/audio/louder.mp3" /&gt;
+      &lt;Button connection={connection} icon="💬" alt="Check chat" src="/audio/chat.mp3" /&gt;
+    &lt;/div&gt;
+  );
+}
+</pre>
+        <p>
+          You’ll need to create a <code>public/audio</code> directory and add
+          audio files there—you can grab sample files from my
+          <a href="https://github.com/CurtisLusmore/meeting-companion/tree/master/public/audio"
+          >GitHub repository</a>.
+        </p>
+        <p>
+          All that’s left now is to fix up the CSS. Open up
+          <code>src/App.css</code> and replace all of the content with the
+          following.
+        </p>
+        <pre>
+.App {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+}
+
+.App button { 
+  font-size: 5em;
+}
+</pre>
+        <p>
+          Now we finally have something worth running. Run the following again.
+        </p>
+        <pre>
+yarn build
+dotnet run
+</pre>
+        <p>
+          Now you should see the six buttons on the screen, and when you press
+          any of them you should hear the corresponding audio file. If you open
+          a second tab, pressing a button in either tab should cause audio to
+          play in both tabs.
+        </p>
+      </section>
+      <section>
+        <h2 id="5">
+          <a href="#5">Adding rooms</a>
+        </h2>
+        <p>
+          The app so far is pretty interesting, but I said we were going to be
+          able to create separate rooms—so let’s add that feature in now. This
+          is going to be deceptively easy, so don’t blink or you’ll miss it.
+        </p>
+        <p>
+          To start with, we’re going to add a new message handler to our
+          back-end to accept requests to join a room. We’ll also tweak our
+          <code>Send</code> message handler to take an additional parameter
+          to identify the room to which the message should be sent. Open
+          <code>MeetingHub.cs</code> and make the following change.
+        </p>
+        <pre>
+@@ -5,6 +5,9 @@ namespace meeting_companion
+ {
+     public class MeetingHub : Hub
+     {
+-        public Task Send(string sound) =&gt; Clients.All.SendAsync(sound);
++        public Task Join(string room)
++            =&gt; Groups.AddToGroupAsync(Context.ConnectionId, room);
++        public Task Send(string room, string sound)
++            =&gt; Clients.Group(room).SendAsync(sound);
+     }
+ }
+</pre>
+        <p>
+          That’s all we need from the back-end. We don’t need to write any code
+          to handle group membership and distribution—again that’s all handled
+          by the <code>Hub</code> base class.
+        </p>
+        <p>
+          Now we need to update the front-end to send a <code>Join</code>
+          message when the connection starts, and change the way we send
+          <code>Send</code> messages to include the room name. And we also need
+          to let the user pick the room name. We’ll be extremely lazy and just
+          take the room name from the URL hash.
+        </p>
+        <p>
+          Open <code>src/App.js</code> and make the following three changes.
+        </p>
+        <pre>
+@@ -5,13 +5,15 @@ import App from './App';
+ import * as serviceWorker from './serviceWorker';
+ import { HubConnectionBuilder } from '@microsoft/signalr';
+
++const room = window.location.hash.substr(1) || '%DEFAULT%';
++
+ const connection = new HubConnectionBuilder()
+   .withUrl('/meeting')
+   .build();
+-connection.start();
++connection.start().then(() =&gt; connection.send('join', room));
+
+ const connectionProxy = {
+-  send: sound =&gt; connection.invoke('send', sound),
++  send: sound =&gt; connection.invoke('send', room, sound),
+   recv: (sound, callback) =&gt; connection.on(sound, callback)
+ };
+</pre>
+        <p>
+          And that’s all we need! Build and run again, but this time make sure
+          to open a few tabs in the same room and a few in different rooms. You
+          can use <a href="http://localhost:5000/#room-1"
+          >http://localhost:5000/#room-1</a> and <a href="http://localhost:5000/#room-2"
+          >http://localhost:5000/#room-2</a> as examples.
+        </p>
+      </section>
+      <section>
+        <h2 id="6">
+          <a href="#6">Deploying to Azure</a>
+        </h2>
+        <p>
+          We can deploy this to an <a href="https://azure.microsoft.com/en-us/services/app-service/"
+          >App Service</a>, optionally with <a href="https://azure.microsoft.com/en-us/services/signalr-service/"
+          >SignalR Service</a>, both of which have free tiers. The simplest way
+          to do this which will suffice for this blog post is via the
+          <a href="https://rightclickpublish.com/">dreaded right-click</a>
+          publish</a>, by opening <code>meeting-companion.csproj</code> in
+          Visual Studio and using <a href="https://docs.microsoft.com/en-US/visualstudio/deployment/quickstart-deploy-to-azure?view=vs-2019"
+          >Publish</a>.
+        </p>
+        <p>
+          Good luck, and I hope my instructions were complete and accurate. If
+          not, check the source code in my <a href="https://github.com/CurtisLusmore/meeting-companion"
+          >GitHub repository</a> or get in touch.
+        </p>
+      </section>
+      <footer>
+        <p>
+          Thoughts? Comments?
+          <a href="mailto:curtis@lusmo.re?subject=Cargo%Culting">Email the
+          author.</a>
+        </p>
+      </footer>
+    </article>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/external">External</a></li>
+        <li><a href="/posts">Posts</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/subscribe">Subscribe</a></li>
+        <li><a id="theme-switch" style="display: none;">Theme</a></li>
+      </ul>
+    </nav>
+  </body>
+</html>

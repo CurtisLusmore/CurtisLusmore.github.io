@@ -5,6 +5,23 @@
     <link>https://lusmo.re</link>
     <description>Curtis’ homepage</description>
     <item>
+      <title>Meeting Companion: Building a Real-Time Chatroom with SignalR and React</title>
+      <link>https://lusmo.re/posts/meeting-companion</link>
+      <guid>https://lusmo.re/posts/meeting-companion</guid>
+      <description>
+        In this post we’re going to build a real-time web application with
+        SignalR and React that lets you create chatrooms and send noises to
+        each other, perfect as a meeting companion when you don’t want
+        everybody coming off mute. If you follow along, you’ll be able to build
+        and deploy your very own copy of Meeting Companion and run it
+        completely free on Microsoft Azure. All of the code is available in my
+        GitHub repository. This is a slightly simplified version of another
+        webapp I built, Soundroom, which can also be found in my GitHub
+        repository. 
+      </description>
+      <pubDate>Wed, 22 April 2020 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>Make it Work, Make it Right, Make it Fast</title>
       <link>https://lusmo.re/posts/make-it-work-make-it-right-make-it-fast</link>
       <guid>https://lusmo.re/posts/make-it-work-make-it-right-make-it-fast</guid>

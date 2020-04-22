@@ -141,6 +141,7 @@ td + td {
   margin-top: 2rem;
 }
 
+section + section,
 section + article,
 article + article {
   margin-top: 3rem;
