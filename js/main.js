@@ -10,7 +10,10 @@ document
 
 (function () {
   const themes = [ 'light', 'dark', 'markdown' ];
-  let theme = localStorage.getItem('theme') || 'light';
+  let theme = localStorage.getItem('theme') ||
+    (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light');
   const updateTheme = function () {
     document.body.className = theme;
     if (theme === 'markdown') {
