@@ -164,7 +164,7 @@ namespace meeting_companion
 
              app.UseEndpoints(endpoints =&gt;
              {
-+                endpoints.MapHub<MeetingHub>("/meeting");
++                endpoints.MapHub&ltMeetingHub&gt("/meeting");
              });
          }
      }
@@ -384,7 +384,7 @@ dotnet run
    .withUrl('/meeting')
    .build();
 -connection.start();
-+connection.start().then(() =&gt; connection.send('join', room));
++connection.start().then(() =&gt; connection.invoke('join', room));
 
  const connectionProxy = {
 -  send: sound =&gt; connection.invoke('send', sound),
