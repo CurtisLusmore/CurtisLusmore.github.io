@@ -35,14 +35,16 @@ document
 }());
 
 (function () {
-  if (navigator.doNotTrack || localStorage.getItem('dnt')) return;
-  const location = document.location.pathname;
-  const referrer = new URLSearchParams(document.location.search).get('ref') || document.referrer;
+  if (navigator.doNotTrack === '1' || localStorage.getItem('dnt')) return;
+  const payload = {
+    location: document.location.pathname,
+    referrer: document.referrer
+  };
   fetch(
     'https://log.lusmo.re/api/log',
     {
       method: 'POST',
-      body: JSON.stringify({ location, referrer })
+      body: JSON.stringify(payload)
     }
   );
 }());

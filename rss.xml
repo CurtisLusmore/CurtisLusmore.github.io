@@ -5,6 +5,27 @@
     <link>https://lusmo.re</link>
     <description>Curtis’ homepage</description>
     <item>
+      <title>DIY Page Analytics</title>
+      <link>https://lusmo.re/posts/diy-page-analytics</link>
+      <guid>https://lusmo.re/posts/diy-page-analytics</guid>
+      <description>
+        This site is hosted on GitHub Pages. Because I’d like to have a rough
+        idea of which of my posts are receiving the most engagement and which
+        sites are driving the most traffic, and since GitHub Pages doesn’t
+        provide me with this by default, I decided to add some page view
+        analytics to my site. I’m not particularly keen on privacy-invasive
+        services like Google Analytics, which collect far more information than
+        I need and share it with 3rd-parties, so I decided to build my own
+        minimalist service. Also, it just seemed like a fun yak-shaving
+        exercise, and everything else on this page is hand-made.
+        In this post we’ll walk through how to build a very basic page
+        analytics service using Azure Functions and Table Storage, which you
+        can host yourself for a few cents per year—my last twelve invoices
+        reached a grand total of 49 cents. 
+      </description>
+      <pubDate>Fri, 29 May 2020 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>Goldilocks Routines</title>
       <link>https://lusmo.re/posts/goldilocks-routines</link>
       <guid>https://lusmo.re/posts/goldilocks-routines</guid>
