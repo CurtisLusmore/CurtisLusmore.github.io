@@ -40,11 +40,8 @@ document
     location: document.location.pathname,
     referrer: document.referrer
   };
-  fetch(
+  navigator.sendBeacon(
     'https://log.lusmo.re/api/log',
-    {
-      method: 'POST',
-      body: JSON.stringify(payload)
-    }
+    JSON.stringify(payload)
   );
 }());
