@@ -10,15 +10,6 @@
   --font-code: 'Inconsolata', monospace;
 }
 
-body.dark {
-  --color-text: var(--color-white);
-  --color-background: var(--color-black);
-}
-
-body.dark img.post {
-  filter: invert(100%);
-}
-
 /* fonts */
 h1, h2 {
   font-family: var(--font-head);
@@ -60,16 +51,6 @@ blockquote {
 body {
   color: var(--color-text);
   background-color: var(--color-background);
-}
-
-pre.copy:hover {
-  border-left: 2px solid var(--color-accent-2);
-  cursor: pointer;
-}
-
-pre.copy:hover::before {
-  content: '📋';
-  float: right;
 }
 
 /* links */
@@ -142,78 +123,4 @@ a:hover > svg.icon {
 @font-face {
   font-family: 'Inconsolata';
   src: url('/fonts/Inconsolata-Regular.ttf') format('truetype');
-}
-
-body.markdown {
-  max-width: 80ch;
-  margin: 3em auto;
-}
-
-.markdown h1,
-.markdown h2,
-.markdown h3,
-.markdown h4,
-.markdown p,
-.markdown ul,
-.markdown li,
-.markdown td,
-.markdown pre,
-.markdown code,
-.markdown blockquote,
-.markdown img {
-  text-align: left;
-  font-size: 18px;
-  font-family: var(--font-code);
-  margin: 0;
-  padding: 0;
-  color: var(--color-text);
-  font-weight: normal;
-}
-
-.markdown img {
-  white-space: pre;
-}
-
-.markdown * + p,
-.markdown * + h2,
-.markdown * + pre,
-.markdown * + ul,
-.markdown * + li,
-.markdown * + blockquote {
-  margin-top: 1em;
-}
-
-.markdown li { padding-bottom: 0em; }
-.markdown h1::before { content: '# '; }
-.markdown h2::before { content: '## '; }
-.markdown h3::before { content: '### '; }
-.markdown h4::before { content: '#### '; }
-.markdown header p,
-.markdown em { font-style: normal; }
-.markdown header p::before,
-.markdown header p::after,
-.markdown em::before,
-.markdown em::after { content: '_'; }
-.markdown code::before,
-.markdown code::after { content: '`'; }
-.markdown pre,
-.markdown pre:hover { padding-left: 4ch; border: none; }
-.markdown a { color: var(--color-text); border: none; }
-.markdown a::before { content: '['; }
-.markdown a::after { color: var(--color-text); content: '](' attr(href) ')'; }
-.markdown a[href^="http"]:hover::after { color: var(--color-text); }
-.markdown a[href^="#"]::before,
-.markdown a[href^="#"]:hover::before { color: var(--color-text); }
-.markdown ul { list-style: none; padding-left: 0; }
-.markdown ul li { display: block; }
-.markdown ul > li::before { content: '* '; }
-.markdown blockquote { border: none; line-height: 1.45 }
-.markdown blockquote p::before { content: '> '; float: left; white-space: pre; }
-.markdown blockquote ul > li::before { content: '> * '; float: left; white-space: pre; }
-.markdown a > svg.icon,
-.markdown a:hover > svg.icon { color: var(--color-text); }
-
-.markdown ::selection {
-  color: var(--color-background);
-  background-color: var(--color-text);  
 }
