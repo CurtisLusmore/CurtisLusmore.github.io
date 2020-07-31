@@ -1,447 +1,446 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta property="og:title" content="Good Intentions">
-    <meta property="og:image" content="https://lusmo.re/imgs/cover.jpg">
-    <title>Good Intentions | lusmo.re</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/layout.css">
-    <script src="/js/main.js" defer></script>
-  </head>
-  <body>
-    <article>
-      <header>
-        <h1>Good Intentions</h1>
-      </header>
-      <section>
-        <img class="author" src="/imgs/profile.png" title="Curtis Lusmore" alt="👨">
-        <p>
-          Curtis Lusmore
-          <br>
-          <time datetime="2020-04-30">30 April 2020</time>
-        </p>
-      </section>
-      <section>
-        <p>
-          We make a lot of decisions in software development. Compared to other
-          fields of engineering, the process of building software relative to
-          designing it is very rapid, shrinking the time between decisions and
-          also typically shrinking the time spent on decisions. Modern agile
-          software development methodology only exacerbates this problem. “Move
-          fast and break things”.
-        </p>
-        <p>
-          On top of this, software systems will often stay under active
-          development for decades, growing to be unfathomably large and
-          complex. In complex systems decisions in one area often have
-          implications in other seemingly unrelated areas, making us hesitant
-          to make quick decisions.
-        </p>
-        <p>
-          As a consultant I bounce in and out of different organisations every
-          few months, meaning I’m constantly onboarding and offboarding. In
-          between onboarding and offboarding, my job is often to help make a
-          bunch of decisions. Each time I onboard I have to quickly understand
-          existing decisions so that my work aligns to them, and as I offboard
-          I have to make sure any decisions I made are understood by the rest
-          of the team. Having clearly defined intentions behind decisions is
-          critical for this.
-        </p>
-        <p>
-          Good intentions not only help understand why decisions were made,
-          they help you remember and work with the decision itself. As an
-          example, I fairly recently moved to Melbourne—a city notorious for
-          its confusing <a href="https://en.wikipedia.org/wiki/Hook_turn">hook
-          turns</a>, where you have to make right turns from the left lane when
-          the traffic lights change. But not at every intersection, which is
-          what makes them so confusing. In the rush of inner city traffic it’s
-          easy to miss the signage and end up in the wrong lane for your turn.
-          So how can you remember which intersections use hook turns?
-        </p>
-        <p>
-          To answer this, we have to understand why hook turns exist at all.
-          About half of the main streets in the CBD have tram tracks. Turning
-          right from the right lane would require either sitting on the tram
-          tracks blocking trams waiting for traffic to clear, or turning right
-          with tram tracks on your inside lane and running the risk of getting
-          t-boned by a tram. The purpose of the hook turn is to keep cars off
-          the tram tracks. With this in mind, it’s easy to remember as you’re
-          driving down a street with tram tracks that any right turn will be a
-          hook turn, and the signs become merely confirmation rather than
-          direction.
-        </p>
-        <p>
-          Good intentions don’t just help us understand the decisions of
-          others. Have you ever looked at some code that looked wrong, wondered
-          who could possibly have written it and why, run git blame and
-          realised it was you. Two weeks ago. With the amount of context
-          required to deeply understand parts of a system and the speed that we
-          move from one thing to the next, the importance of being clear about
-          intentions is critically important even when working alone. I find it
-          safest to pretend that the me of two weeks into the past or future is
-          for all intents and purposes a different person, and make sure to
-          document my intentions appropriately.
-        </p>
-        <p>
-          Decisions fall into one of these three types: <em>Start doing A</em>,
-          <em>stop doing A</em>, or <em>A vs B (vs C vs …)</em>. You could
-          argue that these are actually all just the same type, a choice
-          between two (or more) things, but I like to distinguish between them
-          because the frame of reference is important in the way choices are
-          discussed.
-        </p>
-        <p>
-          Imagine that you have an API that, among other tasks, needs 
-          to perform some operation which over time is starting to take longer
-          and longer. Somebody on the team proposes putting a message onto
-          Queue Service A so that this operation can be performed
-          asynchronously. Somebody else on the team says this is a bad idea
-          because Queue Service A doesn’t guarantee delivery, or because it
-          might deliver twice, or some other attribute of Queue Service A
-          specifically.
-        </p>
-        <p>
-          This discussion can quickly devolve into an unproductive argument,
-          when in reality they mostly agree with each other. The problem is
-          that the first person is really arguing in favour of using any
-          queuing service (<em>start doing A</em>). The second person is
-          implicitly comparing Queue Service A to Queue Service B (<em>A vs
-          B</em>), but their arguments against Queue Service A are perceived to
-          be arguments against using a queuing service at all.
-        </p>
-        <p>
-          Good intentions also help us avoid focusing on non-goals. When
-          discussing a solution to a problem, it’s easy to conflate the
-          positive attributes of the solution with our goals. This might not be
-          a problem in the <em>start doing A</em> frame of reference, but can
-          be extremely problematic with <em>A vs B</em>. It can mean that we
-          start evaluating options not by how they compare to our requirements
-          but by how they compare to each other, placing importance on
-          attributes which aren’t relevant to our problem.
-        </p>
-        <p>
-          This is especially bad if this misplaced importance on irrelevant
-          attributes is perceived to outweigh other more important attributes
-          and we end up selecting the worse option, possibly even worse than
-          the alternative of not selecting either. This flaw in our decision
-          making abilities, called <a href="https://en.wikipedia.org/wiki/Anchoring"
-          >anchoring</a>, happens because of our frame of reference.
-        </p>
-        <p>
-          Let’s look at some more concrete examples.
-        </p>
-        <p>
-          Continuing with the theme of queuing services, here are some bullet
-          points used to describe three different Azure services. “Build in
-          resilience”, “Build reliable cloud applications”, “Build scalable
-          cloud solutions”, “Scale for bursts”, “Simplify enterprise cloud
-          messaging”, “Simplify event delivery”, “Implement complex messaging
-          workflows”, “Decouple components”, “Focus on product innovation”. All
-          of them sell me on the idea of using a queuing service to improve my
-          application, against the alternative of not using any service at
-          all—they sell me on <em>start doing A</em>. But once I’ve decided I
-          need such a service, none of these helps me understand which one is
-          right for my needs—<em>A vs B</em>.
-        </p>
-        <p>
-          Fortunately, there’s a page that directly compares two of these
-          services—Storage queues and Service Bus queues. Unfortunately, it
-          starts like this.
-        </p>
-        <blockquote>
-          <p>
-            Azure supports two types of queue mechanisms: Storage queues and
-            Service Bus queues.
-          </p>
-          <p>
-            Storage queues, which are part of the Azure storage infrastructure,
-            feature a simple REST-based GET/PUT/PEEK interface, providing
-            reliable, persistent messaging within and between services.
-          </p>
-          <p>
-            Service Bus queues are part of a broader Azure messaging
-            infrastructure that supports queuing as well as publish/subscribe,
-            and more advanced integration patterns. For more information about
-            Service Bus queues/topics/subscriptions, see the overview of
-            Service Bus.
-          </p>
-          <p>
-            <em>While both queuing technologies exist concurrently, Storage
-            queues were introduced first</em>, as a dedicated queue storage
-            mechanism built on top of Azure Storage services.
-          </p>
-        </blockquote>
-        <p>
-          Emphasis mine. That’s right. The main point of contrast apparently is
-          that Storage queues called dibs first. To its credit, the article
-          improves from here, and goes on to show an 11-point comparison table
-          and says the following.
-        </p>
-        <blockquote>
-          <p>
-            As a solution architect/developer, you should consider using
-            Storage queues when:
-            </p>
-            <ul>
-              <li><em>[3 bullet points omitted.]</em></li>
-            </ul>
-            <p>
-              As a solution architect/developer, you should consider using
-              Service Bus queues when:
-            </p>
-            <ul>
-              <li><em>[12 bullet points omitted.]</em></li>
-            </ul>
-          </p>
-        </blockquote>
-        <p>
-          This is a discussion of queuing services in the <em>A vs B</em> frame
-          of reference rather than <em>start doing A</em>.
-        </p>
-        <p>
-          Another example I like to give is the various Scrum ceremonies and
-          techniques, like daily scrums / stand-ups, sprint retrospectives,
-          story estimation and story slicing. Any team that calls itself
-          “Agile” invariably does most or all of these things, but in my
-          experience few ever stop to discuss their intentions in doing so,
-          other than simply “being Agile”. They just go through the motions.
-        </p>
-        <p>
-          This frequently leads to the people feeling that meetings are a
-          mandatory yet valueless waste of time. They ask questions like
-          “Should people from the business attend stand-up and retros?”
-          “Should we skip stand-up if the Scrum master is on leave?”
-          “Should stand-up go person-by-person or story-by-story?” They do
-          story point estimation but aren’t sure exactly why. They ask
-          questions like “Should we be estimating tasks, stories, features or
-          epics?” “Should the value of an estimate depend on who is doing the
-          work?” “Should estimates be adjusted after starting and realising
-          there’s more involved than we thought?” They break down large
-          stories, but ask questions like “Should we split stories into layers
-          or vertical slices?” “Should the smaller chunks be stories or just
-          tasks?”
-        </p>
-        <p>
-          There are no right or wrong answers to these questions. Sure, some
-          answers might work better for a majority of teams, but the point is
-          that the right answer is the one that works best for your team. All
-          of these techniques are supposed to work for you, to make you more
-          productive. There’s little intrinsic value in going through the
-          motions with these techniques. Unless you know what your intentions
-          are, you can’t hope to realise much value from them. Take some time
-          (in your retrospectives) to discuss as a team what you hope to
-          achieve with each technique, and how you can get the most out of
-          them. Don’t be afraid to try different approaches and see what works
-          best for you.
-        </p>
-        <p>
-          At the risk of getting too political, the final example I want to
-          consider is government like the Australian parliament. The role of
-          government is essentially to create legislation by prioritising the
-          allocation of tax money and making trade-offs between liberty and
-          regulation. Members need to state the intentions of each piece of
-          legislation in order to get the necessary votes for it to pass, which
-          usually involves some amount of debate and negotiation on various
-          amendments. During an election campaign, the major parties state
-          their intentions for government to the electorate in order to win
-          support.
-        </p>
-        <p>
-          Despite this, the system as a whole is still prone to making the same
-          kinds of mistakes about intentions as we are. Although there is often
-          discussion about intentions at the micro-scale, at the level of
-          individual pieces of legislation, broader intentions are less-well
-          discussed. Elections are often said to be broadly about certain
-          policy areas, but the discussion at this level is less robust, full
-          of hand-waving, question-dodging and point-talking, and subject to
-          media suppression and the <a href="https://en.wikipedia.org/wiki/Overton_window"
-          >Overton window</a>. There is virtually no discussion about
-          intentions above this level, outside of academic debate. People often
-          refer to “traditional Australian values” but they aren’t well
-          defined, policy is not assessed on how it furthers these values, and
-          there are countless examples of policies that contradict the few
-          values which are commonly agreed upon.
-        </p>
-        <p>
-          One example of a breakdown of intentions in Australian politics is
-          the <a href="https://en.wikipedia.org/wiki/1999_Australian_republic_referendum"
-          >1999 Australian republic referendum</a>. There is a lot of analysis
-          about how the framing of questions affects the outcome of
-          referendums. Although it might seem like a <em>start doing A</em>
-          question, where <em>A</em> is become a republic, it was worded in
-          such a way that it opened up <em>A vs B</em> discussion.
-        </p>
-        <blockquote>
-          <p>
-            To alter the Constitution to establish the Commonwealth of
-            Australia as a republic with the Queen and Governor-General being
-            replaced by a President appointed by a two-thirds majority of the
-            members of the Commonwealth Parliament.
-          </p>
-        </blockquote>
-        <p>
-          This meant that many people in favour of becoming a republic voted no
-          because they preferred a different method for appointing the
-          president and were hopeful of another referendum in the near-future,
-          and the referendum was ultimately voted down. Twenty-one years later 
-          and it’s not clear whether that second referendum is coming.
-        </p>
-        <p>
-          A more controversial example is the <a href="https://en.wikipedia.org/wiki/Second_Amendment_to_the_United_States_Constitution"
-          >Second Amendment</a>. I can’t even quote the text here, as there is
-          debate about the correct punctuation and capitalisation which subtly
-          affects the meaning (and assumed intention) of the amendment. Would
-          the authors have intended for citizens to keep modern-day assault
-          rifles? Would they still consider a well regulated militia necessary
-          to the security of a free State, considering the vastly more powerful
-          militaries? We’ll never know. People will continue to debate this for
-          decades or centuries to come.
-        </p>
-        <p>
-          So how can we be clearer about our intentions? Here are some
-          techniques that might work for you.
-        </p>
-        <p>
-          The first obvious step is to write comments in your code that explain
-          not what it does but why it exists. What were your intentions when
-          writing the code? What does it aim to achieve? Which bug does it
-          solve? Which story does it implement? Links to external sources of
-          context like this are a huge help to understanding and working with
-          other people’s code—which remember means your own code two weeks
-          after you write it. If you don’t want to leave these comments inline,
-          consider making detailed commit messages instead.
-        </p>
-        <p>
-          There’s another approach you can take to code comments. When somebody
-          is trying to diagnose a bug and they see a suspicious piece of code,
-          their instinct will be to delete it and their concern for making
-          things worse will be the only thing stopping them. When you write
-          tricky code, as well as explaining why it exists explain why it
-          shouldn’t be deleted in the future. Or under what circumstances can
-          it be deleted in the future. If you put in a fix to work around a bug
-          in another part of the codebase, the fix can be removed when the
-          other bug is fixed. If you don’t make this clear, people will be
-          afraid to delete the code.
-        </p>
-        <p>
-          There’s actually a great story that demonstrates this aversion to
-          removing things—it’s called <a href="https://en.wikipedia.org/wiki/Wikipedia:Chesterton's_fence"
-          >Chesterton’s fence</a>.
-        </p>
-        <blockquote>
-          <p>
-            In the matter of reforming things, as distinct from deforming them,
-            there is one plain and simple principle; a principle which will
-            probably be called a paradox. There exists in such a case a certain
-            institution or law; let us say, for the sake of simplicity, a fence
-            or gate erected across a road. The more modern type of reformer
-            goes gaily up to it and says, “I don’t see the use of this; let us
-            clear it away.” To which the more intelligent type of reformer will
-            do well to answer: “If you don’t see the use of it, I certainly
-            won’t let you clear it away. Go away and think. Then, when you can
-            come back and tell me that you do see the use of it, I may allow
-            you to destroy it.”
-          </p>
-        </blockquote>
-        <p>
-          The moral of the story is, always document the original use of
-          something you add. When that use is no longer necessary, reformers
-          will be more confident in clearing it away.
-        </p>
-        <p>
-          There’s also a flipside to this, which is that sometimes people get
-          hung up on what were originally arbitrary decisions. If you happen to
-          make any arbitrary decisions in code that you write, like the value
-          of a magic constant or the order of two operations, be clear about
-          this and leave a comment saying it’s completely arbitrary.
-        </p>
-        <p>
-          When you write a tool or a library that other people will use, it’s
-          natural that you’ll write down all the strengths and advantages. But
-          everything is a trade-off, and it’s far more likely that the person
-          using your tool is thinking with an <em>A vs B</em> frame of
-          reference than a <em>start doing A</em>. It’s important to be honest
-          about these trade-offs and to also mention the weaknesses and
-          disadvantages, so that your users can make informed decisions about
-          what will best meet their requirements. If possible, provide direct
-          comparisons with alternatives to make this even easier.
-        </p>
-        <p>
-          Speaking of alternatives, when you are making decisions with several
-          alternatives it’s good to document each one you considered and why
-          you discounted them. If it was an <em>A vs B</em> decision but you
-          only document the eventual selection (or nothing at all), later on
-          you might look back and mistake it for a <em>start doing A</em>
-          decision. If you later need to question or even change the decision,
-          you’ll be better off for having access to the notes on what else was
-          considered.
-        </p>
-        <p>
-          Try to distinguish between problems and solutions. When a problem
-          comes up and you think of an obvious solution to it, it can be all
-          too easy to create a work item describing the solution and then get
-          straight into it. If later on you need to change the solution and you
-          didn’t properly document the problem, all alternative solutions will
-          need to be compared against the existing solution. That is, you’ll be
-          forced into an <em>A vs B</em> frame of reference rather than
-          <em>start doing A</em>. This means that you might accidentally place
-          importance on qualities of the existing solution which aren’t
-          relevant to solving the original problem.
-        </p>
-        <p>
-          Actually, go one step further. When you’re documenting the problem be
-          as clear as possible about the requirements that a solution needs to
-          satisfy. Rather than saying “the solution needs to be fast”, say how
-          fast it needs to be. Again, if later on you need to change the
-          solution, you don’t want to discount alternatives just because they
-          aren’t as fast as the current solution, if they still meet the
-          original speed requirements. If it wasn’t your intention to pick the
-          fastest possible solution, don’t accidentally fool your future self
-          into thinking that it was.
-        </p>
-        <p>
-          And finally, sometimes it helps to flip a <em>start doing A</em> into
-          a <em>stop doing A</em> by pretending that you have already
-          implemented the solution. I’ve often seen teams hold off on deploying
-          a fix to a bug because it doesn’t solve the root problem, or it
-          doesn’t fully mitigate the problem. This is the classic “perfect is
-          the enemy of good” ideology at work, and it only results in
-          unnecessary continued business impact until a fix is finally
-          deployed. If you flipped the frame of reference and pretended that
-          the fix was already deployed, you wouldn’t dream of taking it out and
-          making the problem worse. Your intention when there is a live bug
-          should be to mitigate the impact as quickly as possible, not
-          necessarily to solve the root problem.
-        </p>
-        <p>
-          My intention with this post has been to help you think more clearly
-          about your intentions. To provide some examples of how clear
-          intentions improve understanding and decision making, and unclear
-          intentions cause confusion and bad decision making. And finally to
-          provide some advice on how to be clearer in the way you think about
-          and state your intentions. Actually that’s a lie. My real intention
-          was to help me think more clearly about my intentions. If you’ve
-          found any of this useful, that’s a bonus.
-        </p>
-      </section>
-      <footer>
-        <p>
-          Thoughts? Comments?
-          <a href="mailto:curtis@lusmo.re?subject=Good%20Intentions">Email
-          the author.</a>
-        </p>
-      </footer>
-    </article>
-    <nav>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Good Intentions">
+  <meta property="og:image" content="https://lusmo.re/imgs/cover.jpg">
+  <title>Good Intentions | lusmo.re</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <script src="/js/main.js" defer></script>
+</head>
+
+<body>
+<header>
+  <h1>Good Intentions</h1>
+  <address>
+    <img class="author" src="/imgs/profile.png" title="Curtis Lusmore">
+    Curtis Lusmore <br>
+    <time datetime="2020-04-30">30 April 2020</time>
+  </address>
+</header>
+<main>
+  <p>
+    We make a lot of decisions in software development. Compared to other
+    fields of engineering, the process of building software relative to
+    designing it is very rapid, shrinking the time between decisions and
+    also typically shrinking the time spent on decisions. Modern agile
+    software development methodology only exacerbates this problem. “Move
+    fast and break things”.
+  </p>
+  <p>
+    On top of this, software systems will often stay under active
+    development for decades, growing to be unfathomably large and
+    complex. In complex systems decisions in one area often have
+    implications in other seemingly unrelated areas, making us hesitant
+    to make quick decisions.
+  </p>
+  <p>
+    As a consultant I bounce in and out of different organisations every
+    few months, meaning I’m constantly onboarding and offboarding. In
+    between onboarding and offboarding, my job is often to help make a
+    bunch of decisions. Each time I onboard I have to quickly understand
+    existing decisions so that my work aligns to them, and as I offboard
+    I have to make sure any decisions I made are understood by the rest
+    of the team. Having clearly defined intentions behind decisions is
+    critical for this.
+  </p>
+  <p>
+    Good intentions not only help understand why decisions were made,
+    they help you remember and work with the decision itself. As an
+    example, I fairly recently moved to Melbourne—a city notorious for
+    its confusing <a href="https://en.wikipedia.org/wiki/Hook_turn">hook
+    turns</a>, where you have to make right turns from the left lane when
+    the traffic lights change. But not at every intersection, which is
+    what makes them so confusing. In the rush of inner city traffic it’s
+    easy to miss the signage and end up in the wrong lane for your turn.
+    So how can you remember which intersections use hook turns?
+  </p>
+  <p>
+    To answer this, we have to understand why hook turns exist at all.
+    About half of the main streets in the CBD have tram tracks. Turning
+    right from the right lane would require either sitting on the tram
+    tracks blocking trams waiting for traffic to clear, or turning right
+    with tram tracks on your inside lane and running the risk of getting
+    t-boned by a tram. The purpose of the hook turn is to keep cars off
+    the tram tracks. With this in mind, it’s easy to remember as you’re
+    driving down a street with tram tracks that any right turn will be a
+    hook turn, and the signs become merely confirmation rather than
+    direction.
+  </p>
+  <p>
+    Good intentions don’t just help us understand the decisions of
+    others. Have you ever looked at some code that looked wrong, wondered
+    who could possibly have written it and why, run git blame and
+    realised it was you. Two weeks ago. With the amount of context
+    required to deeply understand parts of a system and the speed that we
+    move from one thing to the next, the importance of being clear about
+    intentions is critically important even when working alone. I find it
+    safest to pretend that the me of two weeks into the past or future is
+    for all intents and purposes a different person, and make sure to
+    document my intentions appropriately.
+  </p>
+  <p>
+    Decisions fall into one of these three types: <em>Start doing A</em>,
+    <em>stop doing A</em>, or <em>A vs B (vs C vs …)</em>. You could
+    argue that these are actually all just the same type, a choice
+    between two (or more) things, but I like to distinguish between them
+    because the frame of reference is important in the way choices are
+    discussed.
+  </p>
+  <p>
+    Imagine that you have an API that, among other tasks, needs 
+    to perform some operation which over time is starting to take longer
+    and longer. Somebody on the team proposes putting a message onto
+    Queue Service A so that this operation can be performed
+    asynchronously. Somebody else on the team says this is a bad idea
+    because Queue Service A doesn’t guarantee delivery, or because it
+    might deliver twice, or some other attribute of Queue Service A
+    specifically.
+  </p>
+  <p>
+    This discussion can quickly devolve into an unproductive argument,
+    when in reality they mostly agree with each other. The problem is
+    that the first person is really arguing in favour of using any
+    queuing service (<em>start doing A</em>). The second person is
+    implicitly comparing Queue Service A to Queue Service B (<em>A vs
+    B</em>), but their arguments against Queue Service A are perceived to
+    be arguments against using a queuing service at all.
+  </p>
+  <p>
+    Good intentions also help us avoid focusing on non-goals. When
+    discussing a solution to a problem, it’s easy to conflate the
+    positive attributes of the solution with our goals. This might not be
+    a problem in the <em>start doing A</em> frame of reference, but can
+    be extremely problematic with <em>A vs B</em>. It can mean that we
+    start evaluating options not by how they compare to our requirements
+    but by how they compare to each other, placing importance on
+    attributes which aren’t relevant to our problem.
+  </p>
+  <p>
+    This is especially bad if this misplaced importance on irrelevant
+    attributes is perceived to outweigh other more important attributes
+    and we end up selecting the worse option, possibly even worse than
+    the alternative of not selecting either. This flaw in our decision
+    making abilities, called <a href="https://en.wikipedia.org/wiki/Anchoring"
+    >anchoring</a>, happens because of our frame of reference.
+  </p>
+  <p>
+    Let’s look at some more concrete examples.
+  </p>
+  <p>
+    Continuing with the theme of queuing services, here are some bullet
+    points used to describe three different Azure services. “Build in
+    resilience”, “Build reliable cloud applications”, “Build scalable
+    cloud solutions”, “Scale for bursts”, “Simplify enterprise cloud
+    messaging”, “Simplify event delivery”, “Implement complex messaging
+    workflows”, “Decouple components”, “Focus on product innovation”. All
+    of them sell me on the idea of using a queuing service to improve my
+    application, against the alternative of not using any service at
+    all—they sell me on <em>start doing A</em>. But once I’ve decided I
+    need such a service, none of these helps me understand which one is
+    right for my needs—<em>A vs B</em>.
+  </p>
+  <p>
+    Fortunately, there’s a page that directly compares two of these
+    services—Storage queues and Service Bus queues. Unfortunately, it
+    starts like this.
+  </p>
+  <blockquote>
+    <p>
+      Azure supports two types of queue mechanisms: Storage queues and
+      Service Bus queues.
+    </p>
+    <p>
+      Storage queues, which are part of the Azure storage infrastructure,
+      feature a simple REST-based GET/PUT/PEEK interface, providing
+      reliable, persistent messaging within and between services.
+    </p>
+    <p>
+      Service Bus queues are part of a broader Azure messaging
+      infrastructure that supports queuing as well as publish/subscribe,
+      and more advanced integration patterns. For more information about
+      Service Bus queues/topics/subscriptions, see the overview of
+      Service Bus.
+    </p>
+    <p>
+      <em>While both queuing technologies exist concurrently, Storage
+      queues were introduced first</em>, as a dedicated queue storage
+      mechanism built on top of Azure Storage services.
+    </p>
+  </blockquote>
+  <p>
+    Emphasis mine. That’s right. The main point of contrast apparently is
+    that Storage queues called dibs first. To its credit, the article
+    improves from here, and goes on to show an 11-point comparison table
+    and says the following.
+  </p>
+  <blockquote>
+    <p>
+      As a solution architect/developer, you should consider using
+      Storage queues when:
+      </p>
       <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/external">External</a></li>
-        <li><a href="/posts">Posts</a></li>
-        <li><a href="/projects">Projects</a></li>
-        <li><a href="/subscribe">Subscribe</a></li>
+        <li><em>[3 bullet points omitted.]</em></li>
       </ul>
-    </nav>
-  </body>
+      <p>
+        As a solution architect/developer, you should consider using
+        Service Bus queues when:
+      </p>
+      <ul>
+        <li><em>[12 bullet points omitted.]</em></li>
+      </ul>
+    </p>
+  </blockquote>
+  <p>
+    This is a discussion of queuing services in the <em>A vs B</em> frame
+    of reference rather than <em>start doing A</em>.
+  </p>
+  <p>
+    Another example I like to give is the various Scrum ceremonies and
+    techniques, like daily scrums / stand-ups, sprint retrospectives,
+    story estimation and story slicing. Any team that calls itself
+    “Agile” invariably does most or all of these things, but in my
+    experience few ever stop to discuss their intentions in doing so,
+    other than simply “being Agile”. They just go through the motions.
+  </p>
+  <p>
+    This frequently leads to the people feeling that meetings are a
+    mandatory yet valueless waste of time. They ask questions like
+    “Should people from the business attend stand-up and retros?”
+    “Should we skip stand-up if the Scrum master is on leave?”
+    “Should stand-up go person-by-person or story-by-story?” They do
+    story point estimation but aren’t sure exactly why. They ask
+    questions like “Should we be estimating tasks, stories, features or
+    epics?” “Should the value of an estimate depend on who is doing the
+    work?” “Should estimates be adjusted after starting and realising
+    there’s more involved than we thought?” They break down large
+    stories, but ask questions like “Should we split stories into layers
+    or vertical slices?” “Should the smaller chunks be stories or just
+    tasks?”
+  </p>
+  <p>
+    There are no right or wrong answers to these questions. Sure, some
+    answers might work better for a majority of teams, but the point is
+    that the right answer is the one that works best for your team. All
+    of these techniques are supposed to work for you, to make you more
+    productive. There’s little intrinsic value in going through the
+    motions with these techniques. Unless you know what your intentions
+    are, you can’t hope to realise much value from them. Take some time
+    (in your retrospectives) to discuss as a team what you hope to
+    achieve with each technique, and how you can get the most out of
+    them. Don’t be afraid to try different approaches and see what works
+    best for you.
+  </p>
+  <p>
+    At the risk of getting too political, the final example I want to
+    consider is government like the Australian parliament. The role of
+    government is essentially to create legislation by prioritising the
+    allocation of tax money and making trade-offs between liberty and
+    regulation. Members need to state the intentions of each piece of
+    legislation in order to get the necessary votes for it to pass, which
+    usually involves some amount of debate and negotiation on various
+    amendments. During an election campaign, the major parties state
+    their intentions for government to the electorate in order to win
+    support.
+  </p>
+  <p>
+    Despite this, the system as a whole is still prone to making the same
+    kinds of mistakes about intentions as we are. Although there is often
+    discussion about intentions at the micro-scale, at the level of
+    individual pieces of legislation, broader intentions are less-well
+    discussed. Elections are often said to be broadly about certain
+    policy areas, but the discussion at this level is less robust, full
+    of hand-waving, question-dodging and point-talking, and subject to
+    media suppression and the <a href="https://en.wikipedia.org/wiki/Overton_window"
+    >Overton window</a>. There is virtually no discussion about
+    intentions above this level, outside of academic debate. People often
+    refer to “traditional Australian values” but they aren’t well
+    defined, policy is not assessed on how it furthers these values, and
+    there are countless examples of policies that contradict the few
+    values which are commonly agreed upon.
+  </p>
+  <p>
+    One example of a breakdown of intentions in Australian politics is
+    the <a href="https://en.wikipedia.org/wiki/1999_Australian_republic_referendum"
+    >1999 Australian republic referendum</a>. There is a lot of analysis
+    about how the framing of questions affects the outcome of
+    referendums. Although it might seem like a <em>start doing A</em>
+    question, where <em>A</em> is become a republic, it was worded in
+    such a way that it opened up <em>A vs B</em> discussion.
+  </p>
+  <blockquote>
+    <p>
+      To alter the Constitution to establish the Commonwealth of
+      Australia as a republic with the Queen and Governor-General being
+      replaced by a President appointed by a two-thirds majority of the
+      members of the Commonwealth Parliament.
+    </p>
+  </blockquote>
+  <p>
+    This meant that many people in favour of becoming a republic voted no
+    because they preferred a different method for appointing the
+    president and were hopeful of another referendum in the near-future,
+    and the referendum was ultimately voted down. Twenty-one years later 
+    and it’s not clear whether that second referendum is coming.
+  </p>
+  <p>
+    A more controversial example is the <a href="https://en.wikipedia.org/wiki/Second_Amendment_to_the_United_States_Constitution"
+    >Second Amendment</a>. I can’t even quote the text here, as there is
+    debate about the correct punctuation and capitalisation which subtly
+    affects the meaning (and assumed intention) of the amendment. Would
+    the authors have intended for citizens to keep modern-day assault
+    rifles? Would they still consider a well regulated militia necessary
+    to the security of a free State, considering the vastly more powerful
+    militaries? We’ll never know. People will continue to debate this for
+    decades or centuries to come.
+  </p>
+  <p>
+    So how can we be clearer about our intentions? Here are some
+    techniques that might work for you.
+  </p>
+  <p>
+    The first obvious step is to write comments in your code that explain
+    not what it does but why it exists. What were your intentions when
+    writing the code? What does it aim to achieve? Which bug does it
+    solve? Which story does it implement? Links to external sources of
+    context like this are a huge help to understanding and working with
+    other people’s code—which remember means your own code two weeks
+    after you write it. If you don’t want to leave these comments inline,
+    consider making detailed commit messages instead.
+  </p>
+  <p>
+    There’s another approach you can take to code comments. When somebody
+    is trying to diagnose a bug and they see a suspicious piece of code,
+    their instinct will be to delete it and their concern for making
+    things worse will be the only thing stopping them. When you write
+    tricky code, as well as explaining why it exists explain why it
+    shouldn’t be deleted in the future. Or under what circumstances can
+    it be deleted in the future. If you put in a fix to work around a bug
+    in another part of the codebase, the fix can be removed when the
+    other bug is fixed. If you don’t make this clear, people will be
+    afraid to delete the code.
+  </p>
+  <p>
+    There’s actually a great story that demonstrates this aversion to
+    removing things—it’s called <a href="https://en.wikipedia.org/wiki/Wikipedia:Chesterton's_fence"
+    >Chesterton’s fence</a>.
+  </p>
+  <blockquote>
+    <p>
+      In the matter of reforming things, as distinct from deforming them,
+      there is one plain and simple principle; a principle which will
+      probably be called a paradox. There exists in such a case a certain
+      institution or law; let us say, for the sake of simplicity, a fence
+      or gate erected across a road. The more modern type of reformer
+      goes gaily up to it and says, “I don’t see the use of this; let us
+      clear it away.” To which the more intelligent type of reformer will
+      do well to answer: “If you don’t see the use of it, I certainly
+      won’t let you clear it away. Go away and think. Then, when you can
+      come back and tell me that you do see the use of it, I may allow
+      you to destroy it.”
+    </p>
+  </blockquote>
+  <p>
+    The moral of the story is, always document the original use of
+    something you add. When that use is no longer necessary, reformers
+    will be more confident in clearing it away.
+  </p>
+  <p>
+    There’s also a flipside to this, which is that sometimes people get
+    hung up on what were originally arbitrary decisions. If you happen to
+    make any arbitrary decisions in code that you write, like the value
+    of a magic constant or the order of two operations, be clear about
+    this and leave a comment saying it’s completely arbitrary.
+  </p>
+  <p>
+    When you write a tool or a library that other people will use, it’s
+    natural that you’ll write down all the strengths and advantages. But
+    everything is a trade-off, and it’s far more likely that the person
+    using your tool is thinking with an <em>A vs B</em> frame of
+    reference than a <em>start doing A</em>. It’s important to be honest
+    about these trade-offs and to also mention the weaknesses and
+    disadvantages, so that your users can make informed decisions about
+    what will best meet their requirements. If possible, provide direct
+    comparisons with alternatives to make this even easier.
+  </p>
+  <p>
+    Speaking of alternatives, when you are making decisions with several
+    alternatives it’s good to document each one you considered and why
+    you discounted them. If it was an <em>A vs B</em> decision but you
+    only document the eventual selection (or nothing at all), later on
+    you might look back and mistake it for a <em>start doing A</em>
+    decision. If you later need to question or even change the decision,
+    you’ll be better off for having access to the notes on what else was
+    considered.
+  </p>
+  <p>
+    Try to distinguish between problems and solutions. When a problem
+    comes up and you think of an obvious solution to it, it can be all
+    too easy to create a work item describing the solution and then get
+    straight into it. If later on you need to change the solution and you
+    didn’t properly document the problem, all alternative solutions will
+    need to be compared against the existing solution. That is, you’ll be
+    forced into an <em>A vs B</em> frame of reference rather than
+    <em>start doing A</em>. This means that you might accidentally place
+    importance on qualities of the existing solution which aren’t
+    relevant to solving the original problem.
+  </p>
+  <p>
+    Actually, go one step further. When you’re documenting the problem be
+    as clear as possible about the requirements that a solution needs to
+    satisfy. Rather than saying “the solution needs to be fast”, say how
+    fast it needs to be. Again, if later on you need to change the
+    solution, you don’t want to discount alternatives just because they
+    aren’t as fast as the current solution, if they still meet the
+    original speed requirements. If it wasn’t your intention to pick the
+    fastest possible solution, don’t accidentally fool your future self
+    into thinking that it was.
+  </p>
+  <p>
+    And finally, sometimes it helps to flip a <em>start doing A</em> into
+    a <em>stop doing A</em> by pretending that you have already
+    implemented the solution. I’ve often seen teams hold off on deploying
+    a fix to a bug because it doesn’t solve the root problem, or it
+    doesn’t fully mitigate the problem. This is the classic “perfect is
+    the enemy of good” ideology at work, and it only results in
+    unnecessary continued business impact until a fix is finally
+    deployed. If you flipped the frame of reference and pretended that
+    the fix was already deployed, you wouldn’t dream of taking it out and
+    making the problem worse. Your intention when there is a live bug
+    should be to mitigate the impact as quickly as possible, not
+    necessarily to solve the root problem.
+  </p>
+  <p>
+    My intention with this post has been to help you think more clearly
+    about your intentions. To provide some examples of how clear
+    intentions improve understanding and decision making, and unclear
+    intentions cause confusion and bad decision making. And finally to
+    provide some advice on how to be clearer in the way you think about
+    and state your intentions. Actually that’s a lie. My real intention
+    was to help me think more clearly about my intentions. If you’ve
+    found any of this useful, that’s a bonus.
+  </p>
+</main>
+<footer>
+  <p>
+    Thoughts? Comments?
+    <a href="mailto:curtis@lusmo.re?subject=Good%20Intentions">Email
+    the author.</a>
+  </p>
+</footer>
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="/external">External</a></li>
+    <li><a href="/posts">Posts</a></li>
+    <li><a href="/projects">Projects</a></li>
+    <li><a href="/subscribe">Subscribe</a></li>
+  </ul>
+</nav>
+</body>
+
 </html>

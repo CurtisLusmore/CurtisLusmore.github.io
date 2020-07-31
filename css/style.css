@@ -10,106 +10,6 @@
   --font-code: 'Inconsolata', monospace;
 }
 
-/* fonts */
-h1, h2 {
-  font-family: var(--font-head);
-}
-
-h3, h4 {
-  font-family: var(--font-body);
-}
-
-h4 {
-  font-weight: normal;
-}
-
-p, li, td {
-  text-align: justify;
-  hyphens: auto;
-  font-family: var(--font-body);
-}
-
-header > p {
-  font-style: italic;
-}
-
-code, pre {
-  font-family: var(--font-code);
-}
-
-pre {
-  border-left: 2px solid var(--color-accent-1);
-  padding-left: 10px;
-}
-
-blockquote {
-  border-left: 2px solid var(--color-accent-1);
-  padding-left: 5ch;
-}
-
-/* color */
-body {
-  color: var(--color-text);
-  background-color: var(--color-background);
-}
-
-/* links */
-a[href^="#"] {
-  border: none;
-}
-
-a[href^="#"]::before {
-  margin-right: 0.5ch;
-  content: '#';
-  color: var(--color-accent-1);
-}
-
-a[href^="#"]:hover::before {
-  color: var(--color-accent-2);
-}
-
-a {
-  color: var(--color-text);
-  text-decoration: none;
-  border-bottom: 2px solid var(--color-accent-1);
-  cursor: pointer;
-}
-
-a:hover {
-  border-bottom: 2px solid var(--color-accent-2);
-}
-
-a[href^="http://"]::after,
-a[href^="https://"]::after,
-a[href^="mailto:"]::after {
-  color: var(--color-accent-1);
-  content: '↗';
-}
-
-a[href^="http://"]:hover::after,
-a[href^="https://"]:hover::after,
-a[href^="mailto:"]:hover::after {
-  color: var(--color-accent-2);
-}
-
-svg.icon {
-  vertical-align: middle;
-  height: 0.85em;
-}
-
-a > svg.icon {
-  color: var(--color-accent-1);
-}
-
-a:hover > svg.icon {
-  color: var(--color-accent-2);
-}
-
-::selection {
-  color: var(--color-background);
-  background-color: var(--color-accent-1);
-}
-
 @font-face {
   font-family: 'Lora';
   src: url('/fonts/Lora-Regular.ttf') format('truetype');
@@ -124,3 +24,33 @@ a:hover > svg.icon {
   font-family: 'Inconsolata';
   src: url('/fonts/Inconsolata-Regular.ttf') format('truetype');
 }
+
+body {
+  font-family: var(--font-body);
+  font-size: 1.5em;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-head); }
+code, pre { font-family: var(--font-code); }
+
+h1 { font-size: 1.5em; }
+h2 { font-size: 1.2em; }
+h3 { font-size: 1em; }
+pre { font-size: 0.8em; }
+
+a { color: var(--color-text); text-decoration-color: var(--color-accent-1); }
+a:hover { text-decoration-color: var(--color-accent-2); }
+
+header > address { font-style: normal; }
+header > address > img.author { height: 2.5em; float: left; margin-right: 1ch; }
+
+hgroup > h1 { margin-bottom: 0; }
+hgroup > h2 { margin-top: 0; }
+
+main > img.post { max-width: 80%; display: block; margin: auto; }
+main > img.profile { width: 256px; display: block; margin: auto; }
+main > blockquote, main > pre, main > ul { margin: 0; padding-left: 2ch; }
+main > blockquote, main > pre { border-left: 2px solid var(--color-accent-1); }
+
+nav > ul { list-style-type: none; padding: 0; }

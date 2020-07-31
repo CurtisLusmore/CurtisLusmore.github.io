@@ -1,52 +1,51 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta property="og:title" content="Multiple Dispatch in Python">
-    <meta property="og:image" content="https://lusmo.re/imgs/cover.jpg">
-    <title>Multiple Dispatch in Python | lusmo.re</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/layout.css">
-    <script src="/js/main.js" defer></script>
-  </head>
-  <body>
-    <article>
-      <header>
-        <h1>Multiple Dispatch in Python</h1>
-      </header>
-      <section>
-        <img class="author" src="/imgs/profile.png" title="Curtis Lusmore" alt="👨">
-        <p>
-          Curtis Lusmore
-          <br>
-          <time datetime="2015-07-25">25 July 2015</time>
-        </p>
-      </section>
-      <section>
-        <p>
-          I recently read <a
-          href="https://www.oreilly.com/programming/free/files/functional-programming-python.pdf"
-          >Functional Programming in Python</a> which mentions a library which
-          adds multiple dispatch to Python. One of my biggest hobbies is
-          creating things from scratch, as it really helps me get a better
-          understanding of how they work, so I thought I’d see if I couldn’t
-          figure out how to do it myself.
-        </p>
-        <p>
-          Here’s what I whipped up. I’ll add a disclaimer that in this form, it
-          doesn’t work well for methods or class methods, as they both take a
-          special argument in the first position (namely <code>self</code> or
-          <code>cls</code>), and it doesn’t accept keyword arguments. At some
-          stage I’ll try to make it a bit more rigorous.
-        </p>
-        <pre>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Multiple Dispatch in Python">
+  <meta property="og:image" content="https://lusmo.re/imgs/cover.jpg">
+  <title>Multiple Dispatch in Python | lusmo.re</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <script src="/js/main.js" defer></script>
+</head>
+
+<body>
+<header>
+  <h1>Multiple Dispatch in Python</h1>
+  <address>
+    <img class="author" src="/imgs/profile.png" title="Curtis Lusmore">
+    Curtis Lusmore <br>
+    <time datetime="2015-07-25">25 July 2015</time>
+  </address>
+</header>
+<main>
+  <p>
+    I recently read <a
+    href="https://www.oreilly.com/programming/free/files/functional-programming-python.pdf"
+    >Functional Programming in Python</a> which mentions a library which
+    adds multiple dispatch to Python. One of my biggest hobbies is
+    creating things from scratch, as it really helps me get a better
+    understanding of how they work, so I thought I’d see if I couldn’t
+    figure out how to do it myself.
+  </p>
+  <p>
+    Here’s what I whipped up. I’ll add a disclaimer that in this form, it
+    doesn’t work well for methods or class methods, as they both take a
+    special argument in the first position (namely <code>self</code> or
+    <code>cls</code>), and it doesn’t accept keyword arguments. At some
+    stage I’ll try to make it a bit more rigorous.
+  </p>
+  <pre>
 class Dispatch:
     _existing = {}
 
-    def _init_(self, *types):
+    def __init__(self, *types):
         self.types = types
 
-    def _call_(self, fn):
+    def __call__(self, fn):
         name = fn.__qualname__
         if name not in self._existing:
             table = {}
@@ -65,12 +64,12 @@ class Dispatch:
         table[self.types] = fn
         return dispatcher
 </pre>
-        <p>
-          Once you tuck this away in a library somewhere where you don’t have
-          to look at it, you can use it to write some pretty elegant code. See
-          the following implementation of the flatten function.
-        </p>
-        <pre>
+  <p>
+    Once you tuck this away in a library somewhere where you don’t have
+    to look at it, you can use it to write some pretty elegant code. See
+    the following implementation of the flatten function.
+  </p>
+  <pre>
 @Dispatch(list)
 def flatten(elems):
     return reduce(add, map(flatten, elems), [])
@@ -79,24 +78,24 @@ def flatten(elems):
 def flatten(elem):
     return [elem]
 </pre>
-      </section>
-      <footer>
-        <p>
-          Thoughts? Comments?
-          <a href="mailto:curtis@lusmo.re?subject=Multiple%20Dispatch%20in%20Python"
-          >Email the author.</a>
-        </p>
-      </footer>
-    </article>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/external">External</a></li>
-        <li><a href="/posts">Posts</a></li>
-        <li><a href="/projects">Projects</a></li>
-        <li><a href="/subscribe">Subscribe</a></li>
-      </ul>
-    </nav>
-  </body>
+</main>
+<footer>
+  <p>
+    Thoughts? Comments?
+    <a href="mailto:curtis@lusmo.re?subject=Multiple%20Dispatch%20in%20Python"
+    >Email the author.</a>
+  </p>
+</footer>
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="/external">External</a></li>
+    <li><a href="/posts">Posts</a></li>
+    <li><a href="/projects">Projects</a></li>
+    <li><a href="/subscribe">Subscribe</a></li>
+  </ul>
+</nav>
+</body>
+
 </html>

@@ -1,265 +1,268 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta property="og:title" content="Trust Nobody, Not Even Yourself">
-    <meta property="og:image" content="https://lusmo.re/imgs/cover.jpg">
-    <title>Trust Nobody, Not Even Yourself | lusmo.re</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/layout.css">
-    <script src="/js/main.js" defer></script>
-  </head>
-  <body>
-    <article>
-      <header>
-        <h1>Trust Nobody, Not Even Yourself</h1>
-      </header>
-      <section>
-        <img class="author" src="/imgs/profile.png" title="Curtis Lusmore" alt="👨">
-        <p>
-          Curtis Lusmore
-          <br>
-          <time datetime="2016-05-07">7 May 2016</time>
-        </p>
-      </section>
-      <section>
-        <blockquote>
-          <p>
-            Trust the programmer
-          </p>
-        </blockquote>
-        <p>
-          This phrase is part of the C philosophy, and has influenced the
-          design of many programming languages. In general C usage, this is
-          best observed by the use of pointer casts—a mechanism by which the
-          programmer can bypass the type system, trading compile-time type
-          safety for flexibility and potentially incurring fatal crashes at
-          run-time. The phrase needs little explanation—the programmer knows
-          what they’re doing, don’t get in their way.
-        </p>
-        <blockquote>
-          <p>
-            Keep the spirit of C. The Committee kept as a major goal to preserve the traditional spirit of C. There are many facets of the spirit of C, but the essence is a community sentiment of the underlying principles upon which the C language is based. Some of the facets of the spirit of C can be summarized in phrases like
-          </p>
-          <ul>
-            <li>Trust the programmer.</li>
-            <li>Don’t prevent the programmer from doing what needs to be done.</li>
-            <li>Keep the language small and simple.</li>
-            <li>Provide only one way to do an operation.</li>
-            <li>Make it fast, even if it is not guaranteed to be portable.</li>
-          </ul>
-        </blockquote>
-        <p>
-          A lot of great software has been written in C, by a lot of brilliant
-          programmers, making full use of this philosophy. When the programmer
-          is Dennis Ritchie or one of his colleagues from Bell Labs, it’s
-          pretty hard to argue with this. But what about for the rest of us
-          mere mortals?
-        </p>
-        <p>
-          I posit a counter-phrase.
-        </p>
-        <blockquote>
-          <p>
-            Trust nobody, not even yourself
-          </p>
-        </blockquote>
-        <p>
-          If you’re anything like me, you make mistakes while programming all
-          the time. My mistakes vary from little things like typos in variable
-          names to hard-to-find logic errors in large, complex systems. Some
-          languages give you no protection against these errors—I find most of
-          my trivial mistakes are in interpreted languages like Python and
-          JavaScript where I get no protection from typos. A step up from this
-          are languages like Java where the static type-checker will pick up
-          most typos—I say most because it won’t prevent me from mistaking
-          similarly named variables or array indices.
-        </p>
-        <p>
-          You can add non-manual memory management or garbage collection to the
-          list, which even modern systems programming languages like Go have.
-          Memory management is a notoriously difficult problem that many C and
-          C++ programmers struggle with, so it’s not surprising that modern
-          languages, even ones striving for similar performance, are willing to
-          make performance sacrifices to make the programmer’s life a little
-          easier.
-        </p>
-        <p>
-          But if I can’t even stop myself from making errors as trivial as
-          typos, why should I trust myself to do anything right?
-        </p>
-        <p>
-          The answer? I don’t, and neither should you.
-        </p>
-        <p>
-          I’ll give you a very simple example. At work a few months ago I was
-          tasked with debugging why a particular query wasn’t being executed on
-          first access to our database. The query in question clears the
-          execution plan cache—we found that clearing it gives us slightly
-          better performance under certain circumstances. It wasn’t hard to
-          track down the execution point in the code base. The code (C#) looked
-          roughly like this.
-        </p>
-        <pre class="csharp">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Trust Nobody, Not Even Yourself">
+  <meta property="og:image" content="https://lusmo.re/imgs/cover.jpg">
+  <title>Trust Nobody, Not Even Yourself | lusmo.re</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <script src="/js/main.js" defer></script>
+</head>
+
+<body>
+<header>
+  <h1>Trust Nobody, Not Even Yourself</h1>
+  <address>
+    <img class="author" src="/imgs/profile.png" title="Curtis Lusmore">
+    Curtis Lusmore <br>
+    <time datetime="2016-05-07">7 May 2016</time>
+  </address>
+</header>
+<main>
+  <blockquote>
+    <p>
+      Trust the programmer
+    </p>
+  </blockquote>
+  <p>
+    This phrase is part of the C philosophy, and has influenced the
+    design of many programming languages. In general C usage, this is
+    best observed by the use of pointer casts—a mechanism by which the
+    programmer can bypass the type system, trading compile-time type
+    safety for flexibility and potentially incurring fatal crashes at
+    run-time. The phrase needs little explanation—the programmer knows
+    what they’re doing, don’t get in their way.
+  </p>
+  <blockquote>
+    <p>
+      Keep the spirit of C. The Committee kept as a major goal to preserve the
+      traditional spirit of C. There are many facets of the spirit of C, but
+      the essence is a community sentiment of the underlying principles upon
+      which the C language is based. Some of the facets of the spirit of C can
+      be summarized in phrases like
+    </p>
+    <ul>
+      <li>Trust the programmer.</li>
+      <li>Don’t prevent the programmer from doing what needs to be done.</li>
+      <li>Keep the language small and simple.</li>
+      <li>Provide only one way to do an operation.</li>
+      <li>Make it fast, even if it is not guaranteed to be portable.</li>
+    </ul>
+  </blockquote>
+  <p>
+    A lot of great software has been written in C, by a lot of brilliant
+    programmers, making full use of this philosophy. When the programmer
+    is Dennis Ritchie or one of his colleagues from Bell Labs, it’s
+    pretty hard to argue with this. But what about for the rest of us
+    mere mortals?
+  </p>
+  <p>
+    I posit a counter-phrase.
+  </p>
+  <blockquote>
+    <p>
+      Trust nobody, not even yourself
+    </p>
+  </blockquote>
+  <p>
+    If you’re anything like me, you make mistakes while programming all
+    the time. My mistakes vary from little things like typos in variable
+    names to hard-to-find logic errors in large, complex systems. Some
+    languages give you no protection against these errors—I find most of
+    my trivial mistakes are in interpreted languages like Python and
+    JavaScript where I get no protection from typos. A step up from this
+    are languages like Java where the static type-checker will pick up
+    most typos—I say most because it won’t prevent me from mistaking
+    similarly named variables or array indices.
+  </p>
+  <p>
+    You can add non-manual memory management or garbage collection to the
+    list, which even modern systems programming languages like Go have.
+    Memory management is a notoriously difficult problem that many C and
+    C++ programmers struggle with, so it’s not surprising that modern
+    languages, even ones striving for similar performance, are willing to
+    make performance sacrifices to make the programmer’s life a little
+    easier.
+  </p>
+  <p>
+    But if I can’t even stop myself from making errors as trivial as
+    typos, why should I trust myself to do anything right?
+  </p>
+  <p>
+    The answer? I don’t, and neither should you.
+  </p>
+  <p>
+    I’ll give you a very simple example. At work a few months ago I was
+    tasked with debugging why a particular query wasn’t being executed on
+    first access to our database. The query in question clears the
+    execution plan cache—we found that clearing it gives us slightly
+    better performance under certain circumstances. It wasn’t hard to
+    track down the execution point in the code base. The code (C#) looked
+    roughly like this.
+  </p>
+  <pre class="csharp">
 // run on new thread, don't need to wait for completion
 new Thread(() =>
 {
-    try
-    {
-        using (var connection = new SqlConnection())
-        {
-            connection.ExecuteQuery(ClearCacheQuery);
-        }
-    }
-    catch
-    {
-        // suppress, nothing to do, don't want to crash
-    }
+  try
+  {
+      using (var connection = new SqlConnection())
+      {
+          connection.ExecuteQuery(ClearCacheQuery);
+      }
+  }
+  catch
+  {
+      // suppress, nothing to do, don't want to crash
+  }
 }).Start();
 </pre>
-        <p>
-          I immediately suspected that the query was throwing an exception, so
-          I stuck a break point on the catch statement and started debugging. 
-          Sure enough, that was the problem. The exception? Can’t execute query
-          on a closed connection. We were missing a single line.
-        </p>
-        <pre class="csharp">
+  <p>
+    I immediately suspected that the query was throwing an exception, so
+    I stuck a break point on the catch statement and started debugging. 
+    Sure enough, that was the problem. The exception? Can’t execute query
+    on a closed connection. We were missing a single line.
+  </p>
+  <pre class="csharp">
 connection.Open();
 connection.ExecuteQuery(ClearCacheQuery);
 </pre>
-        <p>
-          A pretty easy mistake to make, but one that I can’t help but think
-          could have been prevented by better tooling.
-        </p>
-        <p>
-          The problem in this case is that a <code>SqlConnection</code> is
-          stateful—there is a particular order that the methods need to be
-          called in, and the compiler doesn’t enforce this order. And in this
-          case it’s a pretty easy fix, but wouldn’t it be great if making the
-          error wasn’t even possible? Take the opportunity to make a mistake
-          out of the programmers hands entirely, make the compiler stop you
-          from making the mistake.
-        </p>
-        <p>
-          So how can we do this? Simple, make it a type error. You need to open
-          a connection before you can execute queries, so take the query
-          execution methods off the connection and put them on another class
-          which you can only get by opening the connection.
-        </p>
-        <pre class="csharp">
+  <p>
+    A pretty easy mistake to make, but one that I can’t help but think
+    could have been prevented by better tooling.
+  </p>
+  <p>
+    The problem in this case is that a <code>SqlConnection</code> is
+    stateful—there is a particular order that the methods need to be
+    called in, and the compiler doesn’t enforce this order. And in this
+    case it’s a pretty easy fix, but wouldn’t it be great if making the
+    error wasn’t even possible? Take the opportunity to make a mistake
+    out of the programmers hands entirely, make the compiler stop you
+    from making the mistake.
+  </p>
+  <p>
+    So how can we do this? Simple, make it a type error. You need to open
+    a connection before you can execute queries, so take the query
+    execution methods off the connection and put them on another class
+    which you can only get by opening the connection.
+  </p>
+  <pre class="csharp">
 try
 {
-    using (var connection = new SqlConnection())
-    {
-        var cursor = connection.Open();
-        cursor.ExecuteQuery(ClearCacheQuery);
-    }
+  using (var connection = new SqlConnection())
+  {
+      var cursor = connection.Open();
+      cursor.ExecuteQuery(ClearCacheQuery);
+  }
 }
 catch
 {
-    // suppress, nothing to do, don’t want to crash
+  // suppress, nothing to do, don’t want to crash
 }
 </pre>
-        <p>
-          Now it’s not even possible for the programmer to forget to open the
-          connection. Humans are terrible at dealing with little technical
-          pedantry like this, but that’s okay because computers are amazing at
-          it! Why put the cognitive burden on the programmer when you can let
-          the compiler handle it for you?
-        </p>
-        <p>
-          This is just one small example. Have a look through your code base
-          and think about how many stateful processes you have where executing
-          methods or procedures in order is required but not enforced by the
-          compiler. Do you think you might have slipped up in there once or
-          twice, but you just haven’t noticed yet?
-        </p>
-        <p>
-          Here’s another example. Many of the objects managed in our product
-          have GUID keys, and so we have many methods which take a number of
-          keys as arguments and retrieve various objects to do some work. Not
-          all of these objects are of the same type, but because the keys are
-          all of the same type, there’s nothing to stop us from mixing up the
-          keys and using them to retrieve the wrong types of objects. How can I
-          prevent myself from doing something like the following?
-        </p>
-        <pre class="csharp">
+  <p>
+    Now it’s not even possible for the programmer to forget to open the
+    connection. Humans are terrible at dealing with little technical
+    pedantry like this, but that’s okay because computers are amazing at
+    it! Why put the cognitive burden on the programmer when you can let
+    the compiler handle it for you?
+  </p>
+  <p>
+    This is just one small example. Have a look through your code base
+    and think about how many stateful processes you have where executing
+    methods or procedures in order is required but not enforced by the
+    compiler. Do you think you might have slipped up in there once or
+    twice, but you just haven’t noticed yet?
+  </p>
+  <p>
+    Here’s another example. Many of the objects managed in our product
+    have GUID keys, and so we have many methods which take a number of
+    keys as arguments and retrieve various objects to do some work. Not
+    all of these objects are of the same type, but because the keys are
+    all of the same type, there’s nothing to stop us from mixing up the
+    keys and using them to retrieve the wrong types of objects. How can I
+    prevent myself from doing something like the following?
+  </p>
+  <pre class="csharp">
 void DoWork(Guid gizmoKey, Guid hoozitKey)
 {
-    var gizmo = RetrieveGizmo(hoozitKey);
-    var hoozit = RetrieveHoozit(gizmoKey);
-    gizmo.Operate(hoozit);
+  var gizmo = RetrieveGizmo(hoozitKey);
+  var hoozit = RetrieveHoozit(gizmoKey);
+  gizmo.Operate(hoozit);
 }
 </pre>
-        <p>
-          I’m going to go with “make it a type error” again. If our keys were
-          of different types, it would be a type error to try passing the
-          <code>hoozitKey</code> to <code>RetrieveGizmo</code>. But I don’t
-          want to invent a new key type for every type of object, plus GUIDs
-          are perfect keys anyway. So what should I do?
-        </p>
-        <p>
-          Haskell has the best answer to this I’ve yet seen—
-          <code>newtypes</code>. A <code>newtype</code> declaration in Haskell
-          defines a new type that is identical to an existing type in every way
-          —including its run-time behaviour and representation—with zero
-          overhead, and with the amazing property that the two types are
-          incompatible at compile-time. As an example,
-        </p>
-        <pre class="haskell">
+  <p>
+    I’m going to go with “make it a type error” again. If our keys were
+    of different types, it would be a type error to try passing the
+    <code>hoozitKey</code> to <code>RetrieveGizmo</code>. But I don’t
+    want to invent a new key type for every type of object, plus GUIDs
+    are perfect keys anyway. So what should I do?
+  </p>
+  <p>
+    Haskell has the best answer to this I’ve yet seen—
+    <code>newtypes</code>. A <code>newtype</code> declaration in Haskell
+    defines a new type that is identical to an existing type in every way
+    —including its run-time behaviour and representation—with zero
+    overhead, and with the amazing property that the two types are
+    incompatible at compile-time. As an example,
+  </p>
+  <pre class="haskell">
 newtype GizmoKey = GizmoKey UUID
 </pre>
-        <p>
-          This creates a new type called <code>GizmoKey</code> which is exactly
-          the same thing as a <code>UUID</code> except for the fact that I
-          can’t use a <code>GizmoKey</code> where a <code>UUID</code> is
-          expected and vice versa—but there’s absolutely no run-time
-          performance penalty for this, the indirection disappears.
-        </p>
-        <p>
-          This is a fantastic solution and surprisingly useful. You can use it
-          to prevent dimension errors—adding meters to inches or something else
-          nonsensical like that which is not checked by the compiler because
-          both numbers are represented by floats. This is the kind of error
-          that brought down the
-          <a href="https://en.wikipedia.org/wiki/Mars_Climate_Orbiter">Mars
-          Climate Orbiter</a>, so don’t say it doesn’t happen, even to the best
-          of us.
-        </p>
-        <p>
-          If you look through your favourite programming language, you’ll see a
-          bunch of features designed to make your life easier, and safer. But
-          there are probably still dozens or hundreds of bugs lying dormant in
-          your programs, out of reach of your compiler. Each time you discover
-          one, think about how you could use language features to have the
-          compiler enforce correctness for you. And if it can’t, think about
-          what features you might add to help.
-        </p>
-        <p>
-          If you want to see this idea taken to the extreme, have a look at
-          this fantastic talk called
-          <a href="https://www.youtube.com/watch?v=X36ye-1x_HQ">Type Driven
-          Development in Idris</a> which shows the cutting edge of type-system
-          driven safety and correctness.
-        </p>
-      </section>
-      <footer>
-        <p>
-          Thoughts? Comments?
-          <a href="mailto:curtis@lusmo.re?subject=Trust%20Nobody,%20Not%20Even%20Yourself"
-          >Email the author.</a>
-        </p>
-      </footer>
-    </article>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/external">External</a></li>
-        <li><a href="/posts">Posts</a></li>
-        <li><a href="/projects">Projects</a></li>
-        <li><a href="/subscribe">Subscribe</a></li>
-      </ul>
-    </nav>
-  </body>
+  <p>
+    This creates a new type called <code>GizmoKey</code> which is exactly
+    the same thing as a <code>UUID</code> except for the fact that I
+    can’t use a <code>GizmoKey</code> where a <code>UUID</code> is
+    expected and vice versa—but there’s absolutely no run-time
+    performance penalty for this, the indirection disappears.
+  </p>
+  <p>
+    This is a fantastic solution and surprisingly useful. You can use it
+    to prevent dimension errors—adding meters to inches or something else
+    nonsensical like that which is not checked by the compiler because
+    both numbers are represented by floats. This is the kind of error
+    that brought down the
+    <a href="https://en.wikipedia.org/wiki/Mars_Climate_Orbiter">Mars
+    Climate Orbiter</a>, so don’t say it doesn’t happen, even to the best
+    of us.
+  </p>
+  <p>
+    If you look through your favourite programming language, you’ll see a
+    bunch of features designed to make your life easier, and safer. But
+    there are probably still dozens or hundreds of bugs lying dormant in
+    your programs, out of reach of your compiler. Each time you discover
+    one, think about how you could use language features to have the
+    compiler enforce correctness for you. And if it can’t, think about
+    what features you might add to help.
+  </p>
+  <p>
+    If you want to see this idea taken to the extreme, have a look at
+    this fantastic talk called
+    <a href="https://www.youtube.com/watch?v=X36ye-1x_HQ">Type Driven
+    Development in Idris</a> which shows the cutting edge of type-system
+    driven safety and correctness.
+  </p>
+</main>
+<footer>
+  <p>
+    Thoughts? Comments?
+    <a href="mailto:curtis@lusmo.re?subject=Trust%20Nobody,%20Not%20Even%20Yourself"
+    >Email the author.</a>
+  </p>
+</footer>
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="/external">External</a></li>
+    <li><a href="/posts">Posts</a></li>
+    <li><a href="/projects">Projects</a></li>
+    <li><a href="/subscribe">Subscribe</a></li>
+  </ul>
+</nav>
+</body>
+
 </html>

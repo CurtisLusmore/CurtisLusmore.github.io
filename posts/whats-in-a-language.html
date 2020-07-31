@@ -1,140 +1,139 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta property="og:title" content="What’s in a Language">
-    <meta property="og:image" content="https://lusmo.re/imgs/cover.jpg">
-    <title>What’s in a Language? | lusmo.re</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/layout.css">
-    <script src="/js/main.js" defer></script>
-  </head>
-  <body>
-    <article>
-      <header>
-        <h1>What’s in a Language?</h1>
-      </header>
-      <section>
-        <img class="author" src="/imgs/profile.png" title="Curtis Lusmore" alt="👨">
-        <p>
-          Curtis Lusmore
-          <br>
-          <time datetime="2016-09-06">6 September 2016</time>
-        </p>
-      </section>
-      <section>
-        <h2 id="1">
-          <a href="#1">What’s the purpose of a programming language?</a>
-        </h2>
-        <p>
-          A programming language is an interface between humans and computers,
-          that allows us to program computers to perform some task. The purpose
-          of the task is usually to solve some particular problem that the
-          human has. Most languages are <a
-          href="https://en.wikipedia.org/wiki/Turing_completeness">Turing
-          complete</a>, which essentially means that they are mostly all
-          equivalent. So what’s the point of creating a new programming
-          language if it’s equivalent to ones that already exist? Turing
-          completeness means that languages are equivalent in terms of the
-          programs they are able to express, but it says nothing about the
-          journey of getting to the finished program.
-        </p>
-        <p>
-          If you think hard enough about your problem, there are probably some
-          soft requirements that go along with it as well. The solution might
-          require one or more of the following properties:
-        </p>
-        <ul>
-          <li>it should be flexible to changing requirements,</li>
-          <li>it should perform quickly,</li>
-          <li>it should be reliable,</li>
-          <li>it should be quick or cheap to develop,</li>
-          <li>it should be provably correct.</li>
-        </ul>
-        <p>
-          How much you prioritise each of these properties should influence
-          your choice of language, and language designers should know which
-          properties they are trying to optimise for. While most languages are
-          functionally equivalent to each other, new langauges are created all
-          the time because they are supposedly better at one or more of these
-          properties than all others.
-        </p>
-        <p>
-          At this point I think it’s important to note the difference between a
-          language and an implementation of a language. Many programming
-          languages have only one standard implementation (a compiler or
-          interpreter) and the language is often used interchangably with the
-          implementation in conversation. But the two are very much distinct,
-          any many of the properties listed above apply more to the
-          implementation of a language than to the language itself.
-          Performance, for example, is much more dependent on the
-          implementation than the language itself. Some languages are designed
-          to be easy to implement efficiently, others are designed without
-          considering performance at all. But still, it makes no sense to
-          compare the performance of languages themselves—only of their
-          implementations. As such, we will only consider properties of
-          languages, not of their implementations.
-        </p>
-        <h2 id="2">
-          <a href="#2">Properties of languages</a>
-        </h2>
-        <p>
-          What properties of a solution or the journey towards creating a
-          solution are desirable, and how might a programming langauge help us
-          optimise these properties? Let’s consider the typical stages in the
-          lifecycle of a program:
-        </p>
-        <ol>
-          <li>design,</li>
-          <li>implementation,</li>
-          <li>verification</li>
-          <li>execution</li>
-          <li>maintenance.</li>
-        </ol>
-        <p>
-          The stages can occur sequentially or in a continuous feedback loop,
-          but this is irrelevant for our discussion. The properties that are
-          desirable for a language are essentially those which make these five
-          stages easier, faster, more accurate, more reliable, or perhaps more
-          enjoyable. Again, we should consider which of these stages is most
-          important to us when choosing or designing a programming language.
-        </p>
-        <p>
-          Most developer use a software development process or methodology,
-          such as <a
-          href="https://en.wikipedia.org/wiki/Test-driven_development"
-          >test-driven development</a>, <a
-          href="https://en.wikipedia.org/wiki/Literate_programming">literate
-          programming</a> or <a
-          href="https://en.wikipedia.org/wiki/Refinement_%28computing%29"
-          >refinement</a>. At the language level, in order to bring formal
-          structure to the development process, many use one or more
-          programming paradigms, like <a
-          href="https://en.wikipedia.org/wiki/Object-oriented_programming"
-          >object-oriented programming</a> or <a
-          href="https://en.wikipedia.org/wiki/Functional_programming"
-          >functional programming</a>. And even lower than this, there are
-          countless design principles, patterns and idioms. All of these should
-          be considered when choosing or designing a programming language.
-        </p>
-      </section>
-      <footer>
-        <p>
-          Thoughts? Comments?
-          <a href="mailto:curtis@lusmo.re?subject=What's%20in%20a%20Language"
-          >Email the author.</a>
-        </p>
-      </footer>
-    </article>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/external">External</a></li>
-        <li><a href="/posts">Posts</a></li>
-        <li><a href="/projects">Projects</a></li>
-        <li><a href="/subscribe">Subscribe</a></li>
-      </ul>
-    </nav>
-  </body>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="What’s in a Language">
+  <meta property="og:image" content="https://lusmo.re/imgs/cover.jpg">
+  <title>What’s in a Language? | lusmo.re</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <script src="/js/main.js" defer></script>
+</head>
+
+<body>
+<header>
+  <h1>What’s in a Language?</h1>
+  <address>
+    <img class="author" src="/imgs/profile.png" title="Curtis Lusmore">
+    Curtis Lusmore <br>
+    <time datetime="2016-09-06">6 September 2016</time>
+  </address>
+</header>
+<main>
+  <h2 id="1">
+    <a href="#1">What’s the purpose of a programming language?</a>
+  </h2>
+  <p>
+    A programming language is an interface between humans and computers,
+    that allows us to program computers to perform some task. The purpose
+    of the task is usually to solve some particular problem that the
+    human has. Most languages are <a
+    href="https://en.wikipedia.org/wiki/Turing_completeness">Turing
+    complete</a>, which essentially means that they are mostly all
+    equivalent. So what’s the point of creating a new programming
+    language if it’s equivalent to ones that already exist? Turing
+    completeness means that languages are equivalent in terms of the
+    programs they are able to express, but it says nothing about the
+    journey of getting to the finished program.
+  </p>
+  <p>
+    If you think hard enough about your problem, there are probably some
+    soft requirements that go along with it as well. The solution might
+    require one or more of the following properties:
+  </p>
+  <ul>
+    <li>it should be flexible to changing requirements,</li>
+    <li>it should perform quickly,</li>
+    <li>it should be reliable,</li>
+    <li>it should be quick or cheap to develop,</li>
+    <li>it should be provably correct.</li>
+  </ul>
+  <p>
+    How much you prioritise each of these properties should influence
+    your choice of language, and language designers should know which
+    properties they are trying to optimise for. While most languages are
+    functionally equivalent to each other, new langauges are created all
+    the time because they are supposedly better at one or more of these
+    properties than all others.
+  </p>
+  <p>
+    At this point I think it’s important to note the difference between a
+    language and an implementation of a language. Many programming
+    languages have only one standard implementation (a compiler or
+    interpreter) and the language is often used interchangably with the
+    implementation in conversation. But the two are very much distinct,
+    any many of the properties listed above apply more to the
+    implementation of a language than to the language itself.
+    Performance, for example, is much more dependent on the
+    implementation than the language itself. Some languages are designed
+    to be easy to implement efficiently, others are designed without
+    considering performance at all. But still, it makes no sense to
+    compare the performance of languages themselves—only of their
+    implementations. As such, we will only consider properties of
+    languages, not of their implementations.
+  </p>
+  <h2 id="2">
+    <a href="#2">Properties of languages</a>
+  </h2>
+  <p>
+    What properties of a solution or the journey towards creating a
+    solution are desirable, and how might a programming langauge help us
+    optimise these properties? Let’s consider the typical stages in the
+    lifecycle of a program:
+  </p>
+  <ol>
+    <li>design,</li>
+    <li>implementation,</li>
+    <li>verification</li>
+    <li>execution</li>
+    <li>maintenance.</li>
+  </ol>
+  <p>
+    The stages can occur sequentially or in a continuous feedback loop,
+    but this is irrelevant for our discussion. The properties that are
+    desirable for a language are essentially those which make these five
+    stages easier, faster, more accurate, more reliable, or perhaps more
+    enjoyable. Again, we should consider which of these stages is most
+    important to us when choosing or designing a programming language.
+  </p>
+  <p>
+    Most developer use a software development process or methodology,
+    such as <a
+    href="https://en.wikipedia.org/wiki/Test-driven_development"
+    >test-driven development</a>, <a
+    href="https://en.wikipedia.org/wiki/Literate_programming">literate
+    programming</a> or <a
+    href="https://en.wikipedia.org/wiki/Refinement_%28computing%29"
+    >refinement</a>. At the language level, in order to bring formal
+    structure to the development process, many use one or more
+    programming paradigms, like <a
+    href="https://en.wikipedia.org/wiki/Object-oriented_programming"
+    >object-oriented programming</a> or <a
+    href="https://en.wikipedia.org/wiki/Functional_programming"
+    >functional programming</a>. And even lower than this, there are
+    countless design principles, patterns and idioms. All of these should
+    be considered when choosing or designing a programming language.
+  </p>
+</main>
+<footer>
+  <p>
+    Thoughts? Comments?
+    <a href="mailto:curtis@lusmo.re?subject=What's%20in%20a%20Language"
+    >Email the author.</a>
+  </p>
+</footer>
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="/external">External</a></li>
+    <li><a href="/posts">Posts</a></li>
+    <li><a href="/projects">Projects</a></li>
+    <li><a href="/subscribe">Subscribe</a></li>
+  </ul>
+</nav>
+</body>
+
 </html>

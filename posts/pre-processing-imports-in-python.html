@@ -1,43 +1,42 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta property="og:title" content="Pre-processing Imports in Python">
-    <meta property="og:image" content="https://lusmo.re/imgs/cover.jpg">
-    <title>Pre-processing Imports in Python | lusmo.re</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/layout.css">
-    <script src="/js/main.js" defer></script>
-  </head>
-  <body>
-    <article>
-      <header>
-        <h1>Pre-processing Imports in Python</h1>
-      </header>
-      <section>
-        <img class="author" src="/imgs/profile.png" title="Curtis Lusmore" alt="👨">
-        <p>
-          Curtis Lusmore
-          <br>
-          <time datetime="2015-07-27">27 July 2015</time>
-        </p>
-      </section>
-      <section>
-        <p>
-          Inspired by <a href="https://www.youtube.com/watch?v=0oTh1CXRaQ0"
-          >David Beazley’s talk</a> on various hacks that can be made to
-          Python’s import system, I whipped up the following script for running
-          a preprocessor over a file at import-time. In most cases, I would say
-          this is far from a good idea, but it might be useful for creating
-          small domain-specific languages, or defining new literals, or
-          something like that.
-        </p>
-        <pre>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Pre-processing Imports in Python">
+  <meta property="og:image" content="https://lusmo.re/imgs/cover.jpg">
+  <title>Pre-processing Imports in Python | lusmo.re</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <script src="/js/main.js" defer></script>
+</head>
+
+<body>
+<header>
+  <h1>Pre-processing Imports in Python</h1>
+  <address>
+    <img class="author" src="/imgs/profile.png" title="Curtis Lusmore">
+    Curtis Lusmore <br>
+    <time datetime="2015-07-27">27 July 2015</time>
+  </address>
+</header>
+<main>
+  <p>
+    Inspired by <a href="https://www.youtube.com/watch?v=0oTh1CXRaQ0"
+    >David Beazley’s talk</a> on various hacks that can be made to
+    Python’s import system, I whipped up the following script for running
+    a preprocessor over a file at import-time. In most cases, I would say
+    this is far from a good idea, but it might be useful for creating
+    small domain-specific languages, or defining new literals, or
+    something like that.
+  </p>
+  <pre>
 import sys
 import re
 
 class ImportPreprocessor:
-    def _init_(self, loader, preprocess):
+    def __init__(self, loader, preprocess):
         self._loader = loader
         self._preprocess = preprocess
 
@@ -47,7 +46,7 @@ class ImportPreprocessor:
         return spec
 
     def exec_module(self, mod):
-        source = self.loader.get_source(mod.__name_)
+        source = self.loader.get_source(mod.__name__)
         source = self._preprocess(source)
         code = compile(source, mod.__file__, 'exec')
         exec(code, mod.__dict__)
@@ -69,24 +68,24 @@ x = 40 * 25%
 
 print(test.x) # 10.0
 </pre>
-      </section>
-      <footer>
-        <p>
-          Thoughts? Comments?
-          <a href="mailto:curtis@lusmo.re?subject=Pre-processing%20Imports%20in%20Python"
-          >Email the author.</a>
-        </p>
-      </footer>
-    </article>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/external">External</a></li>
-        <li><a href="/posts">Posts</a></li>
-        <li><a href="/projects">Projects</a></li>
-        <li><a href="/subscribe">Subscribe</a></li>
-      </ul>
-    </nav>
-  </body>
+</main>
+<footer>
+  <p>
+    Thoughts? Comments?
+    <a href="mailto:curtis@lusmo.re?subject=Pre-processing%20Imports%20in%20Python"
+    >Email the author.</a>
+  </p>
+</footer>
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="/external">External</a></li>
+    <li><a href="/posts">Posts</a></li>
+    <li><a href="/projects">Projects</a></li>
+    <li><a href="/subscribe">Subscribe</a></li>
+  </ul>
+</nav>
+</body>
+
 </html>

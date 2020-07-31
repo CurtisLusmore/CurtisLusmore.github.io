@@ -1,194 +1,193 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta property="og:title" content="Computer Science as Exploration">
-    <meta property="og:image" content="https://lusmo.re/imgs/cover.jpg">
-    <title>Computer Science as Exploration | lusmo.re</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/layout.css">
-    <script src="/js/main.js" defer></script>
-  </head>
-  <body>
-    <article>
-      <header>
-        <h1>Computer Science as Exploration</h1>
-      </header>
-      <section>
-        <img class="author" src="/imgs/profile.png" title="Curtis Lusmore" alt="👨">
-        <p>
-          Curtis Lusmore
-          <br>
-          <time datetime="2019-02-24">24 February 2019</time>
-        </p>
-      </section>
-      <section>
-        <p>
-          What is computer science really about? In the present day, despite
-          being such a relatively young and immature field, computer science
-          employs millions of people all over the world, it produces the
-          technologies that run our lives, and it is responsible for countless
-          billions or trillions of dollars of value. Even going into the
-          near-term future, the software that has been built over the last few
-          decades will continue to affect the daily lives of people for
-          generations to come.
-        </p>
-        <p>
-          But to me, that’s just commercial success. At the end of the day, or
-          perhaps better to say at the end of the millenium, will anybody
-          really care? If we made contact with an alien race, would we brag
-          about our ability to share cat photos with millions of strangers, or
-          even our ability to build billion dollar companies? There must be
-          some deeper meaning to this all. I can feel it. When I’m programming
-          or problem solving, I feel like I’m exploring. But what am I
-          exploring?
-        </p>
-        <p>
-          The <a href="https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-7.html"
-          >Preface to the First Edition</a> of Structure and Interpretation of
-          Computer Programs, a classic textbook in computer science, contains
-          this gem of a quote.
-        </p>
-        <blockquote>
-          <p>
-            Underlying our approach to this subject is our conviction that
-            “computer science” is not a science and that its significance has
-            little to do with computers. The computer revolution is a
-            revolution in the way we think and in the way we express what we
-            think.
-          </p>
-        </blockquote>
-        <p>
-          When I first read this several years ago, the quote instantly
-          resonated with me. This says that the study of computer science is
-          the exploration of thought, and of thought processes, which gelled
-          with how I feel while I’m programming. I think this is the key,
-          lasting contribution that computer science will make to humanity. To
-          build out the fundamental knowledge of the way that we think.
-        </p>
-        <p>
-          I spent ten months between April 2007 and February 2008 living in
-          Japan, attending a Japanese high school, and speaking in Japanese all
-          day every day. During this time, I became decently proficient at
-          Japanese (reaching Level 2 of the
-          <a href="https://www.jlpt.jp/e/about/levelsummary.html">JLPT</a>),
-          and I realised that the way I think when I’m thinking in Japanese is
-          different to the way I think when I’m thinking in English.
-        </p>
-        <p>
-          Although both languages obviously cover the full range of all
-          possible thoughts, some things are easier to say in one language than
-          the other, or even just more commonly said, which lowers the amount
-          of mental effort required to think them. It sounds hard to believe,
-          but you can experience this feeling even if you can’t speak a second
-          language. Think about times that you’ve learnt a new word that
-          perfectly describes a concept that you felt you already knew but
-          previously struggled to explain, and how much easier it becomes to
-          talk about that concept purely because it now has a name (the
-          <a href="https://en.wikipedia.org/wiki/XY_problem">XY problem</a> is
-          my favourite example of this).
-        </p>
-        <p>
-          Translating this idea into the world of programming is quite simple.
-          There are hundreds or probably thousands of programming languages,
-          which express one or more of several different programming paradigms,
-          like object-oriented programming and functional programming, that
-          each make it easier or harder to express particular patterns or
-          algorithms. People often say that coming from an object-oriented
-          background, learning functional programming “completely changed the
-          way I think about programming.” With both human and computer
-          languages, language can change the way we think, and so the study of
-          programming language design will be a key part of exploring the way
-          that we think.
-        </p>
-        <p>
-          I want to also now pull in something I learnt in a
-          <a href="https://en.wikipedia.org/wiki/Linear_algebra">linear
-          algebra</a> course during my time as a mathematics student at
-          university. Unfortunately this is going to require some jargon that I
-          don’t expect you to know, so bear with me. Rather than bore you with
-          the defintions, I will try to explain these concepts in terms of the
-          relationship to programming and thought.
-        </p>
-        <p>
-          Imagine that the universe of all possible thoughts, or all possible
-          programs, is the three-dimensional space around you. It really is a
-          space—in linear algebra jargon, a vector space—but it probably has
-          more than three dimensions. It’s really hard to think about spaces of
-          more than three dimensions though, so let’s keep it simple for now.
-          You might know that every point in three-dimensional space can be
-          represented by a line connecting that point to some fixed origin—we
-          call this a vector. Thoughts can be broken down into smaller
-          thoughts, or conversely small thoughts can be built up to form larger
-          thoughts. Programs can be broken down into smaller programs, or
-          conversely small programs can be composed together to build larger
-          programs. We can add vectors together, or re-express a vector as the
-          sum of two or more smaller vectors.
-        </p>
-        <p>
-          Imagine making a collection of thoughts, or programs, or program
-          fragments, like a little toolbox—we call this a set of vectors. If
-          our toolbox is complete, and we can use it to build anything—to think
-          any thought, to express any program, to describe any vector in the
-          vector space—it’s called a spanning set (not to be confused with a
-          spanner set, which certainly doesn’t make a complete toolbox),
-          because with this set of tools we can span the entire space. But just
-          because we can build anything, doesn’t mean it will be easy to build
-          everything. Just as languages make it easier or harder to say or
-          think certain thoughts, our toolbox will determine what is easy or
-          hard to build. For example, in three-dimensional space we can use a
-          triplet of Cartesian coordinates to represent a point, but these
-          aren’t at all convenient for expressing positions on a (mostly)
-          spherical globe, so we use latitude, longitude and altitude.
-        </p>
-        <p>
-          So if you’re anything like me, the question now is “What’s the
-          smallest possible complete toolbox?” What are the minimal features I
-          need in a programming language to build any program? In linear
-          algebra jargon, this is called the basis of the vector space. The
-          thing is, there isn’t only one basis, as we saw earlier with
-          Cartesian and geographic coordinates. So what are the bases for
-          <a href="https://en.wikipedia.org/wiki/Turing_completeness"
-          >Turing-complete</a> programming languages? The
-          <a href="https://en.wikipedia.org/wiki/Lambda_calculus">lambda
-          calculus</a>, which forms the foundation of functional programming,
-          would certainly be a candidate basis. The Turing machine itself,
-          which forms the foundation of procedural programming, is surely up
-          for consideration as well. What are the bases of the space of all
-          thought?
-        </p>
-        <p>
-          The reason these bases are so interesting to me is that they each
-          form the kernel of a way of thinking. A Turing machine is the kernel
-          of procedural programming, and the lambda calculus is the kernel of
-          functional programming. And there are more of them. The discovery of
-          each new basis would suggest a new paradigm, which in turn might lead
-          to some “hard” programs or thoughts becoming “easy” programs or
-          thoughts, even if it doesn’t unlock any new capabilities. I
-          frequently find that thinking about a problem from a new frame of
-          reference uncovers a much simpler solution. I think this is what
-          computer science is to me—a search for the building blocks of thought
-          and the means for composing them, and ultimately, an exploration of
-          thought.
-        </p>
-      </section>
-      <footer>
-        <p>
-          Thoughts? Comments?
-          <a href="mailto:curtis@lusmo.re?subject=Computer%20Science%20as%20Exploration"
-          >Email the author.</a>
-        </p>
-      </footer>
-    </article>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/external">External</a></li>
-        <li><a href="/posts">Posts</a></li>
-        <li><a href="/projects">Projects</a></li>
-        <li><a href="/subscribe">Subscribe</a></li>
-      </ul>
-    </nav>
-  </body>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Computer Science as Exploration">
+  <meta property="og:image" content="https://lusmo.re/imgs/cover.jpg">
+  <title>Computer Science as Exploration | lusmo.re</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <script src="/js/main.js" defer></script>
+</head>
+
+<body>
+<header>
+  <h1>Computer Science as Exploration</h1>
+  <address>
+    <img class="author" src="/imgs/profile.png" title="Curtis Lusmore">
+    Curtis Lusmore <br>
+    <time datetime="2019-02-24">24 February 2019</time>
+  </address>
+</header>
+<main>
+  <p>
+    What is computer science really about? In the present day, despite
+    being such a relatively young and immature field, computer science
+    employs millions of people all over the world, it produces the
+    technologies that run our lives, and it is responsible for countless
+    billions or trillions of dollars of value. Even going into the
+    near-term future, the software that has been built over the last few
+    decades will continue to affect the daily lives of people for
+    generations to come.
+  </p>
+  <p>
+    But to me, that’s just commercial success. At the end of the day, or
+    perhaps better to say at the end of the millenium, will anybody
+    really care? If we made contact with an alien race, would we brag
+    about our ability to share cat photos with millions of strangers, or
+    even our ability to build billion dollar companies? There must be
+    some deeper meaning to this all. I can feel it. When I’m programming
+    or problem solving, I feel like I’m exploring. But what am I
+    exploring?
+  </p>
+  <p>
+    The <a href="https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-7.html"
+    >Preface to the First Edition</a> of Structure and Interpretation of
+    Computer Programs, a classic textbook in computer science, contains
+    this gem of a quote.
+  </p>
+  <blockquote>
+    <p>
+      Underlying our approach to this subject is our conviction that
+      “computer science” is not a science and that its significance has
+      little to do with computers. The computer revolution is a
+      revolution in the way we think and in the way we express what we
+      think.
+    </p>
+  </blockquote>
+  <p>
+    When I first read this several years ago, the quote instantly
+    resonated with me. This says that the study of computer science is
+    the exploration of thought, and of thought processes, which gelled
+    with how I feel while I’m programming. I think this is the key,
+    lasting contribution that computer science will make to humanity. To
+    build out the fundamental knowledge of the way that we think.
+  </p>
+  <p>
+    I spent ten months between April 2007 and February 2008 living in
+    Japan, attending a Japanese high school, and speaking in Japanese all
+    day every day. During this time, I became decently proficient at
+    Japanese (reaching Level 2 of the
+    <a href="https://www.jlpt.jp/e/about/levelsummary.html">JLPT</a>),
+    and I realised that the way I think when I’m thinking in Japanese is
+    different to the way I think when I’m thinking in English.
+  </p>
+  <p>
+    Although both languages obviously cover the full range of all
+    possible thoughts, some things are easier to say in one language than
+    the other, or even just more commonly said, which lowers the amount
+    of mental effort required to think them. It sounds hard to believe,
+    but you can experience this feeling even if you can’t speak a second
+    language. Think about times that you’ve learnt a new word that
+    perfectly describes a concept that you felt you already knew but
+    previously struggled to explain, and how much easier it becomes to
+    talk about that concept purely because it now has a name (the
+    <a href="https://en.wikipedia.org/wiki/XY_problem">XY problem</a> is
+    my favourite example of this).
+  </p>
+  <p>
+    Translating this idea into the world of programming is quite simple.
+    There are hundreds or probably thousands of programming languages,
+    which express one or more of several different programming paradigms,
+    like object-oriented programming and functional programming, that
+    each make it easier or harder to express particular patterns or
+    algorithms. People often say that coming from an object-oriented
+    background, learning functional programming “completely changed the
+    way I think about programming.” With both human and computer
+    languages, language can change the way we think, and so the study of
+    programming language design will be a key part of exploring the way
+    that we think.
+  </p>
+  <p>
+    I want to also now pull in something I learnt in a
+    <a href="https://en.wikipedia.org/wiki/Linear_algebra">linear
+    algebra</a> course during my time as a mathematics student at
+    university. Unfortunately this is going to require some jargon that I
+    don’t expect you to know, so bear with me. Rather than bore you with
+    the defintions, I will try to explain these concepts in terms of the
+    relationship to programming and thought.
+  </p>
+  <p>
+    Imagine that the universe of all possible thoughts, or all possible
+    programs, is the three-dimensional space around you. It really is a
+    space—in linear algebra jargon, a vector space—but it probably has
+    more than three dimensions. It’s really hard to think about spaces of
+    more than three dimensions though, so let’s keep it simple for now.
+    You might know that every point in three-dimensional space can be
+    represented by a line connecting that point to some fixed origin—we
+    call this a vector. Thoughts can be broken down into smaller
+    thoughts, or conversely small thoughts can be built up to form larger
+    thoughts. Programs can be broken down into smaller programs, or
+    conversely small programs can be composed together to build larger
+    programs. We can add vectors together, or re-express a vector as the
+    sum of two or more smaller vectors.
+  </p>
+  <p>
+    Imagine making a collection of thoughts, or programs, or program
+    fragments, like a little toolbox—we call this a set of vectors. If
+    our toolbox is complete, and we can use it to build anything—to think
+    any thought, to express any program, to describe any vector in the
+    vector space—it’s called a spanning set (not to be confused with a
+    spanner set, which certainly doesn’t make a complete toolbox),
+    because with this set of tools we can span the entire space. But just
+    because we can build anything, doesn’t mean it will be easy to build
+    everything. Just as languages make it easier or harder to say or
+    think certain thoughts, our toolbox will determine what is easy or
+    hard to build. For example, in three-dimensional space we can use a
+    triplet of Cartesian coordinates to represent a point, but these
+    aren’t at all convenient for expressing positions on a (mostly)
+    spherical globe, so we use latitude, longitude and altitude.
+  </p>
+  <p>
+    So if you’re anything like me, the question now is “What’s the
+    smallest possible complete toolbox?” What are the minimal features I
+    need in a programming language to build any program? In linear
+    algebra jargon, this is called the basis of the vector space. The
+    thing is, there isn’t only one basis, as we saw earlier with
+    Cartesian and geographic coordinates. So what are the bases for
+    <a href="https://en.wikipedia.org/wiki/Turing_completeness"
+    >Turing-complete</a> programming languages? The
+    <a href="https://en.wikipedia.org/wiki/Lambda_calculus">lambda
+    calculus</a>, which forms the foundation of functional programming,
+    would certainly be a candidate basis. The Turing machine itself,
+    which forms the foundation of procedural programming, is surely up
+    for consideration as well. What are the bases of the space of all
+    thought?
+  </p>
+  <p>
+    The reason these bases are so interesting to me is that they each
+    form the kernel of a way of thinking. A Turing machine is the kernel
+    of procedural programming, and the lambda calculus is the kernel of
+    functional programming. And there are more of them. The discovery of
+    each new basis would suggest a new paradigm, which in turn might lead
+    to some “hard” programs or thoughts becoming “easy” programs or
+    thoughts, even if it doesn’t unlock any new capabilities. I
+    frequently find that thinking about a problem from a new frame of
+    reference uncovers a much simpler solution. I think this is what
+    computer science is to me—a search for the building blocks of thought
+    and the means for composing them, and ultimately, an exploration of
+    thought.
+  </p>
+</main>
+<footer>
+  <p>
+    Thoughts? Comments?
+    <a href="mailto:curtis@lusmo.re?subject=Computer%20Science%20as%20Exploration"
+    >Email the author.</a>
+  </p>
+</footer>
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="/external">External</a></li>
+    <li><a href="/posts">Posts</a></li>
+    <li><a href="/projects">Projects</a></li>
+    <li><a href="/subscribe">Subscribe</a></li>
+  </ul>
+</nav>
+</body>
+
 </html>

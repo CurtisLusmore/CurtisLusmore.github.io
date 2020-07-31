@@ -1,115 +1,114 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta property="og:title" content="Multiple Git Profiles">
-    <meta property="og:image" content="https://lusmo.re/imgs/cover.jpg">
-    <title>Multiple Git Profiles | lusmo.re</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/layout.css">
-    <script src="/js/main.js" defer></script>
-  </head>
-  <body>
-    <article>
-      <header>
-        <h1>Multiple Git Profiles</h1>
-      </header>
-      <section>
-        <img class="author" src="/imgs/profile.png" title="Curtis Lusmore" alt="👨">
-        <p>
-          Curtis Lusmore
-          <br>
-          <time datetime="2016-09-06">31 January 2019</time>
-        </p>
-      </section>
-      <section>
-        <p>
-          If like me, you need to make Git commits from multiple email
-          addresses on the same machine (say, from your personal and your work
-          address), here’s a handy trick that will help make sure you make
-          every commit with the right address.
-        </p>
-        <p>
-          Start by creating a directory for each profile, named after the
-          profile. In my case, I have <code>D:/git/home</code> and
-          <code>D:/git/work</code>. Move all your Git repositories into
-          the directory corresponding to the profile that you want to use when
-          making commits to that repository. At the root of your profile
-          directories, create a <code>.gitconfig</code> file with the following
-          content.
-        </p>
-        <pre>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Multiple Git Profiles">
+  <meta property="og:image" content="https://lusmo.re/imgs/cover.jpg">
+  <title>Multiple Git Profiles | lusmo.re</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <script src="/js/main.js" defer></script>
+</head>
+
+<body>
+<header>
+  <h1>Multiple Git Profiles</h1>
+  <address>
+    <img class="author" src="/imgs/profile.png" title="Curtis Lusmore">
+    Curtis Lusmore <br>
+    <time datetime="2016-09-06">31 January 2019</time>
+  </address>
+</header>
+<main>
+  <p>
+    If like me, you need to make Git commits from multiple email
+    addresses on the same machine (say, from your personal and your work
+    address), here’s a handy trick that will help make sure you make
+    every commit with the right address.
+  </p>
+  <p>
+    Start by creating a directory for each profile, named after the
+    profile. In my case, I have <code>D:/git/home</code> and
+    <code>D:/git/work</code>. Move all your Git repositories into
+    the directory corresponding to the profile that you want to use when
+    making commits to that repository. At the root of your profile
+    directories, create a <code>.gitconfig</code> file with the following
+    content.
+  </p>
+  <pre>
 [user]
-    email = your.email@address.com
+  email = your.email@address.com
 </pre>
-        <p>
-          Obviously, use the correct email address for each profile. Now remove
-          the email config from your global <code>.gitconfig</code> file, which
-          is usually in your user’s home directory. If you’re not sure where it
-          is, you can run
-        </p>
-        <pre>git config --show-origin user.email</pre>
-        <p>
-          to check. Once you’ve removed it, run
-        </p>
-        <pre>git config --get user.email</pre>
-        <p>
-          to confirm that it’s unset. Now add the following sections to your
-          global <code>.gitconfig</code> file.
-        </p>
-        <pre>
+  <p>
+    Obviously, use the correct email address for each profile. Now remove
+    the email config from your global <code>.gitconfig</code> file, which
+    is usually in your user’s home directory. If you’re not sure where it
+    is, you can run
+  </p>
+  <pre>git config --show-origin user.email</pre>
+  <p>
+    to check. Once you’ve removed it, run
+  </p>
+  <pre>git config --get user.email</pre>
+  <p>
+    to confirm that it’s unset. Now add the following sections to your
+    global <code>.gitconfig</code> file.
+  </p>
+  <pre>
 [includeIf "gitdir:D:/git/home/"]
-    path = D:/git/home/.gitconfig
+  path = D:/git/home/.gitconfig
 
 [includeIf "gitdir:D:/git/work/"]
-    path = D:/git/work/.gitconfig
+  path = D:/git/work/.gitconfig
 </pre>
-        <p>
-          Replace <code>D:/git/home/</code> with the paths to the directories
-          you created earlier. Git will now pull in these config files whenever
-          you’re working in a repository inside those directories.
-        </p>
-        <p>
-          You can test this by navigating to a Git repository inside one of
-          your directories and running
-        </p>
-        <pre>git config --get user.email</pre>
-        <p>
-          but note that you need to be inside a Git repository, not just the
-          root directory—Git won’t pull in the conditional configuration files
-          outside of a Git repository.
-        </p>
-        <p>
-          Technically, you don’t need to remove your email configuration from
-          the global <code>.gitconfig</code> file—as long as the
-          <code>includeIf</code> blocks appear below your email configuration,
-          they will take precedent. However, I prefer to remove it to make it
-          clearer that the value there isn’t used, and to force me to put all
-          of my Git repositories inside one of my profile
-          directories—attempting to commit to a repository outside those
-          directories will fail because no email address is configured.
-        </p>
-        <p>
-          And that’s it—never make a commit from the wrong email address again!
-        </p>
-      </section>
-      <footer>
-        <p>
-          Thoughts? Comments?
-          <a href="mailto:curtis@lusmo.re?subject=Multiple%20Git%20Profiles"
-          >Email the author.</a>
-        </p>
-      </footer>
-    </article>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/external">External</a></li>
-        <li><a href="/posts">Posts</a></li>
-        <li><a href="/projects">Projects</a></li>
-        <li><a href="/subscribe">Subscribe</a></li>
-      </ul>
-    </nav>
-  </body>
+  <p>
+    Replace <code>D:/git/home/</code> with the paths to the directories
+    you created earlier. Git will now pull in these config files whenever
+    you’re working in a repository inside those directories.
+  </p>
+  <p>
+    You can test this by navigating to a Git repository inside one of
+    your directories and running
+  </p>
+  <pre>git config --get user.email</pre>
+  <p>
+    but note that you need to be inside a Git repository, not just the
+    root directory—Git won’t pull in the conditional configuration files
+    outside of a Git repository.
+  </p>
+  <p>
+    Technically, you don’t need to remove your email configuration from
+    the global <code>.gitconfig</code> file—as long as the
+    <code>includeIf</code> blocks appear below your email configuration,
+    they will take precedent. However, I prefer to remove it to make it
+    clearer that the value there isn’t used, and to force me to put all
+    of my Git repositories inside one of my profile
+    directories—attempting to commit to a repository outside those
+    directories will fail because no email address is configured.
+  </p>
+  <p>
+    And that’s it—never make a commit from the wrong email address again!
+  </p>
+</main>
+<footer>
+  <p>
+    Thoughts? Comments?
+    <a href="mailto:curtis@lusmo.re?subject=Multiple%20Git%20Profiles"
+    >Email the author.</a>
+  </p>
+</footer>
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="/external">External</a></li>
+    <li><a href="/posts">Posts</a></li>
+    <li><a href="/projects">Projects</a></li>
+    <li><a href="/subscribe">Subscribe</a></li>
+  </ul>
+</nav>
+</body>
+
 </html>

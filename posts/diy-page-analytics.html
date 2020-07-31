@@ -1,453 +1,440 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta property="og:title" content="DIY Page Analytics">
-    <meta property="og:image" content="https://lusmo.re/imgs/cover.jpg">
-    <title>DIY Page Analytics | lusmo.re</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/layout.css">
-    <script src="/js/main.js" defer></script>
-  </head>
-  <body>
-    <article>
-      <header>
-        <h1>DIY Page Analytics</h1>
-      </header>
-      <section>
-        <img class="author" src="/imgs/profile.png" title="Curtis Lusmore" alt="👨">
-        <p>
-          Curtis Lusmore
-          <br>
-          <time datetime="2020-05-29">29 May 2020</time>
-        </p>
-      </section>
-      <section>
-        <p>
-          This site is hosted on <a href="https://pages.github.com/">GitHub
-          Pages</a>. Because I’d like to have a rough idea of which of my posts
-          are receiving the most engagement and which sites are driving the
-          most traffic, and since GitHub Pages doesn’t provide me with this by
-          default, I decided to add some page view analytics to my site.
-          I’m not particularly keen on privacy-invasive services like Google
-          Analytics, which collect far more information than I need and share
-          it with 3rd-parties, so I decided to build my own minimalist service.
-          Also, it just seemed like a fun yak-shaving exercise, and everything
-          else on this page is hand-made.
-        </p>
-        <p>
-          In this post we’ll walk through how to build a very basic page
-          analytics service using <a href="https://azure.microsoft.com/en-us/services/functions/"
-          >Azure Functions</a> and <a href="https://azure.microsoft.com/en-us/services/storage/tables/"
-          >Table Storage</a>, which you can host yourself for a few cents per
-          year—my last twelve invoices reached a grand total of 49 cents.
-        </p>
-        <p>
-          Is this going to be a genuine substitute for Google Analytics?
-          Definitely not. It won’t track session flows, time spent on the page,
-          conversion, audience details, or anything fancy like that. It’s just
-          going to do the absolute basics, which is to record which pages get
-          viewed and what the referrer was. For a page which receives as little
-          traffic as this website, that’s perfectly adequate.
-        </p>
-        <p>
-          The way that it works is that a bit of JavaScript will run on each
-          page view of your website, which sends some information (the path of
-          the page being viewed, and the referrer) to an Azure Function, which
-          then stores these details into Table Storage. You can then query
-          Table Storage to see which pages are being viewed and where the
-          traffic is coming from.
-        </p>
-        <p>
-          Before we get started, you’re going to need to make sure you’ve
-          installed the <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli"
-          >Azure CLI</a>, the <a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local"
-          >Azure Functions Core Tools</a>, and the <a href="https://docs.microsoft.com/en-us/dotnet/core/tools/"
-          >.NET Core CLI</a>.
-        </p>
-      </section>
-      <section>
-        <h2 id="1">
-          <a href="#1">Function setup</a>
-        </h2>
-        <p>
-          Let’s get started by creating our project directory and adding the
-          required boilerplate. Open up your favourite terminal and run the
-          following commands to create a blank .NET function app.
-        </p>
-        <pre>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="DIY Page Analytics">
+  <meta property="og:image" content="https://lusmo.re/imgs/cover.jpg">
+  <title>DIY Page Analytics | lusmo.re</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <script src="/js/main.js" defer></script>
+</head>
+
+<body>
+<header>
+  <h1>DIY Page Analytics</h1>
+  <address>
+    <img class="author" src="/imgs/profile.png" title="Curtis Lusmore">
+    Curtis Lusmore <br>
+    <time datetime="2020-05-29">29 May 2020</time>
+  </address>
+</header>
+<main>
+  <p>
+    This site is hosted on <a href="https://pages.github.com/">GitHub
+    Pages</a>. Because I’d like to have a rough idea of which of my posts
+    are receiving the most engagement and which sites are driving the
+    most traffic, and since GitHub Pages doesn’t provide me with this by
+    default, I decided to add some page view analytics to my site.
+    I’m not particularly keen on privacy-invasive services like Google
+    Analytics, which collect far more information than I need and share
+    it with 3rd-parties, so I decided to build my own minimalist service.
+    Also, it just seemed like a fun yak-shaving exercise, and everything
+    else on this page is hand-made.
+  </p>
+  <p>
+    In this post we’ll walk through how to build a very basic page
+    analytics service using <a href="https://azure.microsoft.com/en-us/services/functions/"
+    >Azure Functions</a> and <a href="https://azure.microsoft.com/en-us/services/storage/tables/"
+    >Table Storage</a>, which you can host yourself for a few cents per
+    year—my last twelve invoices reached a grand total of 49 cents.
+  </p>
+  <p>
+    Is this going to be a genuine substitute for Google Analytics?
+    Definitely not. It won’t track session flows, time spent on the page,
+    conversion, audience details, or anything fancy like that. It’s just
+    going to do the absolute basics, which is to record which pages get
+    viewed and what the referrer was. For a page which receives as little
+    traffic as this website, that’s perfectly adequate.
+  </p>
+  <p>
+    The way that it works is that a bit of JavaScript will run on each
+    page view of your website, which sends some information (the path of
+    the page being viewed, and the referrer) to an Azure Function, which
+    then stores these details into Table Storage. You can then query
+    Table Storage to see which pages are being viewed and where the
+    traffic is coming from.
+  </p>
+  <p>
+    Before we get started, you’re going to need to make sure you’ve
+    installed the <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli"
+    >Azure CLI</a>, the <a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local"
+    >Azure Functions Core Tools</a>, and the <a href="https://docs.microsoft.com/en-us/dotnet/core/tools/"
+    >.NET Core CLI</a>.
+  </p>
+  <h2 id="1">
+    <a href="#1">Function setup</a>
+  </h2>
+  <p>
+    Let’s get started by creating our project directory and adding the
+    required boilerplate. Open up your favourite terminal and run the
+    following commands to create a blank .NET function app.
+  </p>
+  <pre>
 mkdir logger
 cd logger
 func init --worker-runtime dotnet
 </pre>
-        <p>
-          Next we need to add our function to it, and install the required
-          package dependencies.
-        </p>
-        <pre>
+  <p>
+    Next we need to add our function to it, and install the required
+    package dependencies.
+  </p>
+  <pre>
 func new --language 'C#' --template HttpTrigger --name Log
 dotnet add package Microsoft.Azure.WebJobs.Extensions.Storage
 </pre>
-        <p>
-          This will create a <code>Log.cs</code> file containing a standard C#
-          function. At this point, you could test the function locally by
-          running the following.
-        </p>
-        <pre>
+  <p>
+    This will create a <code>Log.cs</code> file containing a standard C#
+    function. At this point, you could test the function locally by
+    running the following.
+  </p>
+  <pre>
 func host start
 </pre>
-      </section>
-      <section>
-        <h2 id="2">
-          <a href="#2">Function implementation</a>
-        </h2>
-        <p>
-          The first thing we need to add is a class to represent a log entry.
-          In Table Storage, each entry must have a <code>PartitionKey</code>
-          and a <code>RowKey</code>, which combined must uniquely identify each
-          entry. Entries will also automatically have a <code>Timestamp</code>
-          property which records the time that they were last modified.
-        </p>
-        <p>
-          We’ll use the <code>PartitionKey</code> to record the page being
-          visited, but unfortunately we can’t use the <code>RowKey</code> to
-          record the referrer since this (hopefully) wouldn’t be a unique pair.
-          Instead we’ll add a new property, <code>Referrer</code>, and use a
-          random GUID to ensure uniqueness of the <code>RowKey</code> property.
-          This means that our <code>LogEntry</code> class will look as follows.
-        </p>
-        <pre>
+  <h2 id="2">
+    <a href="#2">Function implementation</a>
+  </h2>
+  <p>
+    The first thing we need to add is a class to represent a log entry.
+    In Table Storage, each entry must have a <code>PartitionKey</code>
+    and a <code>RowKey</code>, which combined must uniquely identify each
+    entry. Entries will also automatically have a <code>Timestamp</code>
+    property which records the time that they were last modified.
+  </p>
+  <p>
+    We’ll use the <code>PartitionKey</code> to record the page being
+    visited, but unfortunately we can’t use the <code>RowKey</code> to
+    record the referrer since this (hopefully) wouldn’t be a unique pair.
+    Instead we’ll add a new property, <code>Referrer</code>, and use a
+    random GUID to ensure uniqueness of the <code>RowKey</code> property.
+    This means that our <code>LogEntry</code> class will look as follows.
+  </p>
+  <pre>
 public class LogEntry
 {
-    public string PartitionKey { get; set; }
-    public string RowKey { get; set; }
-    public string Referrer { get; set; }
+  public string PartitionKey { get; set; }
+  public string RowKey { get; set; }
+  public string Referrer { get; set; }
 }
 </pre>
-        <p>
-          Next we need to change the function implementation. I’ll supply the
-          full code snippet first and then we’ll walk through it together.
-        </p>
-        <pre>
+  <p>
+    Next we need to change the function implementation. I’ll supply the
+    full code snippet first and then we’ll walk through it together.
+  </p>
+  <pre>
 [FunctionName("Log")]
 [return: Table("LogEntries")]
 public static async Task&lt;LogEntry&gt; Run(
-    [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)]
-    HttpRequest req,
-    ILogger log)
+  [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)]
+  HttpRequest req,
+  ILogger log)
 {
-    log.LogInformation("C# HTTP trigger function processed a request.");
+  log.LogInformation("C# HTTP trigger function processed a request.");
 
-    string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-    dynamic data = JsonConvert.DeserializeObject(requestBody);
+  string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+  dynamic data = JsonConvert.DeserializeObject(requestBody);
 
-    string location = data?.location;
-    string referrer = data?.referrer;
+  string location = data?.location;
+  string referrer = data?.referrer;
 
-    log.LogInformation($"{location} -> {referrer}");
+  log.LogInformation($"{location} -> {referrer}");
 
-    return new LogEntry
-    {
-        PartitionKey = location.Replace("/", "|"), // '/' not supported
-        RowKey = Guid.NewGuid().ToString(),
-        Referrer = referrer
-    };
+  return new LogEntry
+  {
+      PartitionKey = location.Replace("/", "|"), // '/' not supported
+      RowKey = Guid.NewGuid().ToString(),
+      Referrer = referrer
+  };
 }
 </pre>
-        <p>
-          The first change is to add the <code>[return:
-          Table("LogEntries")]</code> attribute and change the return type from
-          <code>Task&lt;IActionResult&gt;</code> to
-          <code>Task&lt;LogEntry&gt;</code>. This allows us to return a new
-          entry for the <code>LogEntries</code> table in Table Storage, which
-          will be inserted automatically.
-        </p>
-        <p>
-          Next we changed the access level from <code>Function</code> to
-          <code>Anonymous</code>, because we’re going to be hitting this
-          function from publicly viewable JavaScript where we can’t hide an API
-          key anyway, and changed the allowed methods to only allow
-          <code>POST</code>, since that’s the method which bests describes our
-          action.
-        </p>
-        <p>
-          Finally, we changed the body of the function retrieve two properties
-          from the body of the request, <code>location</code> and
-          <code>referrer</code>, and use them to construct a new
-          <code>LogEntry</code> object as described above. Note that we’ve had
-          to replace forward-slashes <code>/</code> with vertical-line
-          <code>|</code> because the <code>PartitionKey</code> property doesn’t
-          support values with forward-slashes. We are expecting the body of
-          incoming requests to look something like this.
-        </p>
-        <pre>
+  <p>
+    The first change is to add the <code>[return:
+    Table("LogEntries")]</code> attribute and change the return type from
+    <code>Task&lt;IActionResult&gt;</code> to
+    <code>Task&lt;LogEntry&gt;</code>. This allows us to return a new
+    entry for the <code>LogEntries</code> table in Table Storage, which
+    will be inserted automatically.
+  </p>
+  <p>
+    Next we changed the access level from <code>Function</code> to
+    <code>Anonymous</code>, because we’re going to be hitting this
+    function from publicly viewable JavaScript where we can’t hide an API
+    key anyway, and changed the allowed methods to only allow
+    <code>POST</code>, since that’s the method which bests describes our
+    action.
+  </p>
+  <p>
+    Finally, we changed the body of the function retrieve two properties
+    from the body of the request, <code>location</code> and
+    <code>referrer</code>, and use them to construct a new
+    <code>LogEntry</code> object as described above. Note that we’ve had
+    to replace forward-slashes <code>/</code> with vertical-line
+    <code>|</code> because the <code>PartitionKey</code> property doesn’t
+    support values with forward-slashes. We are expecting the body of
+    incoming requests to look something like this.
+  </p>
+  <pre>
 {
-  "location": "/posts/diy-page-analytics",
-  "referrer": "/posts"
+"location": "/posts/diy-page-analytics",
+"referrer": "/posts"
 }
 </pre>
-        <p>
-          Putting it all together, we can now send an unauthenticated
-          <code>POST</code> request to this function with a body as described
-          above, it will pick out the <code>location</code> and
-          <code>referrer</code> properties, and add an entry in the
-          <code>LogEntries</code> table of Table Storage. “Which Table Storage
-          account?”, you might ask. It turns out Azure Functions require a
-          Table Storage account already to record function invocations, so when
-          you test this locally this will likely be through <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator"
-          >Azure Storage Emulator</a>, and when running in Azure, it will be a
-          Storage Account that we’ll create.
-        </p>
-        <p>
-          If you want to test this now, you can run the following.
-        </p>
-        <pre>
+  <p>
+    Putting it all together, we can now send an unauthenticated
+    <code>POST</code> request to this function with a body as described
+    above, it will pick out the <code>location</code> and
+    <code>referrer</code> properties, and add an entry in the
+    <code>LogEntries</code> table of Table Storage. “Which Table Storage
+    account?”, you might ask. It turns out Azure Functions require a
+    Table Storage account already to record function invocations, so when
+    you test this locally this will likely be through <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator"
+    >Azure Storage Emulator</a>, and when running in Azure, it will be a
+    Storage Account that we’ll create.
+  </p>
+  <p>
+    If you want to test this now, you can run the following.
+  </p>
+  <pre>
 func host start --cors '*'
 </pre>
-        <p>
-          You can then use a tool like <a href="https://www.postman.com/"
-          >Postman</a> to send a request, and <a href="https://azure.microsoft.com/en-us/features/storage-explorer/"
-          >Azure Storage Explorer</a> to verify that the entry is added to
-          Table Storage.
-        </p>
-      </section>
-      <section>
-        <h2 id="3">
-          <a href="#3">Updating your website</a>
-        </h2>
-        <p>
-          Next up we’ll add some JavaScript to your website to trigger the
-          Azure Function and send the payload containing the
-          <code>location</code> and <code>referrer</code>.
-        </p>
-        <p>
-          All you’ll need to do is add the following script somewhere to each
-          page, whether that be by adding it to some existing widely used
-          script file or creating a new file and including it in the header of
-          each page. I’d advise against in-lining it in a script element on
-          each page in case you need to change any of the behaviour (especially
-          the URL) later.
-        </p>
-        <pre>
+  <p>
+    You can then use a tool like <a href="https://www.postman.com/"
+    >Postman</a> to send a request, and <a href="https://azure.microsoft.com/en-us/features/storage-explorer/"
+    >Azure Storage Explorer</a> to verify that the entry is added to
+    Table Storage.
+  </p>
+  <h2 id="3">
+    <a href="#3">Updating your website</a>
+  </h2>
+  <p>
+    Next up we’ll add some JavaScript to your website to trigger the
+    Azure Function and send the payload containing the
+    <code>location</code> and <code>referrer</code>.
+  </p>
+  <p>
+    All you’ll need to do is add the following script somewhere to each
+    page, whether that be by adding it to some existing widely used
+    script file or creating a new file and including it in the header of
+    each page. I’d advise against in-lining it in a script element on
+    each page in case you need to change any of the behaviour (especially
+    the URL) later.
+  </p>
+  <pre>
 (function () {
-  if (navigator.doNotTrack === '1') return;
-  const payload = {
-    location: document.location.pathname,
-    referrer: document.referrer
-  };
-  fetch(
-    'http://localhost:7071/api/Log',
-    {
-      method: 'POST',
-      body: JSON.stringify(payload)
-    }
-  );
+if (navigator.doNotTrack === '1') return;
+const payload = {
+  location: document.location.pathname,
+  referrer: document.referrer
+};
+fetch(
+  'http://localhost:7071/api/Log',
+  {
+    method: 'POST',
+    body: JSON.stringify(payload)
+  }
+);
 }());
 </pre>
-        <p>
-          Let’s step through this. The first step is to check the
-          <code>doNotTrack</code> property on the global <code>navigator</code>
-          object. This will be set if the user included the <a href="https://developer.mozilla.org/en-US/docs/Web/API/navigator/doNotTrack"
-          >DNT HTTP header</a> in the request, signifying that they do not wish
-          to be tracked. We should be respectful of the users’ privacy wishes,
-          so if they’ve set DNT then we abort.
-        </p>
-        <p>
-          Next we grab the <code>location.pathname</code> property as the
-          <code>location</code> and the <code>referrer</code>, and use the
-          <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API"
-          >Fetch API</a> to send a <code>POST</code> request to our function.
-          Finally, we wrapped all of this in a self-invoking anonymous function
-          to avoid polluting the global namespace.
-        </p>
-        <p>
-          We’ll have to come back and update the URL after we deploy to Azure,
-          but for now this should be testable locally.
-        </p>
-      </section>
-      <section>
-        <h2 id="4">
-          <a href="#4">Deploying to Azure</a>
-        </h2>
-        <p>
-          Now we’re going to deploy our function to Azure using the Azure CLI
-          and the Azure Functions Core Tools in PowerShell. As I said above, we
-          will use a Function App and Table Storage. The free tier of the
-          Function App far exceeds our usage so it will be free, and Table
-          Storage has no up-front pricing and very low usage costs, so should
-          only cost you a few cents per year. If you’re concerned about cost, I
-          would suggest putting a <a href="https://docs.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets"
-          >budget alert</a> on the resource group we create. I added one for 5c
-          per month and it’s only notified me once.
-        </p>
-        <p>
-          The first step is to log in to your Azure account and set the default
-          subscription. When you log in, you’ll see a list of available
-          subscriptions, so grab the ID of the one you want to use.
-        </p>
-        <pre>
+  <p>
+    Let’s step through this. The first step is to check the
+    <code>doNotTrack</code> property on the global <code>navigator</code>
+    object. This will be set if the user included the <a href="https://developer.mozilla.org/en-US/docs/Web/API/navigator/doNotTrack"
+    >DNT HTTP header</a> in the request, signifying that they do not wish
+    to be tracked. We should be respectful of the users’ privacy wishes,
+    so if they’ve set DNT then we abort.
+  </p>
+  <p>
+    Next we grab the <code>location.pathname</code> property as the
+    <code>location</code> and the <code>referrer</code>, and use the
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API"
+    >Fetch API</a> to send a <code>POST</code> request to our function.
+    Finally, we wrapped all of this in a self-invoking anonymous function
+    to avoid polluting the global namespace.
+  </p>
+  <p>
+    We’ll have to come back and update the URL after we deploy to Azure,
+    but for now this should be testable locally.
+  </p>
+  <h2 id="4">
+    <a href="#4">Deploying to Azure</a>
+  </h2>
+  <p>
+    Now we’re going to deploy our function to Azure using the Azure CLI
+    and the Azure Functions Core Tools in PowerShell. As I said above, we
+    will use a Function App and Table Storage. The free tier of the
+    Function App far exceeds our usage so it will be free, and Table
+    Storage has no up-front pricing and very low usage costs, so should
+    only cost you a few cents per year. If you’re concerned about cost, I
+    would suggest putting a <a href="https://docs.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets"
+    >budget alert</a> on the resource group we create. I added one for 5c
+    per month and it’s only notified me once.
+  </p>
+  <p>
+    The first step is to log in to your Azure account and set the default
+    subscription. When you log in, you’ll see a list of available
+    subscriptions, so grab the ID of the one you want to use.
+  </p>
+  <pre>
 az login
 az account set --subscription 'your-subscription-id'
 </pre>
-          <p>
-            Next we will set a few variables for values that we’ll need to use
-            several times throughout the process.
-          </p>
-          <pre>
+    <p>
+      Next we will set a few variables for values that we’ll need to use
+      several times throughout the process.
+    </p>
+    <pre>
 $location = 'australiasoutheast'
 $rg = 'resource-group-name'
 $sa = 'storageaccountname'
 $fa = 'function-app-name'
 </pre>
-          <p>
-            You’ll need to supply globally unique values for the Storage
-            Account name and the Function App name, noting that Storage Account
-            names must be 3-24 characters using only lower-case letters and
-            digits, and Function App names can’t use special characters other
-            than hyphens. You can pick whichever location you prefer—I’ve gone
-            with the data center in Melbourne. You can use the following
-            command to get a list of available locations, and you’ll need to
-            grab the value for the <code>Name</code> property.
-          </p>
-          <pre>
+  <p>
+    You’ll need to supply globally unique values for the Storage
+    Account name and the Function App name, noting that Storage Account
+    names must be 3-24 characters using only lower-case letters and
+    digits, and Function App names can’t use special characters other
+    than hyphens. You can pick whichever location you prefer—I’ve gone
+    with the data center in Melbourne. You can use the following
+    command to get a list of available locations, and you’ll need to
+    grab the value for the <code>Name</code> property.
+  </p>
+  <pre>
 az account list-locations --out table
 </pre>
-          <p>
-            Next we will create the resource group, the Storage Account and the
-            Function App.
-          </p>
-          <pre>
+  <p>
+    Next we will create the resource group, the Storage Account and the
+    Function App.
+  </p>
+  <pre>
 az group create `
-    --name $rg `
-    --location $location
+  --name $rg `
+  --location $location
 
 az storage account create `
-    --name $sa `
-    --location $location `
-    --resource-group $rg `
-    --sku STANDARD_LRS
+  --name $sa `
+  --location $location `
+  --resource-group $rg `
+  --sku STANDARD_LRS
 
 az functionapp create `
-    --name $fa `
-    --resource-group $rg `
-    --storage-account $sa `
-    --consumption-plan-location $location
+  --name $fa `
+  --resource-group $rg `
+  --storage-account $sa `
+  --consumption-plan-location $location
 </pre>
-          <p>
-            Finally we need to configure <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">
-            CORS</a> for our Function App, and then deploy the function we
-            created earlier.
-          </p>
-          <pre>
+  <p>
+    Finally we need to configure <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">
+    CORS</a> for our Function App, and then deploy the function we
+    created earlier.
+  </p>
+  <pre>
 az functionapp cors add `
-    --name $fa `
-    --resource-group $rg `
-    --allowed-origins https://your-website.com http://localhost:8080
+  --name $fa `
+  --resource-group $rg `
+  --allowed-origins https://your-website.com http://localhost:8080
 
 func azure functionapp publish $fa
 </pre>
-        <p>
-          It’s up to you whether you want to allow CORS from
-          <code>localhost</code>. It will come in handy while testing to make
-          sure you’ve set everything up correctly, but you might find it floods
-          your logs while you’re testing content changes on your website.
-        </p>
-        <p>
-          Your function should now be live and running at
-          <code>https://$fa.azurewebsites.net/api/Log</code>, based on your
-          choice of the Function App name. Don’t forget to substitute this back
-          into the JavaScript snippet on your website.
-        </p>
-        <p>
-          At this point, you might want to add a custom domain to your
-          Function App. This is also completely free, and you can do this by
-          following the instructions to <a href="https://docs.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain"
-          >add a Custom Domain</a> and then <a href="https://docs.microsoft.com/en-us/azure/app-service/configure-ssl-certificate#create-a-free-certificate-preview"
-          >create a free certificate</a>. If you do this, don’t forget again to
-          substitute the new URL back into the JavaScript snippet on your
-          website.
-        </p>
-      </section>
-      <section>
-        <h2 id="5">
-          <a href="#5">Querying the logs</a>
-        </h2>
-        <p>
-          At this point your website should be set up and collecting page view
-          records to Table Storage, and now you want to run queries on your
-          data.
-        </p>
-        <p>
-          You can browse the records directly in the <a href="portal.azure.com/"
-          >Azure Portal</a> or via Azure Storage Explorer, or you can use the
-          Azure CLI to retrieve the entries programmatically. The following
-          command will fetch all entries for the last month and hydrate them as
-          PowerShell objects.
-        </p>
-        <pre>
+  <p>
+    It’s up to you whether you want to allow CORS from
+    <code>localhost</code>. It will come in handy while testing to make
+    sure you’ve set everything up correctly, but you might find it floods
+    your logs while you’re testing content changes on your website.
+  </p>
+  <p>
+    Your function should now be live and running at
+    <code>https://$fa.azurewebsites.net/api/Log</code>, based on your
+    choice of the Function App name. Don’t forget to substitute this back
+    into the JavaScript snippet on your website.
+  </p>
+  <p>
+    At this point, you might want to add a custom domain to your
+    Function App. This is also completely free, and you can do this by
+    following the instructions to <a href="https://docs.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain"
+    >add a Custom Domain</a> and then <a href="https://docs.microsoft.com/en-us/azure/app-service/configure-ssl-certificate#create-a-free-certificate-preview"
+    >create a free certificate</a>. If you do this, don’t forget again to
+    substitute the new URL back into the JavaScript snippet on your
+    website.
+  </p>
+  <h2 id="5">
+    <a href="#5">Querying the logs</a>
+  </h2>
+  <p>
+    At this point your website should be set up and collecting page view
+    records to Table Storage, and now you want to run queries on your
+    data.
+  </p>
+  <p>
+    You can browse the records directly in the <a href="portal.azure.com/"
+    >Azure Portal</a> or via Azure Storage Explorer, or you can use the
+    Azure CLI to retrieve the entries programmatically. The following
+    command will fetch all entries for the last month and hydrate them as
+    PowerShell objects.
+  </p>
+  <pre>
 $time = [DateTime]::UtcNow.AddDays(-7).ToString("o")
 $logs = az storage entity query `
-    --account-name $sa `
-    --table-name LogEntries `
-    --filter "Timestamp ge datetime'$time'" `
-    | ConvertFrom-Json `
-    | Select-Object -ExpandProperty items
-        </pre>
-        <p>
-          We can then group by <code>location</code>
-          (<code>PartitionKey</code>) or <code>referrer</code> to see which
-          pages get the most hits and what drives the most traffic, for
-          example, using the following two commands.
-        </p>
-        <pre>
+  --account-name $sa `
+  --table-name LogEntries `
+  --filter "Timestamp ge datetime'$time'" `
+  | ConvertFrom-Json `
+  | Select-Object -ExpandProperty items
+</pre>
+  <p>
+    We can then group by <code>location</code>
+    (<code>PartitionKey</code>) or <code>referrer</code> to see which
+    pages get the most hits and what drives the most traffic, for
+    example, using the following two commands.
+  </p>
+  <pre>
 $logs `
-    | Group-Object -Property PartitionKey `
-    | Select-Object -Property Count,Name `
-    | Sort-Object -Property Count -Descending
+  | Group-Object -Property PartitionKey `
+  | Select-Object -Property Count,Name `
+  | Sort-Object -Property Count -Descending
 $logs `
-    | Group-Object -Property Referrer `
-    | Select-Object -Property Count,Name `
-    | Sort-Object -Property Count -Descending
-        </pre>
-      </section>
-      <section>
-        <h2 id="6">
-          <a href="#6">Wrap-up</a>
-        </h2>
-        <p>
-          If you’ve made it to the end, you should now have your very own basic
-          analytics service running in Azure which records page views with the
-          referrer, and your website hooked up to use it. Depending on your
-          needs you could look at expanding the payload to include other basic
-          details you care about, like screen size, but for any complex
-          requirements, honestly this is not going to be the right tool for
-          you.
-        </p>
-        <p>I’ve been using it on this website for over a year now, I have
-          never had to do any maintenance or code changes, and it has cost me
-          around 50 cents in total to operate. But more importantly, it was fun
-          to build, I get some small feeling of satisfaction in knowing that
-          this website remains 100% hand-made, and I learnt about the basics of
-          Azure Functions and Table Storage in the process.
-        </p>
-      </section>
-      <footer>
-        <p>
-          Thoughts? Comments?
-          <a href="mailto:curtis@lusmo.re?subject=DIY%20Page%20Analytics">Email
-          the author.</a>
-        </p>
-      </footer>
-    </article>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/external">External</a></li>
-        <li><a href="/posts">Posts</a></li>
-        <li><a href="/projects">Projects</a></li>
-        <li><a href="/subscribe">Subscribe</a></li>
-      </ul>
-    </nav>
-  </body>
+  | Group-Object -Property Referrer `
+  | Select-Object -Property Count,Name `
+  | Sort-Object -Property Count -Descending
+</pre>
+  <h2 id="6">
+    <a href="#6">Wrap-up</a>
+  </h2>
+  <p>
+    If you’ve made it to the end, you should now have your very own basic
+    analytics service running in Azure which records page views with the
+    referrer, and your website hooked up to use it. Depending on your
+    needs you could look at expanding the payload to include other basic
+    details you care about, like screen size, but for any complex
+    requirements, honestly this is not going to be the right tool for
+    you.
+  </p>
+  <p>I’ve been using it on this website for over a year now, I have
+    never had to do any maintenance or code changes, and it has cost me
+    around 50 cents in total to operate. But more importantly, it was fun
+    to build, I get some small feeling of satisfaction in knowing that
+    this website remains 100% hand-made, and I learnt about the basics of
+    Azure Functions and Table Storage in the process.
+  </p>
+</main>
+<footer>
+  <p>
+    Thoughts? Comments?
+    <a href="mailto:curtis@lusmo.re?subject=DIY%20Page%20Analytics">Email
+    the author.</a>
+  </p>
+</footer>
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="/external">External</a></li>
+    <li><a href="/posts">Posts</a></li>
+    <li><a href="/projects">Projects</a></li>
+    <li><a href="/subscribe">Subscribe</a></li>
+  </ul>
+</nav>
+</body>
+
 </html>

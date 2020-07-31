@@ -1,82 +1,81 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Privacy | lusmo.re</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/layout.css">
-    <script src="/js/main.js" defer></script>
-  </head>
-  <body>
-    <article>
-      <header>
-        <h1>Privacy</h1>
-      </header>
-      <section>
-        <p>
-          I respect your privacy. Every line of HTML, CSS and JavaScript on
-          this site was hand-written by me. This site does not use any cookies,
-          third-party JavaScript, trackers or external resources. If you don’t
-          want to run JavaScript, this site will still work perfectly fine. The
-          only difference you will see is that the Theme link will not be
-          displayed, because the theme switcher will not work, and code
-          snippets will not have a Copy to Clipboard function.
-        </p>
-        <p>
-          This site is hosted on <a href="https://pages.github.com/">GitHub
-          Pages</a>. Because GitHub Pages doesn’t provide me with server logs,
-          I have written my own logging system to count page views, so that I
-          have a rough idea of which of my posts are receiving the most
-          engagement. This is done by sending a request over HTTPS on every
-          page view to <code>log.lusmo.re</code> which contains only the path
-          of the page you are on and your referrer. If you have
-          <a href="https://www.eff.org/issues/do-not-track">DNT</a> enabled, or
-          JavaScript or third-party requests disabled, I don’t send this
-          request.
-        </p>
-        <p>
-          If you don’t want me to track your page views, without disabling
-          JavaScript or third-party requests or enabling DNT, you can click the
-          following link.
-        </p>
-        <p id="js-disabled">
-          🔇 You have JavaScript disabled, so tracking is already disabled.
-        </p>
-        <p id="js-enabled" style="display: none;">
-          <a id="tracking-toggle"></a>
-        </p>
-        <script>
-          document.getElementById('js-disabled').style.display = 'none';
-          document.getElementById('js-enabled').style.display = null;
-          const trackingToggle = document.getElementById('tracking-toggle');
-          const setLabel = function (dnt) {
-            trackingToggle.innerText = dnt
-              ? '🔊 Enable tracking'
-              : '🔇 Disable tracking';
-          };
-          setLabel(localStorage.getItem('dnt'));
-          const toggleTracking = function () {
-            if (localStorage.getItem('dnt')) {
-              localStorage.removeItem('dnt');
-              setLabel(false);
-            } else {
-              localStorage.setItem('dnt', true);
-              setLabel(true);
-            }
-          };
-          trackingToggle.onclick = toggleTracking;
-        </script>
-      </section>
-    </article>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/external">External</a></li>
-        <li><a href="/posts">Posts</a></li>
-        <li><a href="/projects">Projects</a></li>
-        <li><a href="/subscribe">Subscribe</a></li>
-      </ul>
-    </nav>
-  </body>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy | lusmo.re</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <script src="/js/main.js" defer></script>
+</head>
+
+<body>
+<header>
+  <h1>Privacy</h1>
+</header>
+<main>
+  <p>
+    I respect your privacy. Every line of HTML, CSS and JavaScript on this site
+    was hand-written by me. This site does not use any cookies, third-party
+    JavaScript, third-party trackers or external resources. If you don’t want
+    to run JavaScript, this site will still work perfectly fine. The only
+    difference you will see is line at the bottom of this page.
+  </p>
+  <p>
+    This site is hosted on <a href="https://pages.github.com/">GitHub
+    Pages</a>. Because GitHub Pages doesn’t provide me with server logs, I have
+    written my own logging system to count page views, so that I have a rough
+    idea of which of my posts are receiving the most engagement. This is done
+    by sending a request over HTTPS on every page view to <code
+    >log.lusmo.re</code> which contains only the path of the page you are on
+    and your referrer. If you have <a href="https://www.eff.org/issues/do-not-track"
+    >DNT</a> enabled, or JavaScript or third-party requests disabled, I don’t
+    send this request. You can read about the logger in my post
+    <a href="/posts/diy-page-analytics">DIY Page Analytics</a>.
+  </p>
+  <p>
+    If you don’t want me to track your page views, without disabling JavaScript
+    or third-party requests or enabling DNT, you can click the following link.
+  </p>
+  <p id="js-disabled">
+    🚫 You have JavaScript disabled, so logging is already disabled.
+  </p>
+  <p id="js-enabled" style="display: none;">
+    <a id="logging-toggle" href="#"></a>
+  </p>
+  <script>
+    document.getElementById('js-disabled').style.display = 'none';
+    document.getElementById('js-enabled').style.display = null;
+    const loggingToggle = document.getElementById('logging-toggle');
+    const setLabel = function (dnt) {
+      loggingToggle.innerText = dnt
+        ? '🎯 Enable logging'
+        : '🚫 Disable logging';
+    };
+    setLabel(localStorage.getItem('dnt'));
+    const toggleLogging = function () {
+      if (localStorage.getItem('dnt')) {
+        localStorage.removeItem('dnt');
+        setLabel(false);
+      } else {
+        localStorage.setItem('dnt', true);
+        setLabel(true);
+      }
+    };
+    loggingToggle.onclick = toggleLogging;
+  </script>
+</main>
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="/external">External</a></li>
+    <li><a href="/posts">Posts</a></li>
+    <li><a href="/projects">Projects</a></li>
+    <li><a href="/subscribe">Subscribe</a></li>
+  </ul>
+</nav>
+</body>
+
 </html>

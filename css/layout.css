@@ -1,162 +1,38 @@
-/* size and layout */
-body {
-  max-width: 710px;
-  margin: 3rem auto 3rem 20vw;
-}
+body { display: grid; }
+body > header { grid-area: header; }
+body > main { grid-area: main; }
+body > footer { grid-area: footer; }
+body > nav { grid-area: nav; }
 
-h1 {
-  font-size: 30px;
-}
+table { width: 100%; }
 
-h2, header > p {
-  font-size: 24px;
-}
-
-h3 {
-  font-size: 22px;
-}
-
-h4 {
-  font-size: 21px;
-}
-
-p, li, td, address {
-  font-size: 20px;
-  line-height: 1.45;
-}
-
-li + li {
-  margin-top: 0.5em;
-}
-
-code {
-  font-size: 18px;
-  line-height: 1.45;
-}
-
-pre {
-  font-size: 17px;
-  line-height: 1.45;
-}
-
-img.author {
-  height: 54px;
-  float: left;
-  margin-right: 1ch;
-}
-
-img.profile {
-  width: 256px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-img.post {
-  width: 75%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-@media screen and (max-width: 1080px) {
+@media screen and (max-width: 900px) {
   body {
-    max-width: 100%;
-    margin: 3rem;
+    grid-template-areas:
+      'header'
+      'nav'
+      'main'
+      'footer';
   }
 
-  h1 {
-    font-size: 4rem;
-  }
-
-  h2, header > p {
-    font-size: 3rem;
-  }
-
-  h3 {
-    font-size: 2.5rem;
-  }
-
-  h4 {
-    font-size: 2rem;
-  }
-
-  p, li, td, address {
-    font-size: 2rem;
-    line-height: 1.45;
-  }
-
-  code {
-    font-size: 1.9rem;
-  }
-
-  pre {
-    white-space: pre-wrap;
-    font-size: 1.8rem;
-  }
-
-  img.author {
-    height: 5.5rem;
-  }
-
-  img.profile {
-    width: 60%;
+  body > nav > ul {
+    display: flex;
+    justify-content: space-between;
   }
 }
 
-.cols-2 {
-  column-count: 2;
-  column-width: 300px;
-  column-gap: 10%;
-}
+@media screen and (min-width: 901px) {
+  body {
+    grid-template-areas:
+      'nav header'
+      'nav main'
+      'nav footer';
+    column-gap: 2ch;
+    margin: auto;
+    max-width: 1000px;
+  }
 
-/* spacing */
-h1, h2, h3, h4, p, pre {
-  margin: 0.5rem 0;
-}
-
-* + section {
-  margin-top: 1em;
-}
-
-* + header,
-* + footer,
-* + nav {
-  margin-top: 2em;
-}
-
-* + p,
-* + h2,
-* + pre,
-* + blockquote,
-* + img {
-  margin-top: 1.5em;
-}
-
-td + td {
-  padding-left: 5ch;
-}
-
-* + footer {
-  margin-top: 2rem;
-}
-
-section + section,
-section + article,
-article + article {
-  margin-top: 3rem;
-}
-
-header > p {
-  margin-top: 0;
-}
-
-/* navbar */
-nav > ul > li {
-  display: inline;
-}
-
-nav > ul {
-  padding-left: 0;
-  text-align-last: justify;
+  header, main, footer {
+    max-width: 800px;
+  }
 }

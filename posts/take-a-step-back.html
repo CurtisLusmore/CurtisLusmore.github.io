@@ -1,412 +1,407 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta property="og:title" content="Take a Step Back">
-    <meta property="og:image" content="https://lusmo.re/imgs/cover.jpg">
-    <title>Take a Step Back | lusmo.re</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/layout.css">
-    <script src="/js/main.js" defer></script>
-  </head>
-  <body>
-    <article>
-      <header>
-        <h1>Take a Step Back</h1>
-      </header>
-      <section>
-        <img class="author" src="/imgs/profile.png" title="Curtis Lusmore" alt="👨">
-        <p>
-          Curtis Lusmore
-          <br>
-          <time datetime="2019-07-09">9 July 2019</time>
-        </p>
-      </section>
-      <section>
-        <p>
-          In my time so far working in software development, as a developer and
-          as a product manager, I’ve made and seen a lot of mistakes. I spent
-          some time recently reflecting on some of the biggest mistakes, the
-          ones that ultimately cost the most time or money, that caused the
-          most frustration and heartache, and tried to devise some lessons
-          learnt. In the end I realised that the vast majority of mistakes were
-          actually variants of the same core mistake, and that one main lesson
-          applied to all of them.
-        </p>
-        <p>
-          In this post I will discuss this mistake, some examples of where it
-          comes up in software development, some thoughts on why it keeps
-          happening, and some tips on how to avoid it.
-        </p>
-        <h2>The mistake</h2>
-        <p>
-          You’ve probably seen a diagram like this before.
-        </p>
-        <img class="post" src="/imgs/posts/maxima.png" title="Maxima" alt="
-      Global optimum -> /\
-    Local optimum -> /\/  \
-Current solution -> /      \
-">
-        <p>
-          Think about this diagram in the context of solving a software
-          development problem. You might know that your current solution isn’t
-          optimal and so you look around you for the best solution.
-          Unfortunately what you find isn’t the best possible solution, and in
-          these circumstances it can be very difficult to even see the global
-          optimum, let alone achieve it. But this isn’t the mistake I want to
-          highlight. It’s not always enough to simply find the optimal solution
-          and move towards it. It might be prohibitively expensive to reach the
-          optimal solution from where we are, and the mistake is in trying to
-          do this.
-        </p>
-        <p>
-          The question isn’t “How do we get from here to the optimal solution?”
-          The question is “Why did we start here in the first place?”
-        </p>
-        <p>
-          Problems exist in layers. So often, the reason we are where we are
-          today at this layer of the problem is because of a decision we made
-          yesterday at a higher layer of the problem. The solution isn’t to
-          work out how to navigate at this layer from where we are to where we
-          want to be, but to take a step back and change the incorrect decision
-          at the higher layer.
-        </p>
-        <p>
-          Let’s look at this more concretely in the context of software
-          development.
-        </p>
-        <h2>Layers of software development</h2>
-        <p>
-          The first layer of software development is the actual development,
-          the programming. This is the land of implementation details, of
-          off-by-one errors, of fragile legacy code. These are the problems
-          that get in the way of what you really wanted to be doing. The
-          problems you struggle to explain to your boss because they don’t
-          understand your technical jargon. When deadlines approach, we get
-          around these problems with ugly hacks that we promise we’ll fix later
-          but that we never get to, and the pile of tech debt grows bigger and
-          bigger. When all else fails, we take the easy way out and implement
-          what one of my colleagues lovingly calls “developer features”.
-        </p>
-        <p>
-          The reason these problems are so hard to explain to our bosses is
-          because nobody asked us to solve them. We made them up, they exist
-          only in the minds of developers. In most cases, the specs don’t
-          require us to solve these problems, and the solution isn’t to solve
-          them but to work out how to avoid them entirely. This is commonly
-          known as the <a href="https://en.wikipedia.org/wiki/XY_problem">XY
-          problem</a>—when you face problem X, you come up with solution Y, you
-          get stuck and you ask for help with Y instead of with X. It seems
-          like a strange request but people offer some help, but nothing quite
-          fits your problem. After much frustration and back-and-forth, they
-          eventually discover that you really just need a better solution to X.
-        </p>
-        <p>
-          Whenever you get stuck with a problem that nobody asked you to solve,
-          take a step back and check the requirements to see if this is really
-          a problem that needs solving at all, or if a different approach might
-          help you avoid the problem entirely.
-        </p>
-        <p>
-          Which leads in nicely to the next layer of software development: the
-          requirements. This is the fuzzy grey area that sits between product
-          owners and software developers. Typically when product owners think
-          about people using their product, they imagine them being successful.
-          They can paint a beautiful picture of how a feature will work when
-          things go smoothly but they often gloss right over all those pesky
-          details that developers need to implement a feature fully, when
-          things go wrong or when users give unexpected input, and so the
-          developers start making assumptions. This is the land of undefined
-          behaviour, of unhelpful error messages and infinite loading screens,
-          of inelegant failure modes.
-        </p>
-        <p>
-          But in an attempt to avoid under-specifying a feature, you can go too
-          far in the other direction and over-specify it. Sometimes it’s not
-          until you try something out that you know what will work best from a
-          technical perspective but also what will feel right from a user’s
-          perspective, and the developer is always the first person to try a
-          feature. Getting requirements right makes a huge difference to the
-          usability of your software—it can be the difference between making a
-          product that’s intuitive and a delight to use, or making one that’s
-          jarring and frustrating for your users. Of course, ideally you would
-          be iterating on these requirements anyway, but this is the first
-          and cheapest opportunity to do so.
-        </p>
-        <p>
-          When a requirement is starting to feel like more trouble than it’s
-          worth, or you’re having to guess too much about how a feature should
-          work, take a step back and consult with the product owner on what’s
-          the best way to achieve the desired outcome for your users.
-        </p>
-        <p>
-          The next layer of software development is the product itself. This is
-          the layer where the value of the product ultimately lies. The product
-          owner should define a vision for the product, the types of people who
-          will use it, the problems it will solve, and the features it will
-          need to solve them. They will also need focus, to determine the
-          problems it won’t solve and the features it won’t have, because
-          trying to be all things to all people makes a product incoherent,
-          hard to use and hard to understand. And it’s a lot more expensive to
-          build and maintain too.
-        </p>
-        <p>
-          If you’re lucky, your users will have strong opinions about what
-          features your product should have. Just remember that your users are
-          also prone to XY problems, and rather than just building whatever
-          they ask for, you should talk to them and try to discover their real
-          problems. Some of the problems they describe will be valuable to
-          solve with product features, some will be valuable but not well
-          suited to your product and might make for a good separate product,
-          some will be solveable with existing features in your product, and
-          some will be low-value or one-off problems that aren’t worth building
-          at all (although you can build a lot of good will by helping them
-          solve these problems some other way).
-        </p>
-        <p>
-          Whenever you are unsure about what features to include and how they
-          should work, take a step back and think about the problem you are
-          trying to solve for your users and how this feature will help.
-        </p>
-        <p>
-          The next layer of software development is the go-to-market strategy.
-          I wouldn’t be surprised if you groaned at the use of that phrase,
-          because this is the first layer that starts to sound more business
-          than fun which is exactly why it’s so commonly overlooked. This is
-          the layer where your product actually starts to make a connection
-          between your users and your wallet. If you are interested in getting
-          your product in the hands of users, how do you describe it to them?
-          What is the value proposition (ugh)—why should your users take time
-          out of their busy lives to look at your product? What type of
-          customer are you targeting? How valuable to them is a solution to the
-          problem your product solves, and how much money do they have to spend
-          on solving it? How are they solving this problem now, and how much
-          money are they spending on it? Is it worth the same to all of your
-          customers, or do you need a way to charge different amounts to
-          different people? What else might they want from you besides the
-          product itself, like training, consulting hours or support contracts?
-        </p>
-        <p>
-          These are all hugely important questions to answer, and not just
-          something you should consider after you’ve built the product.
-          Decisions at this layer will absolutely affect the requirements and
-          priority of features. For example, if you are targeting only a small
-          handful of large customers with a high-touch sales model, it might be
-          cheaper to onboard your customers by hand rather than a building a
-          fully-automated self-service registration page. If you need to
-          describe your product in a particular way to get potential customers
-          interested in it, you’d better make sure the features that support
-          that description are prominent in the product, and that you don’t
-          compromise on delivering them. If you’re trying to bring users over
-          from one of your competitors, it might help to build a feature to
-          help them import their existing data.
-        </p>
-        <p>
-          When you’re considering what features your product needs, as well as
-          the advice above you should also take a step back and think about
-          what you’re actually selling to your customers, how they will get
-          their hands on your product, and what features they will need to
-          start getting value from it. Even for internal or line-of-business
-          applications, you still have users and you still need to “sell” to
-          them if you want genuine adoption and a return on your investment.
-        </p>
-        <p>
-          The last layer (that I will consider in this post) is the business.
-          We all like to say that we do what we do to make a difference, but we
-          still have a business to run. Just like our product can’t be all
-          things to all people, neither can our business. A good business
-          should also have a vision and focus, and it’s important that your
-          product aligns to this vision if it’s going to be successful. There’s
-          so much more to running a successful product than just building it. A
-          great product can still be a failure in the wrong business, because
-          it will struggle to get the resources and support that it needs to
-          thrive.
-        </p>
-        <p>
-          On the other hand, a product is just one way of achieving business
-          needs. Some products exist soley for the purpose of generating demand
-          for or increasing the retention of other products. If this is the
-          case for your product, it’s important to be up-front and honest about
-          this so that if circumstances change and you no longer have this need
-          or you find a better way to satisfy it, you will know that it’s time
-          to shift your focus to other things. It can be a tough call to make,
-          but it’s far better than the alternative of soldiering on with a
-          product that no longer serves a purpose for the business and watching
-          it die a slow and painful death.
-        </p>
-        <p>
-          When you’re thinking of building a new product, and periodically as
-          you continue building existing products, it’s important to take a
-          step back and remind yourself of how the product aligns to the vision
-          and needs of your business, and whether this product is the best way
-          to satisfy those needs.
-        </p>
-        <p>
-          At every layer of software development, the biggest mistake that I
-          see is not taking a step back.
-        </p>
-        <h2>Why does this mistake keep happening?</h2>
-        <p>
-          What causes these mistakes to reoccur so consistently, and across
-          teams, companies, and industries? Here are some of the most common
-          reasons that I see.
-        </p>
-        <p>
-          Too busy. When deadlines are tight, you don’t always have time to
-          stop and think about what you’re doing, and whether your approach is
-          the best way to solve the problem. Often we don’t schedule time in
-          our week for reflecting on what we’re doing, and as deadlines get
-          closer these are usually the first things in our calendar to get cut.
-        </p>
-        <p>
-          Too much free time. I know it seems like this contradicts my previous
-          point, but <a href="https://en.wikipedia.org/wiki/Parkinson%27s_law"
-          >Parkinson’s law</a> says that work expands to fill the time
-          available, so when we are given too much time to work on something we
-          are prone to overengineering our solutions and building things we
-          don’t need.
-        </p>
-        <p>
-          Following orders without questioning it. Just like lemmings
-          cluelessly marching off a cliff without understanding what they’re
-          doing, so too do we sometimes build what we’re told to build without
-          questioning it. I’ve noticed that this is especially true for
-          decisions that were made before we joined the project—we tend to
-          assume that all decisions were made deliberately and for a good
-          reason.
-        </p>
-        <p>
-          Not my job. Similarly to above, even when we do question a decision
-          we are often content to say that the decision is not our job to make
-          so it won’t be our fault if it’s a bad decision. And while this may
-          be true, it’s far from a productive attitude. Customers don’t care
-          who’s responsible for making decisions, they just want the best
-          possible product.
-        </p>
-        <p>
-          The way we’ve always done it. This is a layer above these last two
-          points. Not only do we continue down the wrong path after a decision
-          rather than fixing the mistake, we continue to make the same kinds of
-          decisions when they come up again in the future, making the same
-          kinds of mistakes over and over without learning from the past.
-        </p>
-        <p>
-          The way industry leaders do it. Otherwise known as <a
-          href="https://en.wikipedia.org/wiki/Cargo_cult">cargo culting</a>.
-          The thinking here is that “if it’s good enough for them, it’s good
-          enough for us”, but many of the problems faced by industry leaders
-          only come up at a big enough scale, and the solutions designed to
-          solve these problems introduce problems of their own. If we aren’t at
-          that scale, we don’t face those problems and we don’t need those
-          solutions.
-        </p>
-        <p>
-          No feedback loop. We can plan as well as we want, but without a
-          feedback loop, when most things go off the rails they go off the
-          rails hard. We like to think we have good intuition about what our
-          users will want, we usually don’t. But even if we did, that wouldn’t
-          mean that everything we build is done perfectly. Try navigating your
-          house with your eyes closed and you’ll realise quickly enough that
-          even things you do literally every day can be impossible without a
-          good feedback loop.
-        </p>
-        <p>
-          Because it sounds like an interesting problem to solve. We all like
-          to enjoy ourselves at work, and use exciting new tools. Sometimes we
-          find problems or think of solutions that are so interesting we can’t
-          help but try to solve them. This is also known as <a
-          href="https://www.xkcd.com/356/">nerd sniping</a>. We’ve all done
-          this, and you can usually tell it’s a stupid idea but you get
-          mesmerised by the cleverness of the solution.
-        </p>
-        <p>
-          Because we’re too proud to admit mistakes. Nobody likes to admit that
-          they’re wrong, and not only to other people. If after a year of
-          building something you realise you’ve been building the wrong thing,
-          it can be incredibly hard to admit this to yourself. “Has this all
-          been a complete waste of time?” It helps if you’re honest about this
-          right from the start. Rather than setting yourself goals that depend
-          on a sequence of unknowns turning out in your favour, make it your
-          goal to understand the unknowns. If they go against you, you’ve still
-          succeeded and you won’t feel the need to continue wasting time on it.
-        </p>
-        <h2>
-          Why does this matter?
-        </h2>
-        <p>
-          There are plenty of people out there who are content with focusing on
-          their own job and ignoring these mistakes when they see them in the
-          work of others. “I did my part well, and I’m proud of the work that
-          I’ve done. It’s not my fault that the product failed/was a waste of
-          time.” Personally, the way I see it is that it might not be my fault
-          but it’s still my problem, because putting your heart and soul into
-          something that doesn’t get used is painful. I don’t like building
-          <a href="https://en.wiktionary.org/wiki/shelfware">shelfware</a>.
-        </p>
-        <p>
-          Whether or not it’s in my job description, I will always push to
-          improve decision making at all layers of software development, to
-          give the product the best possible chance of being successful. Not
-          by knowing the right decisions to make, because I certainly don’t.
-          But by encouraging everybody to take a step back and assess decisions
-          in the full and correct context.
-        </p>
-        <h2>
-          What can we do about it?
-        </h2>
-        <p>
-          Unsurprisingly, agile software development has many techniques for
-          dealing with these problems, but it’s very important that you
-          understand how these techniques are supposed to help. Writing your
-          product ideas down on index cards and making a backlog isn’t
-          intrinsically helpful, nor is breaking delivery up into arbitrary
-          two-week intervals and calling them sprints. Getting a customer to
-          pay you money as soon as possible is only helpful if you actually
-          solicit and consider feedback from them. You can easily do all of
-          these things without actually being agile—a practice that is often
-          referred to as “Agile in name only”.
-        </p>
-        <p>
-          To me, the important agile development techniques are those that
-          force you to take a step back more often. Sprints are useful because
-          at the start of a sprint you set a goal to be achieved in a fixed
-          amount of time. Regardless of whether or not you achieve that goal,
-          when the timebox runs out you take a step back and reflect on what
-          you’re doing. Are we happy with our internal processes? Are there any
-          improvements we can make as a development team? Is the product owner
-          clear about the features and requirements? What do our customers
-          think of what we’ve built? Have we validated our assumptions? Should
-          we persist with these decisions or try something else? Have our
-          priorities changed? Are we getting enough value from our efforts or
-          is it time to move on entirely?
-        </p>
-        <p>
-          If you aren’t asking all these questions regularly you’re operating
-          without a feedback loop and you’re probably already well off the
-          rails. And if you haven’t scheduled time now to ask these questions,
-          you’re only going to get busier and busier over time and get stuck in
-          the “too busy to improve” loop we discussed earlier. It’s really
-          important that you schedule time from the beginning for these
-          reflective sessions and take a step back.
-        </p>
-      </section>
-      <footer>
-        <p>
-          Thoughts? Comments?
-          <a href="mailto:curtis@lusmo.re?subject=Take%20a%20Step%20Back">Email
-          the author.</a>
-        </p>
-      </footer>
-    </article>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/external">External</a></li>
-        <li><a href="/posts">Posts</a></li>
-        <li><a href="/projects">Projects</a></li>
-        <li><a href="/subscribe">Subscribe</a></li>
-      </ul>
-    </nav>
-  </body>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Take a Step Back">
+  <meta property="og:image" content="https://lusmo.re/imgs/cover.jpg">
+  <title>Take a Step Back | lusmo.re</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <script src="/js/main.js" defer></script>
+</head>
+
+<body>
+<header>
+  <h1>Take a Step Back</h1>
+  <address>
+    <img class="author" src="/imgs/profile.png" title="Curtis Lusmore">
+    Curtis Lusmore <br>
+    <time datetime="2019-07-09">9 July 2019</time>
+  </address>
+</header>
+<main>
+  <p>
+    In my time so far working in software development, as a developer and
+    as a product manager, I’ve made and seen a lot of mistakes. I spent
+    some time recently reflecting on some of the biggest mistakes, the
+    ones that ultimately cost the most time or money, that caused the
+    most frustration and heartache, and tried to devise some lessons
+    learnt. In the end I realised that the vast majority of mistakes were
+    actually variants of the same core mistake, and that one main lesson
+    applied to all of them.
+  </p>
+  <p>
+    In this post I will discuss this mistake, some examples of where it
+    comes up in software development, some thoughts on why it keeps
+    happening, and some tips on how to avoid it.
+  </p>
+  <h2>The mistake</h2>
+  <p>
+    You’ve probably seen a diagram like this before.
+  </p>
+  <img class="post" src="/imgs/posts/maxima.png" title="Maxima">
+  <p>
+    Think about this diagram in the context of solving a software
+    development problem. You might know that your current solution isn’t
+    optimal and so you look around you for the best solution.
+    Unfortunately what you find isn’t the best possible solution, and in
+    these circumstances it can be very difficult to even see the global
+    optimum, let alone achieve it. But this isn’t the mistake I want to
+    highlight. It’s not always enough to simply find the optimal solution
+    and move towards it. It might be prohibitively expensive to reach the
+    optimal solution from where we are, and the mistake is in trying to
+    do this.
+  </p>
+  <p>
+    The question isn’t “How do we get from here to the optimal solution?”
+    The question is “Why did we start here in the first place?”
+  </p>
+  <p>
+    Problems exist in layers. So often, the reason we are where we are
+    today at this layer of the problem is because of a decision we made
+    yesterday at a higher layer of the problem. The solution isn’t to
+    work out how to navigate at this layer from where we are to where we
+    want to be, but to take a step back and change the incorrect decision
+    at the higher layer.
+  </p>
+  <p>
+    Let’s look at this more concretely in the context of software
+    development.
+  </p>
+  <h2>Layers of software development</h2>
+  <p>
+    The first layer of software development is the actual development,
+    the programming. This is the land of implementation details, of
+    off-by-one errors, of fragile legacy code. These are the problems
+    that get in the way of what you really wanted to be doing. The
+    problems you struggle to explain to your boss because they don’t
+    understand your technical jargon. When deadlines approach, we get
+    around these problems with ugly hacks that we promise we’ll fix later
+    but that we never get to, and the pile of tech debt grows bigger and
+    bigger. When all else fails, we take the easy way out and implement
+    what one of my colleagues lovingly calls “developer features”.
+  </p>
+  <p>
+    The reason these problems are so hard to explain to our bosses is
+    because nobody asked us to solve them. We made them up, they exist
+    only in the minds of developers. In most cases, the specs don’t
+    require us to solve these problems, and the solution isn’t to solve
+    them but to work out how to avoid them entirely. This is commonly
+    known as the <a href="https://en.wikipedia.org/wiki/XY_problem">XY
+    problem</a>—when you face problem X, you come up with solution Y, you
+    get stuck and you ask for help with Y instead of with X. It seems
+    like a strange request but people offer some help, but nothing quite
+    fits your problem. After much frustration and back-and-forth, they
+    eventually discover that you really just need a better solution to X.
+  </p>
+  <p>
+    Whenever you get stuck with a problem that nobody asked you to solve,
+    take a step back and check the requirements to see if this is really
+    a problem that needs solving at all, or if a different approach might
+    help you avoid the problem entirely.
+  </p>
+  <p>
+    Which leads in nicely to the next layer of software development: the
+    requirements. This is the fuzzy grey area that sits between product
+    owners and software developers. Typically when product owners think
+    about people using their product, they imagine them being successful.
+    They can paint a beautiful picture of how a feature will work when
+    things go smoothly but they often gloss right over all those pesky
+    details that developers need to implement a feature fully, when
+    things go wrong or when users give unexpected input, and so the
+    developers start making assumptions. This is the land of undefined
+    behaviour, of unhelpful error messages and infinite loading screens,
+    of inelegant failure modes.
+  </p>
+  <p>
+    But in an attempt to avoid under-specifying a feature, you can go too
+    far in the other direction and over-specify it. Sometimes it’s not
+    until you try something out that you know what will work best from a
+    technical perspective but also what will feel right from a user’s
+    perspective, and the developer is always the first person to try a
+    feature. Getting requirements right makes a huge difference to the
+    usability of your software—it can be the difference between making a
+    product that’s intuitive and a delight to use, or making one that’s
+    jarring and frustrating for your users. Of course, ideally you would
+    be iterating on these requirements anyway, but this is the first
+    and cheapest opportunity to do so.
+  </p>
+  <p>
+    When a requirement is starting to feel like more trouble than it’s
+    worth, or you’re having to guess too much about how a feature should
+    work, take a step back and consult with the product owner on what’s
+    the best way to achieve the desired outcome for your users.
+  </p>
+  <p>
+    The next layer of software development is the product itself. This is
+    the layer where the value of the product ultimately lies. The product
+    owner should define a vision for the product, the types of people who
+    will use it, the problems it will solve, and the features it will
+    need to solve them. They will also need focus, to determine the
+    problems it won’t solve and the features it won’t have, because
+    trying to be all things to all people makes a product incoherent,
+    hard to use and hard to understand. And it’s a lot more expensive to
+    build and maintain too.
+  </p>
+  <p>
+    If you’re lucky, your users will have strong opinions about what
+    features your product should have. Just remember that your users are
+    also prone to XY problems, and rather than just building whatever
+    they ask for, you should talk to them and try to discover their real
+    problems. Some of the problems they describe will be valuable to
+    solve with product features, some will be valuable but not well
+    suited to your product and might make for a good separate product,
+    some will be solveable with existing features in your product, and
+    some will be low-value or one-off problems that aren’t worth building
+    at all (although you can build a lot of good will by helping them
+    solve these problems some other way).
+  </p>
+  <p>
+    Whenever you are unsure about what features to include and how they
+    should work, take a step back and think about the problem you are
+    trying to solve for your users and how this feature will help.
+  </p>
+  <p>
+    The next layer of software development is the go-to-market strategy.
+    I wouldn’t be surprised if you groaned at the use of that phrase,
+    because this is the first layer that starts to sound more business
+    than fun which is exactly why it’s so commonly overlooked. This is
+    the layer where your product actually starts to make a connection
+    between your users and your wallet. If you are interested in getting
+    your product in the hands of users, how do you describe it to them?
+    What is the value proposition (ugh)—why should your users take time
+    out of their busy lives to look at your product? What type of
+    customer are you targeting? How valuable to them is a solution to the
+    problem your product solves, and how much money do they have to spend
+    on solving it? How are they solving this problem now, and how much
+    money are they spending on it? Is it worth the same to all of your
+    customers, or do you need a way to charge different amounts to
+    different people? What else might they want from you besides the
+    product itself, like training, consulting hours or support contracts?
+  </p>
+  <p>
+    These are all hugely important questions to answer, and not just
+    something you should consider after you’ve built the product.
+    Decisions at this layer will absolutely affect the requirements and
+    priority of features. For example, if you are targeting only a small
+    handful of large customers with a high-touch sales model, it might be
+    cheaper to onboard your customers by hand rather than a building a
+    fully-automated self-service registration page. If you need to
+    describe your product in a particular way to get potential customers
+    interested in it, you’d better make sure the features that support
+    that description are prominent in the product, and that you don’t
+    compromise on delivering them. If you’re trying to bring users over
+    from one of your competitors, it might help to build a feature to
+    help them import their existing data.
+  </p>
+  <p>
+    When you’re considering what features your product needs, as well as
+    the advice above you should also take a step back and think about
+    what you’re actually selling to your customers, how they will get
+    their hands on your product, and what features they will need to
+    start getting value from it. Even for internal or line-of-business
+    applications, you still have users and you still need to “sell” to
+    them if you want genuine adoption and a return on your investment.
+  </p>
+  <p>
+    The last layer (that I will consider in this post) is the business.
+    We all like to say that we do what we do to make a difference, but we
+    still have a business to run. Just like our product can’t be all
+    things to all people, neither can our business. A good business
+    should also have a vision and focus, and it’s important that your
+    product aligns to this vision if it’s going to be successful. There’s
+    so much more to running a successful product than just building it. A
+    great product can still be a failure in the wrong business, because
+    it will struggle to get the resources and support that it needs to
+    thrive.
+  </p>
+  <p>
+    On the other hand, a product is just one way of achieving business
+    needs. Some products exist soley for the purpose of generating demand
+    for or increasing the retention of other products. If this is the
+    case for your product, it’s important to be up-front and honest about
+    this so that if circumstances change and you no longer have this need
+    or you find a better way to satisfy it, you will know that it’s time
+    to shift your focus to other things. It can be a tough call to make,
+    but it’s far better than the alternative of soldiering on with a
+    product that no longer serves a purpose for the business and watching
+    it die a slow and painful death.
+  </p>
+  <p>
+    When you’re thinking of building a new product, and periodically as
+    you continue building existing products, it’s important to take a
+    step back and remind yourself of how the product aligns to the vision
+    and needs of your business, and whether this product is the best way
+    to satisfy those needs.
+  </p>
+  <p>
+    At every layer of software development, the biggest mistake that I
+    see is not taking a step back.
+  </p>
+  <h2>Why does this mistake keep happening?</h2>
+  <p>
+    What causes these mistakes to reoccur so consistently, and across
+    teams, companies, and industries? Here are some of the most common
+    reasons that I see.
+  </p>
+  <p>
+    Too busy. When deadlines are tight, you don’t always have time to
+    stop and think about what you’re doing, and whether your approach is
+    the best way to solve the problem. Often we don’t schedule time in
+    our week for reflecting on what we’re doing, and as deadlines get
+    closer these are usually the first things in our calendar to get cut.
+  </p>
+  <p>
+    Too much free time. I know it seems like this contradicts my previous
+    point, but <a href="https://en.wikipedia.org/wiki/Parkinson%27s_law"
+    >Parkinson’s law</a> says that work expands to fill the time
+    available, so when we are given too much time to work on something we
+    are prone to overengineering our solutions and building things we
+    don’t need.
+  </p>
+  <p>
+    Following orders without questioning it. Just like lemmings
+    cluelessly marching off a cliff without understanding what they’re
+    doing, so too do we sometimes build what we’re told to build without
+    questioning it. I’ve noticed that this is especially true for
+    decisions that were made before we joined the project—we tend to
+    assume that all decisions were made deliberately and for a good
+    reason.
+  </p>
+  <p>
+    Not my job. Similarly to above, even when we do question a decision
+    we are often content to say that the decision is not our job to make
+    so it won’t be our fault if it’s a bad decision. And while this may
+    be true, it’s far from a productive attitude. Customers don’t care
+    who’s responsible for making decisions, they just want the best
+    possible product.
+  </p>
+  <p>
+    The way we’ve always done it. This is a layer above these last two
+    points. Not only do we continue down the wrong path after a decision
+    rather than fixing the mistake, we continue to make the same kinds of
+    decisions when they come up again in the future, making the same
+    kinds of mistakes over and over without learning from the past.
+  </p>
+  <p>
+    The way industry leaders do it. Otherwise known as <a
+    href="https://en.wikipedia.org/wiki/Cargo_cult">cargo culting</a>.
+    The thinking here is that “if it’s good enough for them, it’s good
+    enough for us”, but many of the problems faced by industry leaders
+    only come up at a big enough scale, and the solutions designed to
+    solve these problems introduce problems of their own. If we aren’t at
+    that scale, we don’t face those problems and we don’t need those
+    solutions.
+  </p>
+  <p>
+    No feedback loop. We can plan as well as we want, but without a
+    feedback loop, when most things go off the rails they go off the
+    rails hard. We like to think we have good intuition about what our
+    users will want, we usually don’t. But even if we did, that wouldn’t
+    mean that everything we build is done perfectly. Try navigating your
+    house with your eyes closed and you’ll realise quickly enough that
+    even things you do literally every day can be impossible without a
+    good feedback loop.
+  </p>
+  <p>
+    Because it sounds like an interesting problem to solve. We all like
+    to enjoy ourselves at work, and use exciting new tools. Sometimes we
+    find problems or think of solutions that are so interesting we can’t
+    help but try to solve them. This is also known as <a
+    href="https://www.xkcd.com/356/">nerd sniping</a>. We’ve all done
+    this, and you can usually tell it’s a stupid idea but you get
+    mesmerised by the cleverness of the solution.
+  </p>
+  <p>
+    Because we’re too proud to admit mistakes. Nobody likes to admit that
+    they’re wrong, and not only to other people. If after a year of
+    building something you realise you’ve been building the wrong thing,
+    it can be incredibly hard to admit this to yourself. “Has this all
+    been a complete waste of time?” It helps if you’re honest about this
+    right from the start. Rather than setting yourself goals that depend
+    on a sequence of unknowns turning out in your favour, make it your
+    goal to understand the unknowns. If they go against you, you’ve still
+    succeeded and you won’t feel the need to continue wasting time on it.
+  </p>
+  <h2>
+    Why does this matter?
+  </h2>
+  <p>
+    There are plenty of people out there who are content with focusing on
+    their own job and ignoring these mistakes when they see them in the
+    work of others. “I did my part well, and I’m proud of the work that
+    I’ve done. It’s not my fault that the product failed/was a waste of
+    time.” Personally, the way I see it is that it might not be my fault
+    but it’s still my problem, because putting your heart and soul into
+    something that doesn’t get used is painful. I don’t like building
+    <a href="https://en.wiktionary.org/wiki/shelfware">shelfware</a>.
+  </p>
+  <p>
+    Whether or not it’s in my job description, I will always push to
+    improve decision making at all layers of software development, to
+    give the product the best possible chance of being successful. Not
+    by knowing the right decisions to make, because I certainly don’t.
+    But by encouraging everybody to take a step back and assess decisions
+    in the full and correct context.
+  </p>
+  <h2>
+    What can we do about it?
+  </h2>
+  <p>
+    Unsurprisingly, agile software development has many techniques for
+    dealing with these problems, but it’s very important that you
+    understand how these techniques are supposed to help. Writing your
+    product ideas down on index cards and making a backlog isn’t
+    intrinsically helpful, nor is breaking delivery up into arbitrary
+    two-week intervals and calling them sprints. Getting a customer to
+    pay you money as soon as possible is only helpful if you actually
+    solicit and consider feedback from them. You can easily do all of
+    these things without actually being agile—a practice that is often
+    referred to as “Agile in name only”.
+  </p>
+  <p>
+    To me, the important agile development techniques are those that
+    force you to take a step back more often. Sprints are useful because
+    at the start of a sprint you set a goal to be achieved in a fixed
+    amount of time. Regardless of whether or not you achieve that goal,
+    when the timebox runs out you take a step back and reflect on what
+    you’re doing. Are we happy with our internal processes? Are there any
+    improvements we can make as a development team? Is the product owner
+    clear about the features and requirements? What do our customers
+    think of what we’ve built? Have we validated our assumptions? Should
+    we persist with these decisions or try something else? Have our
+    priorities changed? Are we getting enough value from our efforts or
+    is it time to move on entirely?
+  </p>
+  <p>
+    If you aren’t asking all these questions regularly you’re operating
+    without a feedback loop and you’re probably already well off the
+    rails. And if you haven’t scheduled time now to ask these questions,
+    you’re only going to get busier and busier over time and get stuck in
+    the “too busy to improve” loop we discussed earlier. It’s really
+    important that you schedule time from the beginning for these
+    reflective sessions and take a step back.
+  </p>
+</main>
+<footer>
+  <p>
+    Thoughts? Comments?
+    <a href="mailto:curtis@lusmo.re?subject=Take%20a%20Step%20Back">Email
+    the author.</a>
+  </p>
+</footer>
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="/external">External</a></li>
+    <li><a href="/posts">Posts</a></li>
+    <li><a href="/projects">Projects</a></li>
+    <li><a href="/subscribe">Subscribe</a></li>
+  </ul>
+</nav>
+</body>
+
 </html>
