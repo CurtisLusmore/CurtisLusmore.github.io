@@ -19,6 +19,8 @@ table { width: 100%; }
     display: flex;
     justify-content: space-between;
   }
+
+  pre { overflow-x: scroll; }
 }
 
 @media screen and (min-width: 901px) {
