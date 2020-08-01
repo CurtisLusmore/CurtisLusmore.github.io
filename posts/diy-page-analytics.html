@@ -136,14 +136,14 @@ public static async Task&lt;LogEntry&gt; Run(
   string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
   dynamic data = JsonConvert.DeserializeObject(requestBody);
 
-  string location = data?.location;
+  string pathname = data?.pathname;
   string referrer = data?.referrer;
 
-  log.LogInformation($"{location} -> {referrer}");
+  log.LogInformation($"{pathname} -> {referrer}");
 
   return new LogEntry
   {
-      PartitionKey = location.Replace("/", "|"), // '/' not supported
+      PartitionKey = pathname.Replace("/", "|"), // '/' not supported
       RowKey = Guid.NewGuid().ToString(),
       Referrer = referrer
   };
@@ -167,7 +167,7 @@ public static async Task&lt;LogEntry&gt; Run(
   </p>
   <p>
     Finally, we changed the body of the function retrieve two properties
-    from the body of the request, <code>location</code> and
+    from the body of the request, <code>pathname</code> and
     <code>referrer</code>, and use them to construct a new
     <code>LogEntry</code> object as described above. Note that we’ve had
     to replace forward-slashes <code>/</code> with vertical-line
@@ -177,14 +177,14 @@ public static async Task&lt;LogEntry&gt; Run(
   </p>
   <pre>
 {
-"location": "/posts/diy-page-analytics",
-"referrer": "/posts"
+  "pathname": "/posts/diy-page-analytics",
+  "referrer": "/posts"
 }
 </pre>
   <p>
     Putting it all together, we can now send an unauthenticated
     <code>POST</code> request to this function with a body as described
-    above, it will pick out the <code>location</code> and
+    above, it will pick out the <code>pathname</code> and
     <code>referrer</code> properties, and add an entry in the
     <code>LogEntries</code> table of Table Storage. “Which Table Storage
     account?”, you might ask. It turns out Azure Functions require a
@@ -211,7 +211,7 @@ func host start --cors '*'
   <p>
     Next up we’ll add some JavaScript to your website to trigger the
     Azure Function and send the payload containing the
-    <code>location</code> and <code>referrer</code>.
+    <code>pathnam</code> and <code>referrer</code>.
   </p>
   <p>
     All you’ll need to do is add the following script somewhere to each
@@ -223,18 +223,15 @@ func host start --cors '*'
   </p>
   <pre>
 (function () {
-if (navigator.doNotTrack === '1') return;
-const payload = {
-  location: document.location.pathname,
-  referrer: document.referrer
-};
-fetch(
-  'http://localhost:7071/api/Log',
-  {
-    method: 'POST',
-    body: JSON.stringify(payload)
-  }
-);
+  if (navigator.doNotTrack === '1') return;
+  const payload = {
+    pathname: document.location.pathname,
+    referrer: document.referrer
+  };
+  navigator.sendBeacon(
+    'http://localhost:7071/api/Log',
+    JSON.stringify(payload)
+  );
 }());
 </pre>
   <p>
@@ -247,7 +244,7 @@ fetch(
   </p>
   <p>
     Next we grab the <code>location.pathname</code> property as the
-    <code>location</code> and the <code>referrer</code>, and use the
+    <code>pathname</code> and the <code>referrer</code>, and use the
     <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API"
     >Fetch API</a> to send a <code>POST</code> request to our function.
     Finally, we wrapped all of this in a self-invoking anonymous function
@@ -383,7 +380,7 @@ $logs = az storage entity query `
   | Select-Object -ExpandProperty items
 </pre>
   <p>
-    We can then group by <code>location</code>
+    We can then group by <code>pathname</code>
     (<code>PartitionKey</code>) or <code>referrer</code> to see which
     pages get the most hits and what drives the most traffic, for
     example, using the following two commands.
