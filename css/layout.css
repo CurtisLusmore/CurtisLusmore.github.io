@@ -30,6 +30,7 @@ table { width: 100%; }
     column-gap: 2ch;
     margin: auto;
     max-width: 1000px;
+    font-size: 1.5em;
   }
 
   header, main, footer {
