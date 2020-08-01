@@ -5,6 +5,7 @@ body > footer { grid-area: footer; }
 body > nav { grid-area: nav; }
 
 table { width: 100%; }
+pre { max-width: 90vw; overflow-x: auto; }
 
 @media screen and (max-width: 900px) {
   body {
@@ -13,14 +14,13 @@ table { width: 100%; }
       'nav'
       'main'
       'footer';
+    padding: 1vh 1vw;
   }
 
   body > nav > ul {
     display: flex;
     justify-content: space-between;
   }
-
-  pre { overflow-x: scroll; }
 }
 
 @media screen and (min-width: 901px) {
