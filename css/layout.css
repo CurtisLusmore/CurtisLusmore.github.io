@@ -38,4 +38,10 @@ pre { max-width: 90vw; overflow-x: auto; }
   header, main, footer {
     max-width: 800px;
   }
+
+  nav > ul {
+    position: sticky;
+    margin-top: 24px;
+    top: 24px;
+  }
 }
