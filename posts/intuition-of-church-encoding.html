@@ -9,7 +9,9 @@
   <title>Intuition of Church Encoding | lusmo.re</title>
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/layout.css">
+  <link rel="webmention" href="https://webmention.lusmo.re/post">
   <script src="/js/main.js" defer></script>
+  <script src="/js/webmention.js" defer></script>
 </head>
 
 <body>
@@ -299,10 +301,15 @@ right' b = Either' $ \left right -> right b
 </main>
 <footer>
   <p>
-    Thoughts? Comments?
-    <a href="mailto:curtis@lusmo.re?subject=Intuition%20of%20Church%20Encoding"
-    >Email the author.</a>
+    Thoughts? Comments? Leave a <a href="/webmention">Webmention</a>.
   </p>
+  <form onsubmit="return post(event);">
+    <span class="flex-field">
+      <input type="url" name="source" required placeholder="https://your.blog/post">
+      <input type="submit" value="Create">
+    </span>
+  </form>
+  <ul id="webmentions"></ul>
 </footer>
 <nav>
   <ul>

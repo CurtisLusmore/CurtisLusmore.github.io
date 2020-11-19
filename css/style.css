@@ -32,11 +32,13 @@ body {
 
 h1, h2, h3, h4, h5, h6 { font-family: var(--font-head); }
 code, pre { font-family: var(--font-code); }
+input { font-family: var(--font-body); }
 
 h1 { font-size: 1.5em; }
 h2 { font-size: 1.2em; }
 h3 { font-size: 1em; }
 pre { font-size: 0.8em; }
+input { font-size: 1em; margin: 10px auto; }
 
 a { color: var(--color-text); text-decoration-color: var(--color-accent-1); }
 a:hover { text-decoration-color: var(--color-accent-2); }
@@ -51,5 +53,11 @@ main > img.post { max-width: 80%; display: block; margin: auto; }
 main > img.profile { width: 256px; display: block; margin: auto; }
 main > blockquote, main > pre, main > ul { margin: 0; padding-left: 2ch; }
 main > blockquote, main > pre { border-left: 2px solid var(--color-accent-1); }
+
+form input:not([type="submit"]) { display: block; width: 100%; }
+form input:not([type="submit"]) { outline: 0; border-width: 0 0 1px 0; }
+
+.flex-field { display: flex; }
+.flex-field > *:first-child { flex: 1; margin-right: 1ch; }
 
 nav > ul { list-style-type: none; padding: 0; }
