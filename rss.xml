@@ -5,6 +5,21 @@
     <link>https://lusmo.re</link>
     <description>Curtis’ homepage</description>
     <item>
+      <title>Minimum Viewable Program</title>
+      <link>https://lusmo.re/posts/minimum-viewable-program</link>
+      <guid>https://lusmo.re/posts/minimum-viewable-program</guid>
+      <description>
+        The term MVP, Minimum Viable Product, gets thrown around a lot in our
+        industry. Some people say MVPs are too small and customer expectations
+        are higher than ever, and propose instead the Minimum Awesome Product.
+        Others say MVPs are too big and bloated and still cost too much.
+        To help people agree on the size and scope of an MVP, I propose the
+        following simple analogy: Is your MVP a Season 1, or a Pilot? And to
+        match, an alternative expansion of MVP: Minimum Viewable Program.
+      </description>
+      <pubDate>Fri, 29 May 2020 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>DIY Page Analytics</title>
       <link>https://lusmo.re/posts/diy-page-analytics</link>
       <guid>https://lusmo.re/posts/diy-page-analytics</guid>
@@ -21,7 +36,7 @@
         In this post we’ll walk through how to build a very basic page
         analytics service using Azure Functions and Table Storage, which you
         can host yourself for a few cents per year—my last twelve invoices
-        reached a grand total of 49 cents. 
+        reached a grand total of 49 cents.
       </description>
       <pubDate>Fri, 29 May 2020 00:00:00 GMT</pubDate>
     </item>
