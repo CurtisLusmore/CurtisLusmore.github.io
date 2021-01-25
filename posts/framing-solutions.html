@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Framing Solutions in Terms of the Problem">
+  <meta property="og:image" content="https://lusmo.re/imgs/cover.jpg">
+  <title>Framing Solutions in Terms of the Problem | lusmo.re</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="webmention" href="https://webmention.lusmo.re/post">
+  <script src="/js/main.js" defer></script>
+  <script src="/js/webmention.js" defer></script>
+</head>
+
+<body>
+<header>
+  <h1>Framing Solutions in Terms of the Problem</h1>
+  <address>
+    <img class="author" src="/imgs/profile.png" title="Curtis Lusmore">
+    Curtis Lusmore <br>
+    <time datetime="2021-01-25">25 January 2021</time>
+  </address>
+</header>
+<main>
+  <p>
+    I was working on a Scrum project where the user stories always ended up
+    being too big to fit into a sprint, and we were constantly half-finishing
+    stories and carrying them over to the next sprint. Our team agreed we
+    needed to split the stories up, but we couldn’t agree how.
+  </p>
+  <p>
+    The team proposed we split stories into front-end and back-end components.
+    This is a common way of splitting up work, because it’s obvious, it’s easy
+    to do, and it’s easy to then assign the smaller stories to those with the
+    right skills. I proposed instead we use vertical story slicing, where you
+    slice stories into thin, end-to-end slices, and each slice is fully
+    integrated and useful to a user. Vertical story slicing could be a post in
+    its own right, and I won’t go into a full discussion of its merits here.
+  </p>
+  <p>
+    The points I was trying to make were that vertical story slices would
+    decrease delivery risk by delivering fully-integrated slices sooner, and
+    would give us more flexibility in prioritising each slice independently of
+    the others, perhaps deferring the low value ones for later. But in the end,
+    vertical story slicing was new to most of my team and I wasn’t able to make
+    a strong enough case of the benefits to convince my team, so I was
+    out-voted. We proceeded with front-end/back-end stories for a few sprints,
+    but it didn’t really fix anything.
+  </p>
+  <p>
+    The first problem was that we decided to finish the back-end before
+    starting the front-end, as it’s good to complete dependencies before
+    committing to a new story. This meant stories took twice as long, since we
+    introduced a delay to the front-end work which wasn’t there before. We
+    removed the delay, but still found we had to carry half-finished work
+    across sprints. Even in parallel, the amount of work for the entire
+    back-end or front-end is still too much for one sprint. We hadn’t fixed our
+    original problem, we just changed how work was tracked.
+  </p>
+  <p>
+    The real problem was that in sprint review, we couldn’t demonstrate
+    half-finished work, and in order to show progress we had to re-estimate the
+    remaining story-points to show how many had been “completed”. I can hear
+    some of you groaning at this.
+  </p>
+  <p>
+    In other words, the real problem was that we had no transparency in our
+    progress, which is ultimately what our client cared about week-to-week.
+  </p>
+  <p>
+    After a few sprints like this, one of my team members proposed we change
+    the way we split up work. They’d been talking to the client, and what they
+    really wanted to see was tangible progress every week, not made-up numbers
+    decreasing in a spreadsheet.
+  </p>
+  <p>
+    My team member proposed that we break stories up into smaller use-cases,
+    like “the main case”, “this edge case”, “that edge case”, “what if this
+    part wasn’t configurable at first?” Each use case is small enough to finish
+    in one sprint, and can be demonstrated at sprint review. We can then
+    prioritise the use cases, and deliver them one-by-one with a team focus on
+    getting work-in-progress over the line before starting the next one. This
+    would allow the client to see tangible progress every single week, and we
+    would carry work across sprints less often.
+  </p>
+  <p>
+    Basically, my team member pitched the idea of vertical story slicing back
+    to me, only a few sprints after I’d already proposed it and we’d already
+    voted it down. But I went along with it, we all got behind it, and after a
+    couple more sprints the client loved it and so did we.
+  </p>
+  <p>
+    So why wasn’t I successful at convincing the team about vertical story
+    slicing in the first place? I pitched it wrong. I focused on the wrong
+    benefits, and overlooked the specific problem we were trying to solve
+    for—transparency of progress.
+  </p>
+  <p>
+    If you’re trying to drive change in your team or organisation, make sure
+    that you frame your proposed solution around what people agree is the
+    problem.
+  </p>
+</main>
+<footer>
+  <p>
+    Thoughts? Comments? Leave a <a href="/webmention">Webmention</a>.
+  </p>
+  <form onsubmit="return post(event);">
+    <span class="flex-field">
+      <input type="url" name="source" required placeholder="https://your.blog/post">
+      <input type="submit" value="Create">
+    </span>
+  </form>
+  <ul id="webmentions"></ul>
+</footer>
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="/external">External</a></li>
+    <li><a href="/posts">Posts</a></li>
+    <li><a href="/projects">Projects</a></li>
+    <li><a href="/subscribe">Subscribe</a></li>
+  </ul>
+</nav>
+</body>
+
+</html>

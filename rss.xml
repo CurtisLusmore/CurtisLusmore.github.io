@@ -5,6 +5,25 @@
     <link>https://lusmo.re</link>
     <description>Curtis’ homepage</description>
     <item>
+      <title>Framing Solutions in Terms of the Problem</title>
+      <link>https://lusmo.re/posts/framing-solutions</link>
+      <guid>https://lusmo.re/posts/framing-solutions</guid>
+      <description>
+        I was working on a Scrum project where the user stories always ended up
+        being too big to fit into a sprint, and we were constantly half-finishing
+        stories and carrying them over to the next sprint. Our team agreed we
+        needed to split the stories up, but we couldn’t agree how.
+        The team proposed we split stories into front-end and back-end components.
+        This is a common way of splitting up work, because it’s obvious, it’s easy
+        to do, and it’s easy to then assign the smaller stories to those with the
+        right skills. I proposed instead we use vertical story slicing, where you
+        slice stories into thin, end-to-end slices, and each slice is fully
+        integrated and useful to a user. Vertical story slicing could be a post in
+        its own right, and I won’t go into a full discussion of its merits here.
+      </description>
+      <pubDate>Mon, 25 January 2021 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>Minimum Viewable Program</title>
       <link>https://lusmo.re/posts/minimum-viewable-program</link>
       <guid>https://lusmo.re/posts/minimum-viewable-program</guid>
@@ -17,7 +36,7 @@
         following simple analogy: Is your MVP a Season 1, or a Pilot? And to
         match, an alternative expansion of MVP: Minimum Viewable Program.
       </description>
-      <pubDate>Fri, 29 May 2020 00:00:00 GMT</pubDate>
+      <pubDate>Thu, 21 January 2021 00:00:00 GMT</pubDate>
     </item>
     <item>
       <title>DIY Page Analytics</title>
