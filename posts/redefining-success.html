@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Redefining Success">
+  <meta property="og:image" content="https://lusmo.re/imgs/cover.jpg">
+  <title>Redefining Success | lusmo.re</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="webmention" href="https://webmention.lusmo.re/post">
+  <script src="/js/main.js" defer></script>
+  <script src="/js/webmention.js" defer></script>
+</head>
+
+<body>
+<header>
+  <h1>Redefining Success</h1>
+  <address>
+    <img class="author" src="/imgs/profile.png" title="Curtis Lusmore">
+    Curtis Lusmore <br>
+    <time datetime="2021-02-01">1 February 2021</time>
+  </address>
+</header>
+<main>
+  <p>
+    There’s an expression in tech that I think is often misunderstood and then
+    used to justify bad behaviour—“fail fast, fail early”. The idea behind it
+    is that if an idea is going to fail, it’s better if it fails early, before
+    you reach the point of the sunk-cost fallacy.
+  </p>
+  <p>
+    This sounds sensible, and encourages people to <a
+    href="/posts/minimum-viewable-program">build a Pilot rather than a Season
+    1</a>, which I think is generally a good thing. But I have two major
+    concerns with this expression.
+  </p>
+  <p>
+    <ol>
+      <li>
+        It tricks people into thinking that if we want to fail quickly, then we
+        need to finish quickly. “Let’s just try this real quick and see if it
+        works”. This shrinks all deadlines and can lead to rushed, low-quality
+        work even in the “success” case.
+      </li>
+      <li>
+        It normalises failure, which isn’t actually the goal. The goal is rapid
+        validated learning. Failure can lead to validated learning, but not all
+        failures are created equally.
+      </li>
+    </ol>
+  </p>
+  <p>
+    I propose instead that we redefine what success and failure mean when doing
+    experimental development work. When we set out to prove or disprove a given
+    hypothesis, success is getting an outcome, no matter which way it falls. We
+    only fail if we are unable to determine the result.
+  </p>
+  <p>
+    If I’m trying to test a new feature, I can spike a simple version and show
+    it to a small subset of customers. If they like it, I can say I succeeded
+    in showing that customers like the feature. If they don’t, I can say I
+    succeeded in showing that they don’t.
+  </p>
+  <p>
+    If I start building the feature but abandon it after months of delays, I’ve
+    done neither. Even if I build and ship the feature but never measure the
+    reaction to it, I’ve done neither. I’ve failed to prove or disprove whether
+    customers like the feature. Maybe I’ve proven whether or not I can build
+    the feature, but honestly this is rarely the biggest concern in software
+    development.
+  </p>
+  <p>
+    Framing success this way helps to address my two concerns with “fail fast,
+    fail early”.
+  </p>
+  <p>
+    <ol>
+      <li>
+        Success doesn’t necessarily mean “we successfully built and shipped
+        production-grade software”, it can just mean “we successfully
+        proved/disproved demand for a feature”. It’s okay if the deadline for
+        this is short, we can invest time in productionising once we prove
+        demand.
+      </li>
+      <li>
+        We aren’t normalising failure, failure isn’t really a good thing.
+        Disproving a hypothesis is good. We knew something was a risk or
+        assumption and we made a deliberate plan to validate it quickly or
+        cheaply. We didn’t just take a wild stab at something and hope for the
+        best.
+      </li>
+    </ol>
+  </p>
+</main>
+<footer>
+  <p>
+    Thoughts? Comments? Leave a <a href="/webmention">Webmention</a>.
+  </p>
+  <form onsubmit="return post(event);">
+    <span class="flex-field">
+      <input type="url" name="source" required placeholder="https://your.blog/post">
+      <input type="submit" value="Create">
+    </span>
+  </form>
+  <ul id="webmentions"></ul>
+</footer>
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="/external">External</a></li>
+    <li><a href="/posts">Posts</a></li>
+    <li><a href="/projects">Projects</a></li>
+    <li><a href="/subscribe">Subscribe</a></li>
+  </ul>
+</nav>
+</body>
+
+</html>

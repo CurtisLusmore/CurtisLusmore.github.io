@@ -5,6 +5,21 @@
     <link>https://lusmo.re</link>
     <description>Curtis’ homepage</description>
     <item>
+      <title>Redefining Success/title>
+      <link>https://lusmo.re/posts/redefining-success</link>
+      <guid>https://lusmo.re/posts/redefining-success</guid>
+      <description>
+        There’s an expression in tech that I think is often misunderstood and then
+        used to justify bad behaviour—“fail fast, fail early”. The idea behind it
+        is that if an idea is going to fail, it’s better if it fails early, before
+        you reach the point of the sunk-cost fallacy.
+        This sounds sensible, and encourages people to build a Pilot rather
+        than a Season 1, which I think is generally a good thing. But I have
+        two major concerns with this expression.
+      </description>
+      <pubDate>Tue, 1 February 2021 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>Framing Solutions in Terms of the Problem</title>
       <link>https://lusmo.re/posts/framing-solutions</link>
       <guid>https://lusmo.re/posts/framing-solutions</guid>
