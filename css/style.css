@@ -34,9 +34,15 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-head); }
 code, pre { font-family: var(--font-code); }
 input { font-family: var(--font-body); }
 
-h1 { font-size: 1.5em; }
-h2 { font-size: 1.2em; }
-h3 { font-size: 1em; }
+body > header h1 { font-size: 1.3em; }
+body > header h2 { font-size: 1.1em; }
+body > main > h2 { font-size: 1.1em; }
+
+body > main section h2 { font-size: 1.1em; }
+body > main header h1 { font-size: 1.1em; }
+body > main header h2 { font-size: 1.0em; }
+body > main main h2 { font-size: 1.0em; }
+
 pre { font-size: 0.8em; }
 input { font-size: 1em; margin: 10px auto; }
 
