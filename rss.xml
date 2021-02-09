@@ -5,6 +5,25 @@
     <link>https://lusmo.re</link>
     <description>Curtis’ homepage</description>
     <item>
+      <title>Triggers and Causes</title>
+      <link>https://lusmo.re/posts/triggers-and-causes</link>
+      <guid>https://lusmo.re/posts/triggers-and-causes</guid>
+      <description>
+        In the tech world, the common wisdom is that when things go wrong we have
+        blameless post-mortems. The idea here is that preventing the triggering
+        event from occurring is only part of the solution. The other part, often
+        the bigger part, is mitigating other factors which cause the event to have
+        such a large impact. Sometimes it’s not possible to prevent all triggering
+        events, and we can improve our resilience and reliability more effectively
+        by mitigating common contributing factors to outages.
+        We ask questions like, “Can we detect the triggering event sooner?” “Can we
+        speed up our response process?”  “Can we limit the number of people
+        impacted, or the degree to which they are impacted?” “Can we automate an
+        error-prone manual process?” “Can we allow a system to self-correct?”
+      </description>
+      <pubDate>Tue, 9 February 2021 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>Redefining Success</title>
       <link>https://lusmo.re/posts/redefining-success</link>
       <guid>https://lusmo.re/posts/redefining-success</guid>

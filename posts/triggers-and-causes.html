@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Triggers and Causes">
+  <meta property="og:image" content="https://lusmo.re/imgs/cover.jpg">
+  <title>Triggers and Causes | lusmo.re</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="webmention" href="https://webmention.lusmo.re/post">
+  <script src="/js/main.js" defer></script>
+  <script src="/js/webmention.js" defer></script>
+</head>
+
+<body>
+<header>
+  <h1>Triggers and Causes</h1>
+  <address>
+    <img class="author" src="/imgs/profile.png" title="Curtis Lusmore">
+    Curtis Lusmore <br>
+    <time datetime="2021-02-09">9 February 2021</time>
+  </address>
+</header>
+<main>
+  <p>
+    In the tech world, the common wisdom is that when things go wrong we have
+    blameless post-mortems. The idea here is that preventing the triggering
+    event from occurring is only part of the solution. The other part, often
+    the bigger part, is mitigating other factors which cause the event to have
+    such a large impact. Sometimes it’s not possible to prevent all triggering
+    events, and we can improve our resilience and reliability more effectively
+    by mitigating common contributing factors to outages.
+  </p>
+  <p>
+    We ask questions like, “Can we detect the triggering event sooner?” “Can we
+    speed up our response process?”  “Can we limit the number of people
+    impacted, or the degree to which they are impacted?” “Can we automate an
+    error-prone manual process?” “Can we allow a system to self-correct?”
+  </p>
+  <p>
+    If a human accidentally runs a destructive query against your production
+    database, the question isn’t, “Why did they do that?” It’s, “Why were they
+    able to do that?” “Why did they need to do that?” “Are we missing tools
+    that could do this safer?” “Can we recover from this faster?” Mistakes are
+    inevitable. What matters more than trying to prevent all mistakes from
+    happening, is improving our processes to mitigate the impact and recover
+    faster.
+  </p>
+  <p>
+    This Numberphile video, <a
+    href="https://www.youtube.com/watch?v=Ku8BOBwD4hc">Stable Rollers</a>, is a
+    really simple analogy that shows the difference between recovering well and
+    recovering poorly from errors, and how this is far more important to
+    resilience than eliminating initial errors.
+  </p>
+  <p>
+    I think we do this pretty well in the tech world, but this certainly isn’t
+    universal across all fields. The politics of the last year or so have shown
+    us that it’s easy to get sucked into focusing on the triggers rather than
+    all of the causes.
+  </p>
+  <p>
+    During the bushfires last summer, parts of the media seemed to be more
+    interested in what triggered the fires, lightning strikes or arsonists,
+    rather than what caused them to be so bad, climate change.
+  </p>
+  <p>
+    During the pandemic, as Victoria entered its second lockdown, the media
+    were more interested in what triggered the second wave than they were in
+    whether the government’s plan would help us recover from it. Don’t get me
+    wrong, the second wave was tough and a lot of people suffered or died from
+    it. But the cause of that suffering, here and to a far greater extent
+    internationally, isn’t the initial triggering outbreak. It’s the response,
+    or lack thereof, which allows the virus to spread so rapidly. The countries
+    that have done best owe more to their response to domestic spread than to
+    their ability to prevent imported cases.
+  </p>
+  <p>
+    This extends to the blame game surrounding the origins of the virus itself.
+    For a country to blame all of the suffering they’ve experienced on China is
+    to consider themselves powerless to mitigate the causes of spread
+    domestically, and to admit that they would also be powerless to stop an
+    actual biological weapon were one ever to be used.
+  </p>
+  <p>
+    We should stop focusing so much on the triggering events and start focusing
+    more on what causes the event to spiral out of control. Mistakes are
+    inevitable and you can't eliminate all triggers, but you can improve your
+    processes for responding and mitigating causes. As I said, I think in tech
+    we do this better than most other industries, but it will probably take
+    sustained, deliberate effort by all of us to keep it that way.
+  </p>
+</main>
+<footer>
+  <p>
+    Thoughts? Comments? Leave a <a href="/webmention">Webmention</a>.
+  </p>
+  <form onsubmit="return post(event);">
+    <span class="flex-field">
+      <input type="url" name="source" required placeholder="https://your.blog/post">
+      <input type="submit" value="Create">
+    </span>
+  </form>
+  <ul id="webmentions"></ul>
+</footer>
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="/external">External</a></li>
+    <li><a href="/posts">Posts</a></li>
+    <li><a href="/projects">Projects</a></li>
+    <li><a href="/subscribe">Subscribe</a></li>
+  </ul>
+</nav>
+</body>
+
+</html>
