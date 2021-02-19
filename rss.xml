@@ -5,6 +5,22 @@
     <link>https://lusmo.re</link>
     <description>Curtis’ homepage</description>
     <item>
+      <title>Top-down vs Bottom-up</title>
+      <link>https://lusmo.re/posts/top-down-vs-bottom-up</link>
+      <guid>https://lusmo.re/posts/top-down-vs-bottom-up</guid>
+      <description>
+        I like to look at the world around me in layers of hierarchy, and there are
+        two lenses that I apply when thinking about how these layers come together.
+        The first lense, “top-down”, looks at the world by starting at the top,
+        something high-level or abstract, and then working down to the lower
+        layers. The second lense, “bottom-up”, is the opposite—starting with
+        something low-level or concrete and working up. This sounds pretty
+        vague, but you can apply these two lenses to pretty much everything, so
+        let’s explore by looking at a few examples.
+      </description>
+      <pubDate>Tue, 9 February 2021 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>Triggers and Causes</title>
       <link>https://lusmo.re/posts/triggers-and-causes</link>
       <guid>https://lusmo.re/posts/triggers-and-causes</guid>
