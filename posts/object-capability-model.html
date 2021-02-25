@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Object-capability Model">
+  <meta property="og:image" content="https://lusmo.re/imgs/cover.jpg">
+  <title>Object-capability Model | lusmo.re</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="webmention" href="https://webmention.lusmo.re/post">
+  <script src="/js/main.js" defer></script>
+  <script src="/js/webmention.js" defer></script>
+</head>
+
+<body>
+<header>
+  <h1>Object-capability Model</h1>
+  <address>
+    <img class="author" src="/imgs/profile.png" title="Curtis Lusmore">
+    Curtis Lusmore <br>
+    <time datetime="2021-02-25">25 February 2021</time>
+  </address>
+</header>
+<main>
+  <p>
+    The object-capability model is a really interesting model of programming
+    that I don’t think is well taught and certainly not well practiced, nor
+    even encouraged by most modern programming languages.
+  </p>
+  <p>
+    Think about the concrete actions that your application can take: making a
+    web request, reading/writing to the filesystem, communicating with another
+    process like a database, printing to the console, etc. We call these
+    “capabilities”, and without them a program is basically useless.
+  </p>
+  <p>
+    Imagine trying to track down all the places in a code-base where these
+    actions could be taken, because you’re trying to trace a bug or you’re
+    trying to see what actions a library call might make. In most modern
+    programming languages this is really hard. Let’s pick as an example just
+    making web requests. You might start by searching for all references to
+    <code>HttpClient</code> (or similar class in your preferred language).
+  </p>
+  <p>
+    But what if it uses a different HTTP primitive, like
+    <code>HttpWebRequest</code>? Or what if the usage of the primitive is
+    hidden inside one of the libraries you import, like a standard client
+    library for a particular service, and you don’t have the source code
+    available? It’s basically impossible to find everything, even for something
+    this important and this ubiquitous.
+  </p>
+  <p>
+    The problem is that the “make a web request” capability is available
+    statically to every part of your program, or any of its dependencies, via
+    public classes like <code>HttpClient</code>. If I’m writing a piece of code
+    that needs to make a web request, nothing can stop me from doing it. I
+    don’t need to be given permission/access to this capability by any other
+    part of the application, I don’t need to even declare in any discoverable
+    way that I’m using this capability, so that others might be aware of my
+    using it. It’s completely unpreventable and untraceable to the rest of the
+    program.
+  </p>
+  <p>
+    The way that the object-capability model handles this is to dictate how
+    parts of a program can access each capability, and you can use this to
+    track usage of a capability across your program. The object-capability
+    model defines four ways that part of a program can access a capability:
+    <ol>
+      <li>
+        Initial conditions: The runtime of your program may make certain
+        capabilities available to anybody/everybody. This can be a global
+        capability like most language primitives, or the availability can be
+        limited to only parts of the program by classes marked as
+        <code>protected</code>, <code>private</code> or <code>internal</code>.
+      </li>
+      <li>
+        Parenthood: If an object A creates another object B, then A usually
+        gets a reference to B automatically. This means that A can likely
+        access any capability that B can access.
+      </li>
+      <li>
+        Endowment: If an object A creates another object B, then A can pass B
+        any/all references it wishes, e.g. via the arguments of the
+        constructor.
+      </li>
+      <li>
+        Introduction: If an object A has a reference to other objects B and C,
+        then A can give B a reference to C via one of B’s methods.
+      </li>
+    </ol>
+  </p>
+  <p>
+    The reason why it’s so hard to track the “make a web request” capability in
+    most modern programming languages is that it’s widely available through
+    initial conditions—it’s a public class available to the entire program.
+  </p>
+  <p>
+    Imagine instead if the only place that you were able to call the
+    <code>HttpClient</code> constructor was in <code>Program.cs</code>, and you
+    weren’t able to create subclasses. Basically, imagine if we limited the
+    availability of <code>HttpClient</code> via initial conditions to a single
+    file.
+  </p>
+  <p>
+    If any other part of our program wants to use <code>HttpClient</code>, it
+    would need to use some other mechanism for transferring
+    capabilities—parenthood, endowment, or introduction. Any library which
+    needs a <code>HttpClient</code> would essentially need to request
+    permission for one via a constructor or method argument. We could track the
+    flow of <code>HttpClient</code>s via constructor and method signatures,
+    knowing that they can only possibly originate in <code>Program.cs</code>.
+  </p>
+  <p>
+    This is very similar to how dependency injection and inversion of control
+    work in object-oriented programming languages, but we usually only use
+    these techniques for our own code—the public classes in the language’s
+    standard library usually don’t work this way.
+  </p>
+  <p>
+    Another key point in the object capability model is that references to
+    objects should be unforgeable. Unless an object is given a reference
+    through one of the four means above—initial conditions, parenthood,
+    endowment, or introduction—it can’t possibly forge its own copy.
+  </p>
+  <p>
+    Most programming languages don’t allow you to forge object references. Some
+    do, like how in C you can cast an arbitrary integer to a pointer to obtain
+    a reference to an object/value. But most languages since C don’t allow
+    this.
+  </p>
+  <p>
+    But not all capabilities are objects in your runtime, and not all
+    references are object references. Think about access to a database or a web
+    service endpoint, which usually have a connection string or a URL. This is
+    a reference, but it’s just an ordinary string.
+  </p>
+  <p>
+    Your <code>appsettings.json</code> or <code>web.config</code> file is an
+    initial condition for obtaining such a reference to a database or web
+    service endpoint, and usually access to these values is limited to
+    <code>Startup.cs</code> so you can track the flow of these references via
+    constructor and method arguments. From the perspective of the
+    object-capability model, this is great news.
+  </p>
+  <p>
+    Unfortunately they can also be hard-coded into the program source anywhere,
+    or reconstructed from a template and environment name, etc. These
+    references are forgeable—they break the rules of the object-capability
+    model, and make it impossible to track usage of the capability.
+  </p>
+  <p>
+    Why does this all matter? So what if some arbitrary part of my code-base
+    can make a web request without my knowledge? What’s the big deal? Well for
+    one this could be a security problem if a library you depend on suddenly
+    started exfiltrating data because it has full access to your filesystem and
+    the internet. This isn't a hypothetical threat either, something just like
+    this happened with the <a href="https://blog.npmjs.org/post/180565383195/details-about-the-event-stream-incident"
+    >event-stream NPM package</a>.
+  </p>
+  <p>
+    It also makes it really hard to reason about program behaviour when you
+    have no way of knowing which parts of your program have access to which
+    capabilities. If your program has a bug and you identify the cause to be an
+    unwanted call to another service or local process, and there’s no limit to
+    which parts of your code-base could be doing this, it’s a lot harder to
+    track down the source of the problem.
+  </p>
+  <p>
+    The object-capability model addresses these problems by limiting the ways
+    that capabilities can be passed around your application to one of four
+    methods: initial conditions, parenthood, endowment, and introduction. By
+    further restricting which capabilities are freely available across our
+    entire codebase via initial conditions, we can restrict which pieces of
+    code can access each capability, track how the capabilities are passed from
+    one class to another via constructor or method arguments, and have a better
+    understanding of what our program is doing and where.
+  </p>
+</main>
+<footer>
+  <p>
+    Thoughts? Comments? Leave a <a href="/webmention">Webmention</a>.
+  </p>
+  <form onsubmit="return post(event);">
+    <span class="flex-field">
+      <input type="url" name="source" required placeholder="https://your.blog/post">
+      <input type="submit" value="Create">
+    </span>
+  </form>
+  <ul id="webmentions"></ul>
+</footer>
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="/external">External</a></li>
+    <li><a href="/posts">Posts</a></li>
+    <li><a href="/projects">Projects</a></li>
+    <li><a href="/subscribe">Subscribe</a></li>
+  </ul>
+</nav>
+</body>
+
+</html>
