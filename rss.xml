@@ -5,6 +5,47 @@
     <link>https://lusmo.re</link>
     <description>Curtis’ homepage</description>
     <item>
+      <title>Scheduling a Weekly Lunch-and-Learn</title>
+      <link>https://lusmo.re/posts/lunch-and-learn</link>
+      <guid>https://lusmo.re/posts/lunch-and-learn</guid>
+      <description>
+        Early last year, before COVID, I joined an initiative in my squad at work
+        to boost employee engagement. There were four of us in the group and we
+        were each tasked with running a series of events for the members of our
+        squad. I volunteered to organise a monthly lunch-and-learn session at the
+        office, where each month a member of our squad would present on a topic of
+        their choosing during our lunch break.
+        We already had these going on an ad-hoc basis sporadically throughout the
+        year, usually individually organised by the speaker, but I wanted to make
+        this a regular event at the office. Unfortunately lockdown struck before we
+        could run the first session, and so we had to change plans. With everybody
+        working from home employee engagement felt more important than ever, so we
+        quickly pivoted to online sessions and we decided to temporarily up the
+        frequency from monthly to weekly, at least for as long as momentum could
+        carry us.
+        Since then we’ve continued to run these weekly, having just passed 41
+        sessions, and having missed only a handful of weeks due to holidays or
+        clashes with all-hands. Here’s my top 10 tips for you to try this at your
+        work.
+      </description>
+      <pubDate>Thu, 4 March 2021 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Object-capability Model</title>
+      <link>https://lusmo.re/posts/object-capability-model</link>
+      <guid>https://lusmo.re/posts/object-capability-model</guid>
+      <description>
+        The object-capability model is a really interesting model of programming
+        that I don’t think is well taught and certainly not well practiced, nor
+        even encouraged by most modern programming languages.
+        Think about the concrete actions that your application can take: making a
+        web request, reading/writing to the filesystem, communicating with another
+        process like a database, printing to the console, etc. We call these
+        “capabilities”, and without them a program is basically useless.
+      </description>
+      <pubDate>Thu, 25 February 2021 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>Top-down vs Bottom-up</title>
       <link>https://lusmo.re/posts/top-down-vs-bottom-up</link>
       <guid>https://lusmo.re/posts/top-down-vs-bottom-up</guid>
@@ -18,7 +59,7 @@
         vague, but you can apply these two lenses to pretty much everything, so
         let’s explore by looking at a few examples.
       </description>
-      <pubDate>Tue, 9 February 2021 00:00:00 GMT</pubDate>
+      <pubDate>Fri, 19 February 2021 00:00:00 GMT</pubDate>
     </item>
     <item>
       <title>Triggers and Causes</title>
