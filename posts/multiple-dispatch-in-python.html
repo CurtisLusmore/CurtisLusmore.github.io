@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="/css/layout.css">
   <link rel="webmention" href="https://webmention.lusmo.re/post">
   <script src="/js/main.js" defer></script>
-  <script src="/js/webmention.js" defer></script>
 </head>
 
 <body>
@@ -83,15 +82,10 @@ def flatten(elem):
 </main>
 <footer>
   <p>
-    Thoughts? Comments? Leave a <a href="/webmention">Webmention</a>.
+    ← <a href="/posts/pre-processing-imports-in-python">Pre-processing Imports in Python</a>
+    <br />
+    → <a href="/posts/programming-languages-for-beginners">Programming Languages for Beginners</a>
   </p>
-  <form onsubmit="return post(event);">
-    <span class="flex-field">
-      <input type="url" name="source" required placeholder="https://your.blog/post">
-      <input type="submit" value="Create">
-    </span>
-  </form>
-  <ul id="webmentions"></ul>
 </footer>
 <nav>
   <ul>
