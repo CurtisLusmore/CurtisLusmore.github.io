@@ -5,6 +5,22 @@
     <link>https://lusmo.re</link>
     <description>Curtis’ homepage</description>
     <item>
+      <title>The Perils of Premature Planning</title>
+      <link>https://lusmo.re/posts/lunch-and-learn</link>
+      <guid>https://lusmo.re/posts/lunch-and-learn</guid>
+      <description>
+        A few years ago I was consulting with a service delivery team. They had
+        some manual processes for on-boarding new customers that took two weeks and
+        they were trying to drive this time down. They knew all the tasks that were
+        involved, and they used a spreadsheet to plan it all out.
+        They were trying to switch from this waterfall-ish process to something
+        more agile, which of course started with adopting an Enterprise-grade Agile
+        tool like Azure Devops. They had 4 on-boarding jobs in the pipeline, so
+        they created a backlog and filled it up with eight weeks’ worth of work.
+      </description>
+      <pubDate>Thu, 11 March 2021 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>Scheduling a Weekly Lunch-and-Learn</title>
       <link>https://lusmo.re/posts/lunch-and-learn</link>
       <guid>https://lusmo.re/posts/lunch-and-learn</guid>

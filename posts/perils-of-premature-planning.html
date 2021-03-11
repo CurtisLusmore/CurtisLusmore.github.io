@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="The Perils of Premature Planning">
+  <meta property="og:image" content="https://lusmo.re/imgs/cover.jpg">
+  <title>The Perils of Premature Planning | lusmo.re</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="webmention" href="https://webmention.lusmo.re/post">
+  <script src="/js/main.js" defer></script>
+</head>
+
+<body>
+<header>
+  <h1>The Perils of Premature Planning</h1>
+  <address>
+    <img class="author" src="/imgs/profile.png" title="Curtis Lusmore">
+    Curtis Lusmore <br>
+    <time datetime="2021-03-11">11 March 2021</time>
+  </address>
+</header>
+<main>
+  <p>
+    A few years ago I was consulting with a service delivery team. They had
+    some manual processes for on-boarding new customers that took two weeks and
+    they were trying to drive this time down. They knew all the tasks that were
+    involved, and they used a spreadsheet to plan it all out.
+  </p>
+  <p>
+    They were trying to switch from this waterfall-ish process to something
+    more agile, which of course started with adopting an Enterprise-grade Agile
+    tool like Azure Devops. They had 4 on-boarding jobs in the pipeline, so
+    they created a backlog and filled it up with eight weeks’ worth of work.
+  </p>
+  <p>
+    They planned the work down to the task-level for each customer. This was
+    dozens of tasks all painstakingly fleshed out with descriptions, acceptance
+    criteria and estimates, they’d assigned all the work to the appropriate
+    people, and they were ready to go. They must have spent a week planning all
+    of this.
+  </p>
+  <p>
+    With enough repetition I’m sure they might get the delivery time down a
+    bit, but there was no way they’d make significant improvements, to the
+    extent that they really wanted, without a drastic change. They knew they
+    needed to automate most or all of the process, but that’s not what their
+    work plan showed. Before they had even started, they were literally
+    planning to do the work the same way four times in a row.
+  </p>
+  <p>
+    This is when I joined. I started by walking them through the principles of
+    agile delivery and continuous improvement. We agreed that since our goal
+    was to learn and improve with each attempt, that it didn’t make sense to
+    plan out the specifics of how the second, third and fourth customers would
+    be onboarded. We decided to remove the tasks underneath those stories,
+    continue with the current (manual) process for the first customer as
+    planned, but do the breakdown for the other stories once we had more
+    information.
+  </p>
+  <p>
+    Sure enough there were a few tweaks we needed to make through the first
+    iteration. There were some gaps in the process that they knew about but
+    never bothered to update the tracking spreadsheet, which meant they were
+    then blindly copied into the backlog. There were also some unexpected gaps
+    in the process because it was recorded wrong, or some workflows had
+    changed. Scrapping the sub-tasks was already a win at this stage, because
+    we’d already discovered they were wrong.
+  </p>
+  <p>
+    For the second iteration we started automating some steps. It can take
+    longer to develop the automation than to just do the thing, so in order to
+    honor the two-week timebox for the iteration we used some manual steps
+    where automation would take too long. Scrapping the sub-tasks for this
+    iteration was a huge win—rather than have the <s>project manager</s>
+    iteration manager dictate how the work needs to be performed by
+    pre-defining the tasks, we gave the subject-matter experts the autonomy to
+    decide for themselves.
+  </p>
+  <p>
+    For the third iteration we automated the remaining steps in the process, so
+    that by the end of our two-week sprint timebox we had a fully-automated
+    on-boarding pipeline.
+  </p>
+  <p>
+    The fourth iteration took two minutes to run the pipeline.
+  </p>
+  <p>
+    The moral of the story is that in this case, premature work breakdown set
+    the team down the wrong path, thinking that they knew today exactly how
+    they would perform work two months in the future, despite not knowing what
+    they would learn in the meantime. They were essentially planning to not
+    learn anything, to not improve.
+  </p>
+  <p>
+    By leaving future work unplanned, you open yourself up to the possibility
+    of discovering a better plan tomorrow than you could possibly create
+    today.
+  </p>
+</main>
+<footer>
+  <p>
+    → <a href="/posts/lunch-and-learn">Scheduling a Weekly Lunch-and-Learn</a>
+  </p>
+</footer>
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="/external">External</a></li>
+    <li><a href="/posts">Posts</a></li>
+    <li><a href="/projects">Projects</a></li>
+    <li><a href="/subscribe">Subscribe</a></li>
+  </ul>
+</nav>
+</body>
+
+</html>
