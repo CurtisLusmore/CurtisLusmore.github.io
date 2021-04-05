@@ -30,9 +30,9 @@
   </p>
   <p>
     Think about the concrete actions that your application can take: making a
-    web request, reading/writing to the filesystem, communicating with another
-    process like a database, printing to the console, etc. We call these
-    “capabilities”, and without them a program is basically useless.
+    web request, reading/<wbr>writing to the filesystem, communicating with
+    another process like a database, printing to the console, etc. We call
+    these “capabilities”, and without them a program is basically useless.
   </p>
   <p>
     Imagine trying to track down all the places in a code-base where these
@@ -55,11 +55,11 @@
     statically to every part of your program, or any of its dependencies, via
     public classes like <code>HttpClient</code>. If I’m writing a piece of code
     that needs to make a web request, nothing can stop me from doing it. I
-    don’t need to be given permission/access to this capability by any other
-    part of the application, I don’t need to even declare in any discoverable
-    way that I’m using this capability, so that others might be aware of my
-    using it. It’s completely unpreventable and untraceable to the rest of the
-    program.
+    don’t need to be given permission/<wbr>access to this capability by any
+    other part of the application, I don’t need to even declare in any
+    discoverable way that I’m using this capability, so that others might be
+    aware of my using it. It’s completely unpreventable and untraceable to the
+    rest of the program.
   </p>
   <p>
     The way that the object-capability model handles this is to dictate how
@@ -69,7 +69,7 @@
     <ol>
       <li>
         Initial conditions: The runtime of your program may make certain
-        capabilities available to anybody/everybody. This can be a global
+        capabilities available to anybody/<wbr>everybody. This can be a global
         capability like most language primitives, or the availability can be
         limited to only parts of the program by classes marked as
         <code>protected</code>, <code>private</code> or <code>internal</code>.
@@ -81,7 +81,7 @@
       </li>
       <li>
         Endowment: If an object A creates another object B, then A can pass B
-        any/all references it wishes, e.g. via the arguments of the
+        any/<wbr>all references it wishes, e.g. via the arguments of the
         constructor.
       </li>
       <li>
@@ -126,7 +126,7 @@
   <p>
     Most programming languages don’t allow you to forge object references. Some
     do, like how in C you can cast an arbitrary integer to a pointer to obtain
-    a reference to an object/value. But most languages since C don’t allow
+    a reference to an object/<wbr>value. But most languages since C don’t allow
     this.
   </p>
   <p>
