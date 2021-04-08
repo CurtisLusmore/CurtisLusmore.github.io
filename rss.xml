@@ -5,9 +5,22 @@
     <link>https://lusmo.re</link>
     <description>Curtis’ homepage</description>
     <item>
+      <title>Lessons from the AFL</title>
+      <link>https://lusmo.re/posts/lessons-from-afl</link>
+      <guid>https://lusmo.re/posts/lessons-from-afl</guid>
+      <description>
+        The footy is back on again, and I was thinking about what lessons we can
+        take from team sports, like the AFL, and apply to team environments at work,
+        like a typical software development team. So in no particular order, here
+        are ten lessons I think that we in software development could learn from
+        AFL teams.
+      </description>
+      <pubDate>Thu, 8 April 2021 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>The Perils of Premature Planning</title>
-      <link>https://lusmo.re/posts/lunch-and-learn</link>
-      <guid>https://lusmo.re/posts/lunch-and-learn</guid>
+      <link>https://lusmo.re/posts/perils-of-premature-planning</link>
+      <guid>https://lusmo.re/posts/perils-of-premature-planning</guid>
       <description>
         A few years ago I was consulting with a service delivery team. They had
         some manual processes for on-boarding new customers that took two weeks and
