@@ -5,6 +5,24 @@
     <link>https://lusmo.re</link>
     <description>Curtis’ homepage</description>
     <item>
+      <title>When Two Rights Make a Wrong</title>
+      <link>https://lusmo.re/posts/two-rights-make-a-wrong</link>
+      <guid>https://lusmo.re/posts/two-rights-make-a-wrong</guid>
+      <description>
+        A few years ago I came across this awesome post, How I hacked hundreds
+        of companies through their helpdesk, which describes a neat hack on a
+        whole bunch of companies. I encourage you to read the full post because
+        it’s a fascinating read, but I’ll summarise the gist of it here.
+        Some work apps, the most common example being Slack, allow you to register
+        and sign in with any email address on your employer’s domain, e.g.
+        anything@company.com. This is a convenience that allows your employees
+        to self-service register without allowing just anybody in. This sounds safe
+        enough to a lot of companies, because they figure they only give out these
+        email addresses to current employees.
+      </description>
+      <pubDate>Thu, 15 April 2021 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>Lessons from the AFL</title>
       <link>https://lusmo.re/posts/lessons-from-afl</link>
       <guid>https://lusmo.re/posts/lessons-from-afl</guid>

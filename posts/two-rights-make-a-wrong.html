@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="When Two Rights Make a Wrong">
+  <meta property="og:image" content="https://lusmo.re/imgs/cover.jpg">
+  <title>When Two Rights Make a Wrong | lusmo.re</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="webmention" href="https://webmention.lusmo.re/post">
+  <script src="/js/main.js" defer></script>
+</head>
+
+<body>
+<header>
+  <h1>When Two Rights Make a Wrong</h1>
+  <address>
+    <img class="author" src="/imgs/author.png" title="Curtis Lusmore" alt="Photo of Curtis Lusmore">
+    Curtis Lusmore <br>
+    <time datetime="2021-04-15">15 April 2021</time>
+  </address>
+</header>
+<main>
+  <p>
+    A few years ago I came across this awesome post,
+    <a href="https://medium.com/intigriti/how-i-hacked-hundreds-of-companies-through-their-helpdesk-b7680ddc2d4c"
+    >How I hacked hundreds of companies through their helpdesk</a>, which
+    describes a neat hack on a whole bunch of companies. I encourage you to
+    read the full post because it’s a fascinating read, but I’ll summarise the
+    gist of it here.
+  </p>
+  <p>
+    Some work apps, the most common example being Slack, allow you to register
+    and sign in with any email address on your employer’s domain, e.g.
+    anything@<wbr>company.com. This is a convenience that allows your employees
+    to self-service register without allowing just anybody in. This sounds safe
+    enough to a lot of companies, because they figure they only give out these
+    email addresses to current employees.
+  </p>
+  <p>
+    Many apps with support systems, the example from the post being GitLab,
+    will assign customers an email address, like some-random-id@<wbr
+    >company.com, that they can email to create a support ticket. Since
+    basically everything can send email, this is a handy way of integrating
+    with a bunch of apps quickly. Again, this sounds safe enough because we
+    don’t generally think of access to a throwaway email address as providing
+    access to critical systems.
+  </p>
+  <p>
+    In isolation, each of these ideas sounds great. But as you’ve probably
+    already spotted, the combination is a catastrophe. The author was able to
+    join GitLab’s private Slack instance by signing up with his assigned
+    support email address.
+  </p>
+  <p>
+    There are other examples in the infosec space, like websites that will hide
+    all but the last few digits of your credit card number or social security
+    number, and others that use this information as proof-of-identity during an
+    account recovery process. The combination here means that if somebody gains
+    access to one of your accounts they might be able to leverage information
+    it leaks to access other accounts.
+  </p>
+  <p>
+    There’s another example that I noticed during COVID-19, though perhaps not
+    as extreme. The <a href="https://www.health.qld.gov.au/news-events/news/sneezing-101-what-why-how-to-sneeze-correctly-safely"
+    >Sneezing 101</a> page on the QLD Government website says you should sneeze
+    into your elbow, which makes sense since you don’t want to get your hands
+    dirty and then spread the germs onto everything you touch.  However, the
+    <a href="https://www.qld.gov.au/transport/covid-19-transport/automation-of-pedestrian-crossing-signals-at-intersections"
+    >Automation of pedestrian crossing signals at intersections</a> page on the
+    QLD Government website says you should press pedestrian crossing buttons
+    with your elbow, which also makes sense since you don’t want germs to
+    spread from the button to your hands.
+  </p>
+  <p>
+    But think about the combination of doing <em>both</em> of these things
+    together. Is it safe to sneeze into my elbow and then use it to press
+    buttons at pedestrian crossings, elevators, or to pull door handles? Is it
+    safe to bury my head into the elbow that I just used to press all those
+    buttons? Again, individually both of these ideas sound great, but they
+    don’t work together in combination. I picked on the QLD Gov website here
+    because it happened to be the top search result, but I have seen the same
+    suggestions dozens of times over the last year.
+  </p>
+  <p>
+    Again, neither piece of advice is bad and I’m certainly not suggesting
+    either be changed or retracted, but in combination they can lead to an
+    undesirable or unintended outcome. In other cases, such as the exploit
+    described in the article I linked above, you absolutely do need to change
+    one or the other, and because both are individually good ideas it’s not
+    always clear which to change.
+  </p>
+</main>
+<footer>
+  <p>
+    → <a href="/posts/lessons-from-afl">Lessons from the AFL</a>
+  </p>
+</footer>
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="/external">External</a></li>
+    <li><a href="/posts">Posts</a></li>
+    <li><a href="/projects">Projects</a></li>
+    <li><a href="/subscribe">Subscribe</a></li>
+  </ul>
+</nav>
+</body>
+
+</html>
