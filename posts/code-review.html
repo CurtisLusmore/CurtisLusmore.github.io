@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Code Review">
+  <meta property="og:image" content="https://lusmo.re/imgs/cover.jpg">
+  <title>Code Review | lusmo.re</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="webmention" href="https://webmention.lusmo.re/post">
+  <script src="/js/main.js" defer></script>
+</head>
+
+<body>
+<header>
+  <h1>Code Review</h1>
+  <address>
+    <img class="author" src="/imgs/author.png" title="Curtis Lusmore" alt="Photo of Curtis Lusmore">
+    Curtis Lusmore <br>
+    <time datetime="2021-04-22">22 April 2021</time>
+  </address>
+</header>
+<main>
+  <p>
+    I’ve seen a lot of questions recently about code review, so I thought I
+    would write about my experiences working across a few development teams.
+    But first, it’s important to remember that code review is but one small
+    part of a good development process. It’s hard to give advice in general
+    about code review without considering the whole process.
+  </p>
+  <p>
+    For example, some people argue that code review is a waste of time because
+    by the time you review code, it’s already too late to change the design.
+    The author and reviewer will argue for a bit, but by the sunk-cost fallacy
+    the author will only commit to minor changes and move on. Some complain
+    that code review mostly devolves into petty bike-shedding over code style
+    and formatting. Some complain that waiting for review becomes a huge
+    bottleneck in the development process.
+  </p>
+  <p>
+    I joked a few weeks ago on <a href="https://twitter.com/CurtisLusmore/status/1374617721317380099"
+    >Twitter</a> about reviewing large PRs, but honestly if a pull request gets
+    this large there isn’t really a feasible way to review it all. The choice
+    is to ask the author to break it down into smaller changes, or let it
+    through blindly.
+  </p>
+  <p>
+    It’s hard to address these points in isolation, because these issues aren’t
+    caused by bad code review, they are caused by a break-down earlier in the
+    development process. But enough of the complaints, let’s talk about what
+    works. Or at least, what has worked for me in the past on my most
+    productive teams. And let’s start by talking about the broader development
+    process.
+  </p>
+  <p>
+    A good development process is one that allows the team to collaborate
+    effectively to rapidly develop and deploy code into production, and that
+    brings all developers on the team along for that journey.
+  </p>
+  <p>
+    Let’s start with “collaborate effectively”. Code review isn’t inherently
+    collaborative—<wbr>reviewing work after it’s already been done is hardly
+    collaboration. In my best teams we would do a high-level design in sprint
+    planning to get everybody on the same page. This has two main benefits: it
+    moves the design discussion up-front before the work is done to minimise
+    the amount of rework due to differences of opinion in design, and it lowers
+    the friction to getting started on the work for those who need more
+    guidance (juniors or people new to the project), as they won’t need to try
+    to schedule more more meetings later in the week when they start the work.
+  </p>
+  <p>
+    Another trick we use is to submit what we call “skeleton PRs”, where we add
+    only the interfaces, or an API with placeholder/<wbr>hard-coded
+    implementation, so that the design/shape of the code can be reviewed before
+    the real implementation work begins. If you have front-end and back-end
+    specialists, this is a good way to coordinate between the two on what will
+    work best for everybody. Writing "skeleton" code should be trivial enough
+    that anybody on the project can contribute, regardless of their speciality.
+  </p>
+  <p>
+    We also make good use of “draft PRs”, where we submit changes as early as
+    possible and the author actively asks for feedback on specific parts
+    (especially any changes to the design laid out in skeleton PR). This
+    creates a <em>feedback loop</em>, rather than just <em>feedback</em>. Once
+    the implementation is finished, the author will clean up their commit
+    history and then "publish" the draft, letting reviewers know to give it
+    another look so that it can be merged.
+  </p>
+  <p>
+    “That sounds like a lot of PRs, doesn’t that slow you down?” I hear you
+    ask. That brings us to our next point, “rapidly”. There’s nothing more
+    frustrating than being blocked waiting for code review, I’ll grant you
+    that.
+  </p>
+  <p>
+    The trick to getting speedy code reviews is to make the job of the reviewer
+    as easy as possible. If I see a pull request with dozens or hundreds of
+    files, I’m gonna put it off unless I know it’s an urgent urgent blocker.
+    The use of skeleton and draft/<wbr>implementation PRs helps this, by making
+    most PRs either a design review (for skeleton PRs) or a bug check review
+    (for implementation PRs).
+  </p>
+  <p>
+    It’s important also to keep the PRs as small as possible, and to make good
+    use of a clean Git history and meaningful commit messages to make reviewing
+    the code a pleasant experience. Thankfully my teammates are skilled with
+    Git and use interactive rebase liberally to tidy up their PRs (especially
+    draft PRs, which usually start off a mess) into a few atomic commits with
+    clear messages explaining why the code is necessary and how it contributes
+    to the PR, letting me review PRs one commit at a time.
+  </p>
+  <p>
+    And this leads smoothly into third point, “brings the team along for the
+    journey”. A good PR is educational for everybody involved. The author gets
+    feedback from the reviewer, and the reviewer learns from the approach of
+    the author. But the reviewer should also learn more about the problems that
+    the PR is attempting to solve by the description of the PR and the commit
+    messages. This gives the reviewer a better understanding not just of the
+    code, but of the product/<wbr>service itself.
+  </p>
+  <p>
+    I leave you with a few of my favourite videos related to code review. <a
+    href="https://www.youtube.com/watch?v=1NoNTqank_U">A Branch in Time</a> by
+    Tekin Süleyman is a great talk about how to craft your Git history into
+    something that’s easy for your collaborators to understand. <a
+    href="https://www.youtube.com/watch?v=wf-BqAjZb8M">Beyond PEP8</a> by
+    Raymond Hettinger is a great talk about how to write code that is easy to
+    review, without getting distracted by petty issues. And finally, <a
+    href="https://www.youtube.com/watch?v=iNG1a--SIlk">Constructive Code
+    Review</a> by Erik Rose is a great talk about good code review etiquette.
+  </p>
+</main>
+<footer>
+  <p>
+    → <a href="/posts/two-rights-make-a-wrong">When Two Rights Make a Wrong</a>
+  </p>
+</footer>
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="/external">External</a></li>
+    <li><a href="/posts">Posts</a></li>
+    <li><a href="/projects">Projects</a></li>
+    <li><a href="/subscribe">Subscribe</a></li>
+  </ul>
+</nav>
+</body>
+
+</html>

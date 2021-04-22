@@ -5,6 +5,26 @@
     <link>https://lusmo.re</link>
     <description>Curtis’ homepage</description>
     <item>
+      <title>Code Review</title>
+      <link>https://lusmo.re/posts/code-review</link>
+      <guid>https://lusmo.re/posts/code-review</guid>
+      <description>
+        I’ve seen a lot of questions recently about code review, so I thought I
+        would write about my experiences working across a few development teams.
+        But first, it’s important to remember that code review is but one small
+        part of a good development process. It’s hard to give advice in general
+        about code review without considering the whole process.
+        For example, some people argue that code review is a waste of time because
+        by the time you review code, it’s already too late to change the design.
+        The author and reviewer will argue for a bit, but by the sunk-cost fallacy
+        the author will only commit to minor changes and move on. Some complain
+        that code review mostly devolves into petty bike-shedding over code style
+        and formatting. Some complain that waiting for review becomes a huge
+        bottleneck in the development process.
+      </description>
+      <pubDate>Thu, 22 April 2021 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>When Two Rights Make a Wrong</title>
       <link>https://lusmo.re/posts/two-rights-make-a-wrong</link>
       <guid>https://lusmo.re/posts/two-rights-make-a-wrong</guid>
