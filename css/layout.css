@@ -11,9 +11,9 @@ pre { max-width: 90vw; overflow-x: auto; }
   body {
     grid-template-areas:
       'header'
-      'nav'
       'main'
-      'footer';
+      'footer'
+      'nav';
     padding: 1vh 1vw;
   }
 
