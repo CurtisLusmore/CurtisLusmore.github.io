@@ -47,7 +47,7 @@ pre { font-size: 0.8em; }
 input { font-size: 1em; margin: 10px auto; }
 
 a { color: var(--color-text); text-decoration-color: var(--color-accent-1); }
-a:hover { text-decoration-color: var(--color-accent-2); }
+a:hover, a:focus { text-decoration-color: var(--color-accent-2); }
 
 header > address { font-style: normal; }
 header > address > img.author { height: 2.5em; float: left; margin-right: 1ch; }
