@@ -5,6 +5,25 @@
     <link>https://lusmo.re</link>
     <description>Curtis’ homepage</description>
     <item>
+      <title>Battles and Wars</title>
+      <link>https://lusmo.re/posts/battles-and-wars</link>
+      <guid>https://lusmo.re/posts/battles-and-wars</guid>
+      <description>
+        In software there are battles and there are wars. The battles are the
+        day-to-day—dealing with tech debt, buggy code, flakey build systems,
+        inadequate testing, unreliable stakeholders, vague and changing
+        requirements, overbearing processes, the usual stuff. The wars are the
+        bigger picture—hitting a deadline, delivering a big project,
+        developing strong relationships, shipping product.
+        There is an infinite stream of battles. Regardless of whether you win, lose
+        or surrender, there will always be more battles to fill your day-to-day.
+        Battles come and go all the time, and they’re always changing. Wars, on the
+        other hand, play out over a much longer timeframe—it takes time for the
+        tides of war to change, and you can’t always choose the wars you fight in.
+      </description>
+      <pubDate>Fri, 14 May 2021 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>100 Days of Blogging</title>
       <link>https://lusmo.re/posts/100-days-of-blogging</link>
       <guid>https://lusmo.re/posts/100-days-of-blogging</guid>
