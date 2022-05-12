@@ -5,6 +5,24 @@
     <link>https://lusmo.re</link>
     <description>Curtis’ homepage</description>
     <item>
+      <title>A Different Kind of Delivery</title>
+      <link>https://lusmo.re/posts/a-different-kind-of-delivery</link>
+      <guid>https://lusmo.re/posts/a-different-kind-of-delivery</guid>
+      <description>
+        In my day job I’m a software development consultant, which means I work in
+        a delivery team and spend a great deal of time working closely with my
+        product owner to build great software. Outside of my day job, I was
+        recently part of a big project completely unrelated to software and was on
+        the other side of the fence, as the (co-) product owner working with a
+        rather different type of delivery team.
+        It has been a huge learning experience for me, not just getting the product
+        owner’s perspective but also observing how delivery teams work in other
+        industries. In this post I’ll share some of the most important lessons
+        which I think we can carry across to software development.
+      </description>
+      <pubDate>Thu, 12 May 2022 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>Battles and Wars</title>
       <link>https://lusmo.re/posts/battles-and-wars</link>
       <guid>https://lusmo.re/posts/battles-and-wars</guid>

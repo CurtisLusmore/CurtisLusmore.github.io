@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="A Different Kind of Delivery">
+  <meta property="og:image" content="https://lusmo.re/imgs/cover.jpg">
+  <title>A Different Kind of Delivery | lusmo.re</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="webmention" href="https://webmention.lusmo.re/post">
+  <script src="/js/main.js" defer></script>
+</head>
+
+<body>
+<header>
+  <h1>A Different Kind of Delivery</h1>
+  <address>
+    <img class="author" src="/imgs/author.png" title="Curtis Lusmore" alt="Photo of Curtis Lusmore">
+    Curtis Lusmore <br>
+    <time datetime="2022-05-12">12 May 2022</time>
+  </address>
+</header>
+<main>
+  <p>
+    In my day job I’m a software development consultant, which means I work in
+    a delivery team and spend a great deal of time working closely with my
+    product owner to build great software. Outside of my day job, I was
+    recently part of a big project completely unrelated to software and was on
+    the other side of the fence, as the (co-) product owner working with a
+    rather different type of delivery team.
+  </p>
+  <p>
+    It has been a huge learning experience for me, not just getting the product
+    owner’s perspective but also observing how delivery teams work in other
+    industries. In this post I’ll share some of the most important lessons
+    which I think we can carry across to software development.
+  </p>
+  <p>
+    I’ll start with a quick overview of the project. It started with a roughly
+    forty-week development phase, then a very intense production deployment,
+    and continues now with an ongoing development-in-production phase.
+  </p>
+  <p>
+    The “product” is my son, delivered in September last year.
+  </p>
+  <p>
+    The biggest lesson has been a pretty significant rethink of project scope,
+    must-haves and nice-to-haves. It turns out the list of must-haves is much
+    smaller than the feature list of a typical adult human, basically just
+    breathing, feeding, sleeping, and waste disposal, with a fairly primitive
+    alerting system which doesn’t even really distinguish between which of the
+    above four functions has an issue.
+  </p>
+  <p>
+    The ability to walk and talk are two of the most critical skills for
+    humans—what I would generally consider as must-haves—but my son wasn’t born
+    with either of these features and even now at seven months of age they’re
+    still a while off. There are good reasons that these features are deferred
+    until after the production deployment.
+  </p>
+  <p>
+    Firstly, they take a long time to develop, and technically you can survive
+    without them, so insisting they be ready for the initial deployment really
+    only serves to delay the initial deployment (not a pleasant thought for my
+    wife). But secondly and more importantly, they would be too hard or likely
+    impossible to develop well without a feedback loop, which is the next big
+    lesson.
+  </p>
+  <p>
+    Real feedback loops are critically important to developing most features.
+    The processes required to walk and talk are just far too complicated to be
+    developed in isolation without the assistance of good feedback mechanisms.
+    They take hours and hours of repetitive trial-and-error to fine-tune, and
+    no amount of deep thought, design or planning will be an adequate
+    substitute for this.
+  </p>
+  <p>
+    Note also that I said <em>real</em> feedback loops. Many development teams
+    will use lower environments to test and iterate on features, and this is
+    certainly better than no feedback loop at all, but sometimes there really
+    is just nothing like production and no tester like a real user. You can
+    still do this in a controlled way without releasing untested features to
+    the entire world, through techniques like feature flags and deployment
+    rings.
+  </p>
+  <p>
+    My son can practice his walking and talking safely at home before he
+    progresses to the outside world, but even then, as the saying goes, “you
+    have to crawl before you can walk”, which brings us to the third big
+    lesson.
+  </p>
+  <p>
+    Iterative development can mean delivering temporary, interim features that
+    won’t be needed in the long-term. When time is short and you’re already
+    being ruthless with your must-haves and nice-to-haves, developing features
+    that will be removed or replaced later can seem like a waste of time. But
+    some features are just too big to implement in one piece—whether that be
+    within a release or a sprint—and it makes sense to instead implement a
+    smaller or simpler feature that will start the feedback loop sooner.
+  </p>
+  <p>
+    You can then iterate from this interim solution by changing or extending
+    where possible, or at least by applying lessons learnt from the feedback
+    loop to deliver with more confidence. There’s another saying for this,
+    “make it work, make it right, make it fast”.
+  </p>
+  <p>
+    The fourth lesson was about staying flexible and adapting to change. So
+    much of what happens, before and after the birth, is out of your hands.
+    It’s good to have a plan, but it’s better to have a plan that’s flexible.
+    You are encouraged to decide on a birth plan, but anything can happen on
+    the day so you need to be ready to adapt. Similarly with all of the various
+    clothes and supplies you need to by—we found it was best to buy
+    conservatively at first, see what works and what we like, and then buy more
+    as needed. It’s hard to know what you need to pack in your nappy bag until
+    you need it, so the contents change over time as you encounter more
+    scenarios.
+  </p>
+  <p>
+    One lever you can use to help adjust to change is the length of your
+    feedback cycle, like your sprint length. Early on in the pregnancy when
+    things develop slowly, we would only see our obstetrician once per month.
+    This eventually increased to once per fortnight, once per week and then
+    several times per week right before the delivery, as things began to change
+    faster and faster. After the birth you have regular visits with a maternal
+    and child health nurse. The frequency of these visits follows the opposite
+    pattern, from once a fortnight, once a month, to once every several months,
+    as development starts to stabilise and slow down.
+  </p>
+  <p>
+    Some things just can’t be planned at all. Even ignoring the ethics of it,
+    it would be foolish of me to try to plan out my child’s hobbies and
+    interests. For some things, it’s best to just provide a lot of
+    opportunities for experimentation and then invest further in the things
+    that work.
+  </p>
+  <p>
+    The fifth lesson was on conducting effective handovers. In consulting its
+    quite common for the delivery team to hand the application over to another
+    team at the end of the project, like an in-house development or operations
+    team, but this can also happen at product companies where a development
+    team hands an application off to an operations team. This usually involves
+    some amount of documentation and a knowledge transfer workshop.
+  </p>
+  <p>
+    I’ve never found this format to be particularly effective, as it’s
+    extremely difficult for somebody with no context of an application to know
+    what questions to ask or which points to pay particular attention to.
+  </p>
+  <p>
+    After the delivery of my son, my wife and I stayed at the hospital for four
+    nights and were the primary carers, but we had 24/7 access to a team of
+    midwives and nurses who walked us through everything we needed to learn and
+    could be called upon at any time to assist. Four days is long enough that
+    you’ll need to run through the main processes (feeding, nappy changes,
+    putting to sleep, bathing) several times, and will need to diagnose a few
+    outbreaks of crying. This means that the handover doesn’t end until you
+    have demonstrated the ability to manage on your own.
+  </p>
+  <p>
+    I always think it’s worthwhile looking to other industries to see what
+    lessons can be applied to software development. Many of the problems we
+    face are more universal than you’d think, and it’s interesting to see the
+    approaches others have found to dealing with them. As you deal with other
+    professions in your day-to-day life, keep an eye out for things you can
+    learn from them.
+  </p>
+</main>
+<footer>
+  <p>
+    → <a href="/posts/battles-and-wars">Battles and Wars</a>
+  </p>
+</footer>
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="/external">External</a></li>
+    <li><a href="/posts">Posts</a></li>
+    <li><a href="/projects">Projects</a></li>
+    <li><a href="/subscribe">Subscribe</a></li>
+  </ul>
+</nav>
+</body>
+
+</html>
