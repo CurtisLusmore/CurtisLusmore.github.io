@@ -5,6 +5,23 @@
     <link>https://lusmo.re</link>
     <description>Curtis’ homepage</description>
     <item>
+      <title>Stop the Clock</title>
+      <link>https://lusmo.re/posts/stop-the-clock</link>
+      <guid>https://lusmo.re/posts/stop-the-clock</guid>
+      <description>
+        My watch has this neat feature where it automatically keeps the time and
+        date synchronised via a radio signal. For the most part it works
+        flawlessly, and I haven’t had to worry about setting the time in all the
+        years I’ve had it, even when I accidentally starve it of sunlight to charge
+        and its battery dies. A short walk outside and it’s back up and running in
+        no time, back to the correct time again.
+        But one morning recently I noticed it had started to run about two
+        minutes fast, and in trying to manually set the time I learnt a valuable
+        lesson that I think is informative far beyond just my watch.
+      </description>
+      <pubDate>Sat, 12 November 2022 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>A Different Kind of Delivery</title>
       <link>https://lusmo.re/posts/a-different-kind-of-delivery</link>
       <guid>https://lusmo.re/posts/a-different-kind-of-delivery</guid>
