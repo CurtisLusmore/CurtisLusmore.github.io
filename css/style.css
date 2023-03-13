@@ -5,19 +5,19 @@
   --color-accent-2: #ff4040;
   --color-text: var(--color-black);
   --color-background: var(--color-white);
-  --font-head: 'Lora', serif;
-  --font-body: 'Scope One', serif;
+  --font-head: 'Barlow Condensed', sans-serif;
+  --font-body: 'Helvetica Neue', sans-serif;
   --font-code: 'Inconsolata', monospace;
 }
 
 @font-face {
-  font-family: 'Lora';
-  src: url('/fonts/Lora-Regular.ttf') format('truetype');
+  font-family: 'Barlow Condensed';
+  src: url('/fonts/BarlowCondensed-Thin.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: 'Scope One';
-  src: url('/fonts/ScopeOne-Regular.ttf') format('truetype');
+  font-family: 'Helvetica Neue';
+  src: url('/fonts/HelveticaNeue-Light.ttf') format('truetype');
 }
 
 @font-face {
@@ -26,27 +26,33 @@
 }
 
 body {
+  background: var(--color-background);
+  color: var(--color-text);
   font-family: var(--font-body);
+  font-size: 1.5em;
   line-height: 1.5;
+  text-align: justify;
 }
 
 h1, h2, h3, h4, h5, h6 { font-family: var(--font-head); }
 code, pre { font-family: var(--font-code); }
 input { font-family: var(--font-body); }
 
-body > header h1 { font-size: 1.3em; }
+body > header h1 { font-size: 2em; }
 body > header h2 { font-size: 1.1em; }
 body > main > h2 { font-size: 1.1em; }
 
+h1 { margin-block: 0.5em; }
+
 body > main section h2 { font-size: 1.1em; }
-body > main header h1 { font-size: 1.1em; }
+body > main header h1 { font-size: 2em; }
 body > main header h2 { font-size: 1.0em; }
 body > main main h2 { font-size: 1.0em; }
 
 pre { font-size: 0.8em; }
 input { font-size: 1em; margin: 10px auto; }
 
-a { color: var(--color-text); text-decoration-color: var(--color-accent-1); }
+a { color: var(--color-text); text-decoration-color: var(--color-accent-1); text-underline-offset: 2px; }
 a:hover, a:focus { text-decoration-color: var(--color-accent-2); }
 
 header > address { font-style: normal; }
