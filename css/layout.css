@@ -15,6 +15,7 @@ body > nav { grid-area: nav; }
   }
 
   nav menu { display: flex; justify-content: space-between; }
+  pre { max-width: calc(100vw - 2ch); overflow-x: auto; }
 }
 
 @media (min-width: 901px) {
@@ -29,4 +30,5 @@ body > nav { grid-area: nav; }
 
   header, main, footer { max-width: 800px; }
   nav menu { position: sticky; top: 1.5rem; margin-top: 1.5rem; }
+  pre { max-width: 800px; overflow-x: auto; }
 }
