@@ -12,10 +12,13 @@ body > nav { grid-area: nav; }
       'footer'
       'nav';
     padding: 1ch;
+    margin: 0;
   }
 
+  header, main, footer, nav { max-width: calc(100vw - 2ch); }
+
   nav menu { display: flex; justify-content: space-between; }
-  pre { max-width: calc(100vw - 2ch); overflow-x: auto; }
+  pre { max-width: calc(100vw - 2ch); overflow-x: auto; box-sizing: border-box; }
 }
 
 @media (min-width: 901px) {
