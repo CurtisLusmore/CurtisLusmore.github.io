@@ -17,8 +17,7 @@
   <h1>Trust Nobody, Not Even Yourself</h1>
   <address>
     <img class="author" src="/imgs/author.png" title="Curtis Lusmore" alt="Photo of Curtis Lusmore">
-    Curtis Lusmore <br>
-    <time datetime="2016-05-07">7 May 2016</time>
+    Curtis Lusmore, <time datetime="2016-05-07">7 May 2016</time>
   </address>
 </header>
 <main>
@@ -119,7 +118,7 @@ new Thread(() =>
       // suppress, nothing to do, don't want to crash
   }
 }).Start();
-</pre>
+</code></pre>
   <p>
     I immediately suspected that the query was throwing an exception, so
     I stuck a break point on the catch statement and started debugging. 
@@ -129,7 +128,7 @@ new Thread(() =>
   <pre class="csharp">
 connection.Open();
 connection.ExecuteQuery(ClearCacheQuery);
-</pre>
+</code></pre>
   <p>
     A pretty easy mistake to make, but one that I can’t help but think
     could have been prevented by better tooling.
@@ -162,7 +161,7 @@ catch
 {
   // suppress, nothing to do, don’t want to crash
 }
-</pre>
+</code></pre>
   <p>
     Now it’s not even possible for the programmer to forget to open the
     connection. Humans are terrible at dealing with little technical
@@ -193,7 +192,7 @@ void DoWork(Guid gizmoKey, Guid hoozitKey)
   var hoozit = RetrieveHoozit(gizmoKey);
   gizmo.Operate(hoozit);
 }
-</pre>
+</code></pre>
   <p>
     I’m going to go with “make it a type error” again. If our keys were
     of different types, it would be a type error to try passing the
@@ -211,7 +210,7 @@ void DoWork(Guid gizmoKey, Guid hoozitKey)
   </p>
   <pre class="haskell">
 newtype GizmoKey = GizmoKey UUID
-</pre>
+</code></pre>
   <p>
     This creates a new type called <code>GizmoKey</code> which is exactly
     the same thing as a <code>UUID</code> except for the fact that I
@@ -248,19 +247,19 @@ newtype GizmoKey = GizmoKey UUID
 </main>
 <footer>
   <p>
-    ← <a href="/posts/199-days-of-git">199 Days of Git</a>
+    ← <a rel="next" href="/posts/199-days-of-git">199 Days of Git</a>
     <br />
-    → <a href="/posts/why-static-isnt-real-sharing">Why Static Isn’t Real Sharing</a>
+    → <a rel="prev" href="/posts/why-static-isnt-real-sharing">Why Static Isn’t Real Sharing</a>
   </p>
 </footer>
 <nav>
-  <ul>
+  <menu>
     <li><a href="/">Home</a></li>
     <li><a href="/contact">Contact</a></li>
     <li><a href="/external">External</a></li>
     <li><a href="/posts">Posts</a></li>
     <li><a href="/subscribe">Subscribe</a></li>
-  </ul>
+  </menu>
 </nav>
 </body>
 

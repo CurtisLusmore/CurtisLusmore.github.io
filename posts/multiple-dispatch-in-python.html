@@ -17,8 +17,7 @@
   <h1>Multiple Dispatch in Python</h1>
   <address>
     <img class="author" src="/imgs/author.png" title="Curtis Lusmore" alt="Photo of Curtis Lusmore">
-    Curtis Lusmore <br>
-    <time datetime="2015-07-25">25 July 2015</time>
+    Curtis Lusmore, <time datetime="2015-07-25">25 July 2015</time>
   </address>
 </header>
 <main>
@@ -38,8 +37,7 @@
     <code>cls</code>), and it doesn’t accept keyword arguments. At some
     stage I’ll try to make it a bit more rigorous.
   </p>
-  <pre>
-class Dispatch:
+  <pre><code>class Dispatch:
     _existing = {}
 
     def __init__(self, *types):
@@ -63,37 +61,36 @@ class Dispatch:
         (table, dispatcher) = self._existing[name]
         table[self.types] = fn
         return dispatcher
-</pre>
+</code></pre>
   <p>
     Once you tuck this away in a library somewhere where you don’t have
     to look at it, you can use it to write some pretty elegant code. See
     the following implementation of the flatten function.
   </p>
-  <pre>
-@Dispatch(list)
+  <pre><code>@Dispatch(list)
 def flatten(elems):
     return reduce(add, map(flatten, elems), [])
 
 @Dispatch(True)
 def flatten(elem):
     return [elem]
-</pre>
+</code></pre>
 </main>
 <footer>
   <p>
-    ← <a href="/posts/pre-processing-imports-in-python">Pre-processing Imports in Python</a>
+    ← <a rel="next" href="/posts/pre-processing-imports-in-python">Pre-processing Imports in Python</a>
     <br />
-    → <a href="/posts/programming-languages-for-beginners">Programming Languages for Beginners</a>
+    → <a rel="prev" href="/posts/programming-languages-for-beginners">Programming Languages for Beginners</a>
   </p>
 </footer>
 <nav>
-  <ul>
+  <menu>
     <li><a href="/">Home</a></li>
     <li><a href="/contact">Contact</a></li>
     <li><a href="/external">External</a></li>
     <li><a href="/posts">Posts</a></li>
     <li><a href="/subscribe">Subscribe</a></li>
-  </ul>
+  </menu>
 </nav>
 </body>
 

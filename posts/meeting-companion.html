@@ -20,8 +20,7 @@
   </hgroup>
   <address>
     <img class="author" src="/imgs/author.png" title="Curtis Lusmore" alt="Photo of Curtis Lusmore">
-    Curtis Lusmore <br>
-    <time datetime="2020-04-22">22 April 2020</time>
+    Curtis Lusmore, <time datetime="2020-04-22">22 April 2020</time>
   </address>
 </header>
 <main>
@@ -51,19 +50,17 @@
     following commands to create a blank React app for the front-end and
     a .NET Core web application for the back-end.
   </p>
-  <pre>
-mkdir meeting-companion
+  <pre><code>mkdir meeting-companion
 cd meeting-companion
 npx create-react-app .
 dotnet new web
 yarn build
-</pre>
+</code></pre>
   <p>
     Next we need to enable static file serving on our backend so that it
     can serve our front-end. In <code>Program.cs</code>, make the following change.
   </p>
-  <pre>
-@@ -21,6 +21,7 @@ namespace meeting_companion
+  <pre><code>@@ -21,6 +21,7 @@ namespace meeting_companion
                  .ConfigureWebHostDefaults(webBuilder =&gt;
                  {
                      webBuilder.UseStartup<Startup>();
@@ -71,12 +68,11 @@ yarn build
                  });
      }
  }
-</pre>
+</code></pre>
   <p>
     In <code>Startup.cs</code>, make the following two changes.
   </p>
-  <pre>
-@@ -26,14 +26,11 @@ namespace meeting_companion
+  <pre><code>@@ -26,14 +26,11 @@ namespace meeting_companion
                  app.UseDeveloperExceptionPage();
              }
 
@@ -92,14 +88,13 @@ yarn build
              });
          }
      }
-</pre>
+</code></pre>
   <p>
     Now we can build and run the front-end and back-end.
   </p>
-  <pre>
-yarn build
+  <pre><code>yarn build
 dotnet run
-</pre>
+</code></pre>
   <p>
     You should now be able to open your browser to
     <a href="http://localhost:5000">http://localhost:5000</a> and see the
@@ -111,10 +106,9 @@ dotnet run
     directories to <code>.gitignore</code>. Add the following two lines
     anywhere to <code>.gitignore</code>.
   </p>
-  <pre>
-bin/
+  <pre><code>bin/
 obj/
-</pre>
+</code></pre>
   <h2 id="2">
     <a href="#2">Adding SignalR to the back-end</a>
   </h2>
@@ -126,8 +120,7 @@ obj/
     simple and will only require a single hub, so create a new file
     called <code>MeetingHub.cs</code> and add the following code.
   </p>
-  <pre>
-using System.Threading.Tasks;
+  <pre><code>using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
 
 namespace meeting_companion
@@ -137,7 +130,7 @@ namespace meeting_companion
         public Task Send(string sound) =&gt; Clients.All.SendAsync(sound);
     }
 }
-</pre>
+</code></pre>
   <p>
     This hub can receive <code>Send</code> messages which contain a
     <code>sound</code> parameter. When it receives one of these messages,
@@ -148,8 +141,7 @@ namespace meeting_companion
     routing middleware. Back in <code>Startup.cs</code>, make the
     following two change.
   </p>
-  <pre>
-@@ -16,6 +16,7 @@ namespace meeting_companion
+  <pre><code>@@ -16,6 +16,7 @@ namespace meeting_companion
          // ...
          public void ConfigureServices(IServiceCollection services)
          {
@@ -165,7 +157,7 @@ namespace meeting_companion
              });
          }
      }
-</pre>
+</code></pre>
   <p>
     That’s all we need to add to the back-end! You could build and run
     again, but we haven’t added any observable changes yet.
@@ -178,9 +170,8 @@ namespace meeting_companion
     to do is add the <a href="https://www.npmjs.com/package/@microsoft/signalr"
     >signalr</a> package.
   </p>
-  <pre>
-yarn add @microsoft/signalr
-</pre>
+  <pre><code>yarn add @microsoft/signalr
+</code></pre>
   <p>
     Now we’ll import the <code>signalr</code> package and create a
     connection to our hub. We're also going to create a helper object to
@@ -188,8 +179,7 @@ yarn add @microsoft/signalr
     rest of our application. Open <code>src/index.js</code> and make the
     following two changes.
   </p>
-  <pre>
-@@ -3,10 +3,21 @@ import ReactDOM from 'react-dom';
+  <pre><code>@@ -3,10 +3,21 @@ import ReactDOM from 'react-dom';
  import './index.css';
  import App from './App';
  import * as serviceWorker from './serviceWorker';
@@ -212,7 +202,7 @@ yarn add @microsoft/signalr
    &lt;/React.StrictMode&gt;,
    document.getElementById('root')
  );
-</pre>
+</code></pre>
   <p>
     Our application can now use the <code>send</code> method of this
     object to send a message to the <code>Send</code> message handler of
@@ -244,8 +234,7 @@ yarn add @microsoft/signalr
     wires them both up to the connection, so create a new file called
     <code>src/Button.js</code> and add the following code.
   </p>
-  <pre>
-import React from 'react';
+  <pre><code>import React from 'react';
 
 export default function Button ({ icon, src, alt, connection }) {
   const audio = React.createRef();
@@ -255,7 +244,7 @@ export default function Button ({ icon, src, alt, connection }) {
     &lt;audio ref={audio} src={src} /&gt;
   &lt;/&gt;;
 };
-</pre>
+</code></pre>
   <p>
     The button takes as properties an emoji to display on the button, the
     filename of the audio, a title for accessibility, and the connection
@@ -270,8 +259,7 @@ export default function Button ({ icon, src, alt, connection }) {
     <code>src/App.js</code> and replace the <code>App</code> definition
     with the following.
   </p>
-  <pre>
-import Button from './Button';
+  <pre><code>import Button from './Button';
 
 function App({ connection }) {
   return (
@@ -285,7 +273,7 @@ function App({ connection }) {
     &lt;/div&gt;
   );
 }
-</pre>
+</code></pre>
   <p>
     You’ll need to create a <code>public/audio</code> directory and add
     audio files there—you can grab sample files from my
@@ -297,8 +285,7 @@ function App({ connection }) {
     <code>src/App.css</code> and replace all of the content with the
     following.
   </p>
-  <pre>
-.App {
+  <pre><code>.App {
   display: flex;
   flex-flow: wrap;
   justify-content: center;
@@ -307,14 +294,13 @@ function App({ connection }) {
 .App button { 
   font-size: 5em;
 }
-</pre>
+</code></pre>
   <p>
     Now we finally have something worth running. Run the following again.
   </p>
-  <pre>
-yarn build
+  <pre><code>yarn build
 dotnet run
-</pre>
+</code></pre>
   <p>
     Now you should see the six buttons on the screen, and when you press
     any of them you should hear the corresponding audio file. If you open
@@ -336,8 +322,7 @@ dotnet run
     to identify the room to which the message should be sent. Open
     <code>MeetingHub.cs</code> and make the following change.
   </p>
-  <pre>
-@@ -5,6 +5,9 @@ namespace meeting_companion
+  <pre><code>@@ -5,6 +5,9 @@ namespace meeting_companion
  {
      public class MeetingHub : Hub
      {
@@ -348,7 +333,7 @@ dotnet run
 +            =&gt; Clients.Group(room).SendAsync(sound);
      }
  }
-</pre>
+</code></pre>
   <p>
     That’s all we need from the back-end. We don’t need to write any code
     to handle group membership and distribution—again that’s all handled
@@ -364,8 +349,7 @@ dotnet run
   <p>
     Open <code>src/App.js</code> and make the following three changes.
   </p>
-  <pre>
-@@ -5,13 +5,15 @@ import App from './App';
+  <pre><code>@@ -5,13 +5,15 @@ import App from './App';
  import * as serviceWorker from './serviceWorker';
  import { HubConnectionBuilder } from '@microsoft/signalr';
 
@@ -382,7 +366,7 @@ dotnet run
 +  send: sound =&gt; connection.invoke('send', room, sound),
    recv: (sound, callback) =&gt; connection.on(sound, callback)
  };
-</pre>
+</code></pre>
   <p>
     And that’s all we need! Build and run again, but this time make sure
     to open a few tabs in the same room and a few in different rooms. You
@@ -411,19 +395,19 @@ dotnet run
 </main>
 <footer>
   <p>
-    ← <a href="/posts/good-intentions">Good Intentions</a>
+    ← <a rel="next" href="/posts/good-intentions">Good Intentions</a>
     <br />
-    → <a href="/posts/make-it-work-make-it-right-make-it-fast">Make it Work, Make it Right, Make it Fast</a>
+    → <a rel="prev" href="/posts/make-it-work-make-it-right-make-it-fast">Make it Work, Make it Right, Make it Fast</a>
   </p>
 </footer>
 <nav>
-  <ul>
+  <menu>
     <li><a href="/">Home</a></li>
     <li><a href="/contact">Contact</a></li>
     <li><a href="/external">External</a></li>
     <li><a href="/posts">Posts</a></li>
     <li><a href="/subscribe">Subscribe</a></li>
-  </ul>
+  </menu>
 </nav>
 </body>
 

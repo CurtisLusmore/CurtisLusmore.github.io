@@ -17,8 +17,7 @@
   <h1>Multiple Git Profiles</h1>
   <address>
     <img class="author" src="/imgs/author.png" title="Curtis Lusmore" alt="Photo of Curtis Lusmore">
-    Curtis Lusmore <br>
-    <time datetime="2016-09-06">31 January 2019</time>
+    Curtis Lusmore, <time datetime="2016-09-06">31 January 2019</time>
   </address>
 </header>
 <main>
@@ -37,10 +36,9 @@
     directories, create a <code>.gitconfig</code> file with the following
     content.
   </p>
-  <pre>
-[user]
+  <pre><code>[user]
   email = your.email@address.com
-</pre>
+</code></pre>
   <p>
     Obviously, use the correct email address for each profile. Now remove
     the email config from your global <code>.gitconfig</code> file, which
@@ -56,13 +54,12 @@
     to confirm that it’s unset. Now add the following sections to your
     global <code>.gitconfig</code> file.
   </p>
-  <pre>
-[includeIf "gitdir:D:/git/home/"]
+  <pre><code>[includeIf "gitdir:D:/git/home/"]
   path = D:/git/home/.gitconfig
 
 [includeIf "gitdir:D:/git/work/"]
   path = D:/git/work/.gitconfig
-</pre>
+</code></pre>
   <p>
     Replace <code>D:/git/home/</code> with the paths to the directories
     you created earlier. Git will now pull in these config files whenever
@@ -94,19 +91,19 @@
 </main>
 <footer>
   <p>
-    ← <a href="/posts/the-first-great-epiphany">The First Great Epiphany</a>
+    ← <a rel="next" href="/posts/the-first-great-epiphany">The First Great Epiphany</a>
     <br />
-    → <a href="/posts/programming-by-wishful-thinking">Programming by Wishful Thinking</a>
+    → <a rel="prev" href="/posts/programming-by-wishful-thinking">Programming by Wishful Thinking</a>
   </p>
 </footer>
 <nav>
-  <ul>
+  <menu>
     <li><a href="/">Home</a></li>
     <li><a href="/contact">Contact</a></li>
     <li><a href="/external">External</a></li>
     <li><a href="/posts">Posts</a></li>
     <li><a href="/subscribe">Subscribe</a></li>
-  </ul>
+  </menu>
 </nav>
 </body>
 

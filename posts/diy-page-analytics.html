@@ -17,8 +17,7 @@
   <h1>DIY Page Analytics</h1>
   <address>
     <img class="author" src="/imgs/author.png" title="Curtis Lusmore" alt="Photo of Curtis Lusmore">
-    Curtis Lusmore <br>
-    <time datetime="2020-05-29">29 May 2020</time>
+    Curtis Lusmore, <time datetime="2020-05-29">29 May 2020</time>
   </address>
 </header>
 <main>
@@ -72,27 +71,24 @@
     required boilerplate. Open up your favourite terminal and run the
     following commands to create a blank .NET function app.
   </p>
-  <pre>
-mkdir logger
+  <pre><code>mkdir logger
 cd logger
 func init --worker-runtime dotnet
-</pre>
+</code></pre>
   <p>
     Next we need to add our function to it, and install the required
     package dependencies.
   </p>
-  <pre>
-func new --language 'C#' --template HttpTrigger --name Log
+  <pre><code>func new --language 'C#' --template HttpTrigger --name Log
 dotnet add package Microsoft.Azure.WebJobs.Extensions.Storage
-</pre>
+</code></pre>
   <p>
     This will create a <code>Log.cs</code> file containing a standard C#
     function. At this point, you could test the function locally by
     running the following.
   </p>
-  <pre>
-func host start
-</pre>
+  <pre><code>func host start
+</code></pre>
   <h2 id="2">
     <a href="#2">Function implementation</a>
   </h2>
@@ -111,20 +107,18 @@ func host start
     random GUID to ensure uniqueness of the <code>RowKey</code> property.
     This means that our <code>LogEntry</code> class will look as follows.
   </p>
-  <pre>
-public class LogEntry
+  <pre><code>public class LogEntry
 {
   public string PartitionKey { get; set; }
   public string RowKey { get; set; }
   public string Referrer { get; set; }
 }
-</pre>
+</code></pre>
   <p>
     Next we need to change the function implementation. I’ll supply the
     full code snippet first and then we’ll walk through it together.
   </p>
-  <pre>
-[FunctionName("Log")]
+  <pre><code>[FunctionName("Log")]
 [return: Table("LogEntries")]
 public static async Task&lt;LogEntry&gt; Run(
   [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)]
@@ -148,7 +142,7 @@ public static async Task&lt;LogEntry&gt; Run(
       Referrer = referrer
   };
 }
-</pre>
+</code></pre>
   <p>
     The first change is to add the <code>[return:
     Table("LogEntries")]</code> attribute and change the return type from
@@ -175,12 +169,11 @@ public static async Task&lt;LogEntry&gt; Run(
     support values with forward-slashes. We are expecting the body of
     incoming requests to look something like this.
   </p>
-  <pre>
-{
+  <pre><code>{
   "pathname": "/posts/diy-page-analytics",
   "referrer": "/posts"
 }
-</pre>
+</code></pre>
   <p>
     Putting it all together, we can now send an unauthenticated
     <code>POST</code> request to this function with a body as described
@@ -196,9 +189,8 @@ public static async Task&lt;LogEntry&gt; Run(
   <p>
     If you want to test this now, you can run the following.
   </p>
-  <pre>
-func host start --cors '*'
-</pre>
+  <pre><code>func host start --cors '*'
+</code></pre>
   <p>
     You can then use a tool like <a href="https://www.postman.com/"
     >Postman</a> to send a request, and <a href="https://azure.microsoft.com/en-us/features/storage-explorer/"
@@ -221,8 +213,7 @@ func host start --cors '*'
     each page in case you need to change any of the behaviour (especially
     the URL) later.
   </p>
-  <pre>
-(function () {
+  <pre><code>(function () {
   if (navigator.doNotTrack === '1') return;
   const payload = {
     pathname: document.location.pathname,
@@ -233,7 +224,7 @@ func host start --cors '*'
     JSON.stringify(payload)
   );
 }());
-</pre>
+</code></pre>
   <p>
     Let’s step through this. The first step is to check the
     <code>doNotTrack</code> property on the global <code>navigator</code>
@@ -273,20 +264,18 @@ func host start --cors '*'
     subscription. When you log in, you’ll see a list of available
     subscriptions, so grab the ID of the one you want to use.
   </p>
-  <pre>
-az login
+  <pre><code>az login
 az account set --subscription 'your-subscription-id'
-</pre>
+</code></pre>
     <p>
       Next we will set a few variables for values that we’ll need to use
       several times throughout the process.
     </p>
-    <pre>
-$location = 'australiasoutheast'
+    <pre><code>$location = 'australiasoutheast'
 $rg = 'resource-group-name'
 $sa = 'storageaccountname'
 $fa = 'function-app-name'
-</pre>
+</code></pre>
   <p>
     You’ll need to supply globally unique values for the Storage
     Account name and the Function App name, noting that Storage Account
@@ -297,15 +286,13 @@ $fa = 'function-app-name'
     command to get a list of available locations, and you’ll need to
     grab the value for the <code>Name</code> property.
   </p>
-  <pre>
-az account list-locations --out table
-</pre>
+  <pre><code>az account list-locations --out table
+</code></pre>
   <p>
     Next we will create the resource group, the Storage Account and the
     Function App.
   </p>
-  <pre>
-az group create `
+  <pre><code>az group create `
   --name $rg `
   --location $location
 
@@ -320,20 +307,19 @@ az functionapp create `
   --resource-group $rg `
   --storage-account $sa `
   --consumption-plan-location $location
-</pre>
+</code></pre>
   <p>
     Finally we need to configure <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">
     CORS</a> for our Function App, and then deploy the function we
     created earlier.
   </p>
-  <pre>
-az functionapp cors add `
+  <pre><code>az functionapp cors add `
   --name $fa `
   --resource-group $rg `
   --allowed-origins https://your-website.com http://localhost:8080
 
 func azure functionapp publish $fa
-</pre>
+</code></pre>
   <p>
     It’s up to you whether you want to allow CORS from
     <code>localhost</code>. It will come in handy while testing to make
@@ -370,23 +356,21 @@ func azure functionapp publish $fa
     command will fetch all entries for the last month and hydrate them as
     PowerShell objects.
   </p>
-  <pre>
-$time = [DateTime]::UtcNow.AddDays(-7).ToString("o")
+  <pre><code>$time = [DateTime]::UtcNow.AddDays(-7).ToString("o")
 $logs = az storage entity query `
   --account-name $sa `
   --table-name LogEntries `
   --filter "Timestamp ge datetime'$time'" `
   | ConvertFrom-Json `
   | Select-Object -ExpandProperty items
-</pre>
+</code></pre>
   <p>
     We can then group by <code>pathname</code>
     (<code>PartitionKey</code>) or <code>referrer</code> to see which
     pages get the most hits and what drives the most traffic, for
     example, using the following two commands.
   </p>
-  <pre>
-$logs `
+  <pre><code>$logs `
   | Group-Object -Property PartitionKey `
   | Select-Object -Property Count,Name `
   | Sort-Object -Property Count -Descending
@@ -394,7 +378,7 @@ $logs `
   | Group-Object -Property Referrer `
   | Select-Object -Property Count,Name `
   | Sort-Object -Property Count -Descending
-</pre>
+</code></pre>
   <h2 id="6">
     <a href="#6">Wrap-up</a>
   </h2>
@@ -417,19 +401,19 @@ $logs `
 </main>
 <footer>
   <p>
-    ← <a href="/posts/minimum-viewable-program">Minimum Viewable Program</a>
+    ← <a rel="next" href="/posts/minimum-viewable-program">Minimum Viewable Program</a>
     <br />
-    → <a href="/posts/goldilocks-routines">Goldilocks Routines</a>
+    → <a rel="prev" href="/posts/goldilocks-routines">Goldilocks Routines</a>
   </p>
 </footer>
 <nav>
-  <ul>
+  <menu>
     <li><a href="/">Home</a></li>
     <li><a href="/contact">Contact</a></li>
     <li><a href="/external">External</a></li>
     <li><a href="/posts">Posts</a></li>
     <li><a href="/subscribe">Subscribe</a></li>
-  </ul>
+  </menu>
 </nav>
 </body>
 

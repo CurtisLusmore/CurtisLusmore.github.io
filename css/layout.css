@@ -4,43 +4,29 @@ body > main { grid-area: main; }
 body > footer { grid-area: footer; }
 body > nav { grid-area: nav; }
 
-table { width: 100%; }
-pre { max-width: 90vw; overflow-x: auto; }
-
-@media screen and (max-width: 900px) {
+@media (max-width: 900px) {
   body {
     grid-template-areas:
       'header'
       'main'
       'footer'
       'nav';
-    padding: 1vh 1vw;
+    padding: 1ch;
   }
 
-  body > nav > ul {
-    display: flex;
-    justify-content: space-between;
-  }
+  nav menu { display: flex; justify-content: space-between; }
 }
 
-@media screen and (min-width: 901px) {
+@media (min-width: 901px) {
   body {
     grid-template-areas:
       'nav header'
       'nav main'
       'nav footer';
-    column-gap: 2ch;
     margin: auto;
     max-width: 1000px;
   }
 
-  header, main, footer {
-    max-width: 800px;
-  }
-
-  nav > ul {
-    position: sticky;
-    margin-top: 24px;
-    top: 24px;
-  }
+  header, main, footer { max-width: 800px; }
+  nav menu { position: sticky; top: 1.5rem; margin-top: 1.5rem; }
 }

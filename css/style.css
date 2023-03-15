@@ -1,13 +1,10 @@
 :root {
-  --color-black: #202020;
-  --color-white: #ffffff;
+  --color-black: #000810;
+  --color-white: #eff7ff;
   --color-accent-1: #0080ff;
   --color-accent-2: #ff4040;
   --color-text: var(--color-black);
   --color-background: var(--color-white);
-  --font-head: 'Barlow Condensed', sans-serif;
-  --font-body: 'Helvetica Neue', sans-serif;
-  --font-code: 'Inconsolata', monospace;
 }
 
 @font-face {
@@ -25,51 +22,48 @@
   src: url('/fonts/Inconsolata-Regular.ttf') format('truetype');
 }
 
-body {
-  background: var(--color-background);
-  color: var(--color-text);
-  font-family: var(--font-body);
-  font-size: 1.5em;
-  line-height: 1.5;
-  text-align: justify;
+@font-face {
+  font-family: 'Scope One';
+  src: url('/fonts/ScopeOne-Regular.ttf') format('truetype');
 }
 
-h1, h2, h3, h4, h5, h6 { font-family: var(--font-head); }
-code, pre { font-family: var(--font-code); }
-input { font-family: var(--font-body); }
+@media screen and (min-width: 901px) {
+  body {
+    text-align: justify;
+  }
+}
 
-body > header h1 { font-size: 2em; }
-body > header h2 { font-size: 1.1em; }
-body > main > h2 { font-size: 1.1em; }
+body { font-family: 'Helvetica Neue', sans-serif; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Barlow Condensed', sans-serif; }
+code { font-family: 'Inconsolata', monospace; }
+blockquote { font-family: 'Scope One', serif; }
 
-h1 { margin-block: 0.5em; }
+body {
+  font-size: 1.5em;
+  line-height: 1.5em;
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
 
-body > main section h2 { font-size: 1.1em; }
-body > main header h1 { font-size: 2em; }
-body > main header h2 { font-size: 1.0em; }
-body > main main h2 { font-size: 1.0em; }
+header address { font-style: normal; margin: 0; }
+header address img { height: 1.5em; float: left; margin-right: 1ch; }
 
-pre { font-size: 0.8em; }
-input { font-size: 1em; margin: 10px auto; }
+blockquote, pre {
+  border-left: 2px solid var(--color-accent-1);
+  margin: 0;
+  padding-left: 2ch;
+}
 
-a { color: var(--color-text); text-decoration-color: var(--color-accent-1); text-underline-offset: 2px; }
+figure { width: 100%; margin: 0; }
+figure > * { max-width: 100%; margin: auto; display: block; }
+
+table { border-spacing: 1ch 2px; }
+
+a {
+  color: var(--color-text);
+  text-decoration-color: var(--color-accent-1);
+  text-underline-offset: 2px;
+}
 a:hover, a:focus { text-decoration-color: var(--color-accent-2); }
 
-header > address { font-style: normal; }
-header > address > img.author { height: 2.5em; float: left; margin-right: 1ch; }
-
-hgroup > h1 { margin-bottom: 0; }
-hgroup > h2 { margin-top: 0; }
-
-main > img.post { max-width: 80%; display: block; margin: auto; }
-main > img.profile { width: 256px; display: block; margin: auto; }
-main > blockquote, main > pre, main > ul { margin: 0; padding-left: 2ch; }
-main > blockquote, main > pre { border-left: 2px solid var(--color-accent-1); }
-
-form input:not([type="submit"]) { display: block; width: 100%; }
-form input:not([type="submit"]) { outline: 0; border-width: 0 0 1px 0; }
-
-.flex-field { display: flex; }
-.flex-field > *:first-child { flex: 1; margin-right: 1ch; }
-
-nav > ul { list-style-type: none; padding: 0; }
+menu { list-style-type: none; padding: 0px; }

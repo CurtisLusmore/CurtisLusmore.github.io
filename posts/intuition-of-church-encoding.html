@@ -17,8 +17,7 @@
   <h1>Intuition of Church Encoding</h1>
   <address>
     <img class="author" src="/imgs/author.png" title="Curtis Lusmore" alt="Photo of Curtis Lusmore">
-    Curtis Lusmore <br>
-    <time datetime="2016-03-26">26 March 2016</time>
+    Curtis Lusmore, <time datetime="2016-03-26">26 March 2016</time>
   </address>
 </header>
 <main>
@@ -45,10 +44,9 @@
     work. As an example, the Church encoding for booleans are listed as
     follows.
   </p>
-  <pre>
-true  = λa. λb. a
+  <pre><code>true  = λa. λb. a
 false = λa. λb. b
-</pre>
+</code></pre>
   <p>
     These two functions are the simplest possible two distinct terms,
     ignoring the identity function so that there can at least be some
@@ -61,10 +59,9 @@ false = λa. λb. b
   <p>
     The Church encoding for natural numbers is a little better.
   </p>
-  <pre>
-zero = λf. λx. x
+  <pre><code>zero = λf. λx. x
 succ = λn. λf. λx. f (n f x)
-</pre>
+</code></pre>
   <p>
     The common intuition for this encoding is that the encoded
     <code>n</code> represents a function that takes another function
@@ -79,10 +76,9 @@ succ = λn. λf. λx. f (n f x)
   <p>
     Next up, lists—and this time, an even better standard intuition.
   </p>
-  <pre>
-nil = λc. λn. n
+  <pre><code>nil = λc. λn. n
 cons = λh. λt. λc. λn. c h (t c n)
-</pre>
+</code></pre>
   <p>
     The intuition is that a list is encoded as a <a
     href="https://en.wikipedia.org/wiki/Fold_%28higher-order_function%29"
@@ -110,7 +106,7 @@ true' :: t1 -> t -> t1
 λ let false' = \a b -> b
 λ :t false'
 false' :: t -> t1 -> t1
-</pre>
+</code></pre>
   <p>
     Defining a type that works in all the ways I would like is a little
     trickier than I expected, but not too difficult.
@@ -125,7 +121,7 @@ true' = Bool' $ \a b -> a
 
 false' :: Bool'
 false' = Bool' $ \a b -> b
-</pre>
+</code></pre>
   <h3>Church numerals</h3>
   <pre class="haskell">
 λ let zero' = \f x -> x
@@ -135,7 +131,7 @@ zero' :: t -> t1 -> t1
 λ let succ' = \n f x -> f (n f x)
 λ :t succ'
 succ' :: ((t1 -> t) -> t2 -> t1) -> (t1 -> t) -> t2 -> t
-</pre>
+</code></pre>
   <p>
     The trick for this one is in recognising that the first argument to
     <code>succ’</code> is supposed to be a numeral, so its type signature
@@ -149,7 +145,7 @@ zero' = Nat' $ \f x -> x
 
 succ' :: Nat' -> Nat'
 succ' n = Nat' $ \f x -> f (runNat' n f x)
-</pre>
+</code></pre>
   <h3>Church lists</h3>
   <pre class="haskell">
 λ let nil' = \c n -> n
@@ -159,7 +155,7 @@ nil' :: t -> t1 -> t1
 λ let cons' = \h t c n -> c h (t c n)
 λ :t cons'
 cons' :: t1 -> ((t1 -> t2 -> t) -> t3 -> t2) -> (t1 -> t2 -> t) -> t3 -> t
-</pre>
+</code></pre>
   <p>
     Again, the trick here was in recognising that the return type after
     two arguments is a list.
@@ -174,7 +170,7 @@ nil' = List' $ \c n -> n
 
 cons' :: a -> List' a -> List' a
 cons x xs = List' $ \c n -> c x (runList' xs c n)
-</pre>
+</code></pre>
   <h2 id="2">
     <a href="#2">Comparison with standard definitions</a>
   </h2>
@@ -207,7 +203,7 @@ data List a
 newtype List' a = List'
   { runList' :: forall b. (a -> b -> b) -> b -> b
   }
-</pre>
+</code></pre>
   <p>
     And as I did this, I noticed a pattern! If you take the type
     signature of the <code>run</code> function and replace the quantified
@@ -220,7 +216,7 @@ Bool' -> Bool' -> Bool'
 (Nat' -> Nat') -> Nat' -> Nat'
 
 (a -> List' a -> List' a) -> List' a -> List' a
-</pre>
+</code></pre>
   <p>
     In all three cases, the final term is the type itself, and the other
     terms are the types of the data constructors! Go back up and check
@@ -250,7 +246,7 @@ False
 []
 λ runList' (cons' 1 (cons' 2 nil')) (:) []
 [1,2]
-</pre>
+</code></pre>
   <p>
     And just like all good revelations, now that I see it it seems so
     obvious.
@@ -290,7 +286,7 @@ left' a = Either' $ \left right -> left a
 
 right' :: b -> Either' a b
 right' b = Either' $ \left right -> right b
-</pre>
+</code></pre>
   <p>
     You can find these type definitions and related function definitions
     in <a href="https://github.com/CurtisLusmore/church-encoding">my
@@ -299,19 +295,19 @@ right' b = Either' $ \left right -> right b
 </main>
 <footer>
   <p>
-    ← <a href="/posts/why-static-isnt-real-sharing">Why Static Isn’t Real Sharing</a>
+    ← <a rel="next" href="/posts/why-static-isnt-real-sharing">Why Static Isn’t Real Sharing</a>
     <br />
-    → <a href="/posts/pre-processing-imports-in-python">Pre-processing Imports in Python</a>
+    → <a rel="prev" href="/posts/pre-processing-imports-in-python">Pre-processing Imports in Python</a>
   </p>
 </footer>
 <nav>
-  <ul>
+  <menu>
     <li><a href="/">Home</a></li>
     <li><a href="/contact">Contact</a></li>
     <li><a href="/external">External</a></li>
     <li><a href="/posts">Posts</a></li>
     <li><a href="/subscribe">Subscribe</a></li>
-  </ul>
+  </menu>
 </nav>
 </body>
 

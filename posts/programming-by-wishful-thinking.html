@@ -17,8 +17,7 @@
   <h1>Programming by Wishful Thinking</h1>
   <address>
     <img class="author" src="/imgs/author.png" title="Curtis Lusmore" alt="Photo of Curtis Lusmore">
-    Curtis Lusmore <br>
-    <time datetime="2019-01-21">21 January 2019</time>
+    Curtis Lusmore, <time datetime="2019-01-21">21 January 2019</time>
   </address>
 </header>
 <main>
@@ -52,7 +51,7 @@ items = fetch_rss('https://www.xkcd.com/rss.xml')
 for item in items:
     src = get_img_from_item(item)
     download_image(src)
-</pre>
+</code></pre>
   <p>
     We’d be done! Although Python is a <a
     href="https://www.python.org/dev/peps/pep-0206/">batteries
@@ -83,7 +82,7 @@ def fetch_rss(url):
         'https://imgs.xkcd.com/comics/magnetic_pole.png',
         'https://imgs.xkcd.com/comics/thor_tools.png'
   ]
-</pre>
+</code></pre>
   <p>
     There we go. Good enough for now. Next up,
     <code>get_img_from_item</code>. This is supposed to extract from one
@@ -91,10 +90,9 @@ def fetch_rss(url):
     image to download. Well that’s easy, because each item in the result
     already is that URL.
   </p>
-  <pre>
-def get_img_from_item(item):
+  <pre><code>def get_img_from_item(item):
     return item
-</pre>
+</code></pre>
   <p>
     The last function to implement is <code>download_image</code>. We
     actually care about this one working properly, because I actually
@@ -111,7 +109,7 @@ from urllib.request import urlretrieve
 def download_image(src):
     dst = generate_filename(src)
     urlretrieve(src, dst)
-</pre>
+</code></pre>
   <p>
     I said the previous function was the last function, but we’ve shifted
     the goalposts now by introducing yet another imaginary function. No
@@ -122,10 +120,9 @@ def download_image(src):
     tucked it away in its own function it’s completely isolated and we
     can easily come back and change it.
   </p>
-  <pre>
-def generate_filename(url):
+  <pre><code>def generate_filename(url):
     return url.split('/')[-1]
-</pre>
+</code></pre>
   <p>
     Put it all together in a single file (in the right order), run it,
     and sure enough I have four comics to view locally. From
@@ -142,7 +139,7 @@ def fetch_rss(url):
     src = urlopen(url).read()
     xml = ElementTree.fromstring(src)
     return xml.findall('channel/item')
-</pre>
+</code></pre>
   <p>
     By correctly implementing <code>fetch_rss</code>, we have changed the
     return value and thereby broken <code>get_img_from_item</code>, so we
@@ -153,7 +150,7 @@ def get_img_from_item(item):
     desc = item.find('description').text
     html = ElementTree.fromstring(desc)
     return html.get('src')
-</pre>
+</code></pre>
   <p>
     And now we’ve made it right. The approach we have just followed
     pretty accurately reflects the actual process I use when developing
@@ -178,19 +175,19 @@ def get_img_from_item(item):
 </main>
 <footer>
   <p>
-    ← <a href="/posts/multiple-git-profiles">Multiple Git Profiles</a>
+    ← <a rel="next" href="/posts/multiple-git-profiles">Multiple Git Profiles</a>
     <br />
-    → <a href="/posts/diagnostics-anonymous">Diagnostics Anonymous</a>
+    → <a rel="prev" href="/posts/diagnostics-anonymous">Diagnostics Anonymous</a>
   </p>
 </footer>
 <nav>
-  <ul>
+  <menu>
     <li><a href="/">Home</a></li>
     <li><a href="/contact">Contact</a></li>
     <li><a href="/external">External</a></li>
     <li><a href="/posts">Posts</a></li>
     <li><a href="/subscribe">Subscribe</a></li>
-  </ul>
+  </menu>
 </nav>
 </body>
 

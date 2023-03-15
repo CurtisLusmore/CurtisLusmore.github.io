@@ -17,8 +17,7 @@
   <h1>Imitating Classes</h1>
   <address>
     <img class="author" src="/imgs/author.png" title="Curtis Lusmore" alt="Photo of Curtis Lusmore">
-    Curtis Lusmore <br>
-    <time datetime="2017-11-13">13 November 2017</time>
+    Curtis Lusmore, <time datetime="2017-11-13">13 November 2017</time>
   </address>
 </header>
 <main>
@@ -76,7 +75,7 @@ function collection(items = []) {
     remove
   };
 };
-</pre>
+</code></pre>
   <p>
     Each time we call the collection function, we get a new collection
     object with its own copy of the four methods, <code>clear</code>,
@@ -134,7 +133,7 @@ function transactionalCollection(...args) {
     abandon
   };
 };
-</pre>
+</code></pre>
   <p>
     Here we have added four additional methods—<code>addOnSubmit</code>,
     <code>removeOnSubmit</code>, <code>submit</code>, and
@@ -216,7 +215,7 @@ function seal(cls) {
 };
 
 const collection = seal(collectionBase);
-</pre>
+</code></pre>
   <p>
     The defintion of <code>transactionalCollection</code> from above is
     fully compatible with this new defintion.
@@ -263,7 +262,7 @@ function localStorageCollection(keyName, items) {
     remove
   };
 }
-</pre>
+</code></pre>
   <p>
     The obvious question now is, can we make a transactional collection
     that also persists to local storage—or to put it another way, do we
@@ -323,7 +322,7 @@ function makeTransactionalCollection(collection) {
 const transactionalCollection = makeTransactionalCollection(collection);
 const transactionalLocalStorageCollection = makeTransactionalCollection(
   localStorageCollection);
-</pre>
+</code></pre>
   <p>
     Notice that the core of the body of
     <code>makeTransactionalCollection</code> is identical to that of
@@ -337,20 +336,20 @@ const transactionalLocalStorageCollection = makeTransactionalCollection(
 </main>
 <footer>
   <p>
-    ← <a href="/posts/diagnostics-anonymous">Diagnostics Anonymous</a>
+    ← <a rel="next" href="/posts/diagnostics-anonymous">Diagnostics Anonymous</a>
     <br />
-    → <a href="/posts/the-freedom-of-restrictions">The Freedom of Restrictions</a>
+    → <a rel="prev" href="/posts/the-freedom-of-restrictions">The Freedom of Restrictions</a>
   </p>
 </footer>
 </article>
 <nav>
-  <ul>
+  <menu>
     <li><a href="/">Home</a></li>
     <li><a href="/contact">Contact</a></li>
     <li><a href="/external">External</a></li>
     <li><a href="/posts">Posts</a></li>
     <li><a href="/subscribe">Subscribe</a></li>
-  </ul>
+  </menu>
 </nav>
 </body>
 
