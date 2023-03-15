@@ -72,21 +72,21 @@
   <pre>git config --get user.email</pre>
   <p>
     but note that you need to be inside a Git repository, not just the
-    root directory—Git won’t pull in the conditional configuration files
+    root directory—<wbr>Git won’t pull in the conditional configuration files
     outside of a Git repository.
   </p>
   <p>
     Technically, you don’t need to remove your email configuration from
-    the global <code>.gitconfig</code> file—as long as the
+    the global <code>.gitconfig</code> file—<wbr>as long as the
     <code>includeIf</code> blocks appear below your email configuration,
     they will take precedent. However, I prefer to remove it to make it
     clearer that the value there isn’t used, and to force me to put all
     of my Git repositories inside one of my profile
-    directories—attempting to commit to a repository outside those
+    directories—<wbr>attempting to commit to a repository outside those
     directories will fail because no email address is configured.
   </p>
   <p>
-    And that’s it—never make a commit from the wrong email address again!
+    And that’s it—<wbr>never make a commit from the wrong email address again!
   </p>
 </main>
 <footer>

@@ -135,7 +135,7 @@ function transactionalCollection(...args) {
 };
 </code></pre>
   <p>
-    Here we have added four additional methods—<code>addOnSubmit</code>,
+    Here we have added four additional methods—<wbr><code>addOnSubmit</code>,
     <code>removeOnSubmit</code>, <code>submit</code>, and
     <code>abandon</code>, and the additional methods are able to
     reference the exising methods. It’s also worth noting that aside from
@@ -265,11 +265,11 @@ function localStorageCollection(keyName, items) {
 </code></pre>
   <p>
     The obvious question now is, can we make a transactional collection
-    that also persists to local storage—or to put it another way, do we
+    that also persists to local storage—<wbr>or to put it another way, do we
     have multiple inheritance? If you look back at our definitions for
     <code>transactionalCollection</code> and
     <code>localStorageCollection</code>, you’ll notice that they “know”
-    what they inherit from—that is, the name of the class that they
+    what they inherit from—<wbr>that is, the name of the class that they
     inherit from appears (in the call to the base constructor) inside the
     definition of the class. Could we instead rewrite them such that they
     don’t “know” what they inherit from? That is, can we write them in

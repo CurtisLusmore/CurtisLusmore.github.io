@@ -53,7 +53,7 @@ false = λa. λb. b
     symmetry (same number of arguments), so in that sense it may seem
     intuitive to use them. And I can accept that it’s convention in the
     Lambda calculus to use single letter identifiers, but still I can’t
-    help but wonder what more meaningful identifiers I would use—what do
+    help but wonder what more meaningful identifiers I would use—<wbr>what do
     they actually mean?
   </p>
   <p>
@@ -68,13 +68,13 @@ succ = λn. λf. λx. f (n f x)
     <code>f</code> as an argument and returns a new function which
     applies <code>f</code> to its argument <code>n</code> times. This is
     backed up by observing that <code>zero</code> takes any function
-    <code>f</code> and simply returns the identity function—application
+    <code>f</code> and simply returns the identity function—<wbr>application
     of <code>f</code> zero times does nothing. That’s more satisfying,
     but I do wonder if it’s a coincidence that zero is alpha equivalent
     to false.
   </p>
   <p>
-    Next up, lists—and this time, an even better standard intuition.
+    Next up, lists—<wbr>and this time, an even better standard intuition.
   </p>
   <pre><code>nil = λc. λn. n
 cons = λh. λt. λc. λn. c h (t c n)

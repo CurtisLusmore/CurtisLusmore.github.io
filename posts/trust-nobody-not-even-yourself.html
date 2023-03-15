@@ -29,10 +29,10 @@
   <p>
     This phrase is part of the C philosophy, and has influenced the
     design of many programming languages. In general C usage, this is
-    best observed by the use of pointer casts—a mechanism by which the
+    best observed by the use of pointer casts—<wbr>a mechanism by which the
     programmer can bypass the type system, trading compile-time type
     safety for flexibility and potentially incurring fatal crashes at
-    run-time. The phrase needs little explanation—the programmer knows
+    run-time. The phrase needs little explanation—<wbr>the programmer knows
     what they’re doing, don’t get in their way.
   </p>
   <blockquote>
@@ -70,11 +70,11 @@
     If you’re anything like me, you make mistakes while programming all
     the time. My mistakes vary from little things like typos in variable
     names to hard-to-find logic errors in large, complex systems. Some
-    languages give you no protection against these errors—I find most of
+    languages give you no protection against these errors—<wbr>I find most of
     my trivial mistakes are in interpreted languages like Python and
     JavaScript where I get no protection from typos. A step up from this
     are languages like Java where the static type-checker will pick up
-    most typos—I say most because it won’t prevent me from mistaking
+    most typos—<wbr>I say most because it won’t prevent me from mistaking
     similarly named variables or array indices.
   </p>
   <p>
@@ -97,7 +97,7 @@
     I’ll give you a very simple example. At work a few months ago I was
     tasked with debugging why a particular query wasn’t being executed on
     first access to our database. The query in question clears the
-    execution plan cache—we found that clearing it gives us slightly
+    execution plan cache—<wbr>we found that clearing it gives us slightly
     better performance under certain circumstances. It wasn’t hard to
     track down the execution point in the code base. The code (C#) looked
     roughly like this.
@@ -135,7 +135,7 @@ connection.ExecuteQuery(ClearCacheQuery);
   </p>
   <p>
     The problem in this case is that a <code>SqlConnection</code> is
-    stateful—there is a particular order that the methods need to be
+    stateful—<wbr>there is a particular order that the methods need to be
     called in, and the compiler doesn’t enforce this order. And in this
     case it’s a pretty easy fix, but wouldn’t it be great if making the
     error wasn’t even possible? Take the opportunity to make a mistake
@@ -201,10 +201,10 @@ void DoWork(Guid gizmoKey, Guid hoozitKey)
     are perfect keys anyway. So what should I do?
   </p>
   <p>
-    Haskell has the best answer to this I’ve yet seen—
+    Haskell has the best answer to this I’ve yet seen—<wbr>
     <code>newtypes</code>. A <code>newtype</code> declaration in Haskell
     defines a new type that is identical to an existing type in every way
-    —including its run-time behaviour and representation—with zero
+    —<wbr>including its run-time behaviour and representation—<wbr>with zero
     overhead, and with the amazing property that the two types are
     incompatible at compile-time. As an example,
   </p>
@@ -215,12 +215,12 @@ newtype GizmoKey = GizmoKey UUID
     This creates a new type called <code>GizmoKey</code> which is exactly
     the same thing as a <code>UUID</code> except for the fact that I
     can’t use a <code>GizmoKey</code> where a <code>UUID</code> is
-    expected and vice versa—but there’s absolutely no run-time
+    expected and vice versa—<wbr>but there’s absolutely no run-time
     performance penalty for this, the indirection disappears.
   </p>
   <p>
     This is a fantastic solution and surprisingly useful. You can use it
-    to prevent dimension errors—adding meters to inches or something else
+    to prevent dimension errors—<wbr>adding meters to inches or something else
     nonsensical like that which is not checked by the compiler because
     both numbers are represented by floats. This is the kind of error
     that brought down the

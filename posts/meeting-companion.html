@@ -136,7 +136,7 @@ namespace meeting_companion
     <code>sound</code> parameter. When it receives one of these messages,
     it will forward it straight through to all connected clients. We
     don’t need to add any code for storing incoming connections or
-    anything like that—this is all handled by the <code>Hub</code> base
+    anything like that—<wbr>this is all handled by the <code>Hub</code> base
     class. Next we need to register the hub and connect it to the ASP.NET
     routing middleware. Back in <code>Startup.cs</code>, make the
     following two change.
@@ -276,7 +276,7 @@ function App({ connection }) {
 </code></pre>
   <p>
     You’ll need to create a <code>public/audio</code> directory and add
-    audio files there—you can grab sample files from my
+    audio files there—<wbr>you can grab sample files from my
     <a href="https://github.com/CurtisLusmore/meeting-companion/tree/master/public/audio"
     >GitHub repository</a>.
   </p>
@@ -312,7 +312,7 @@ dotnet run
   </h2>
   <p>
     The app so far is pretty interesting, but I said we were going to be
-    able to create separate rooms—so let’s add that feature in now. This
+    able to create separate rooms—<wbr>so let’s add that feature in now. This
     is going to be deceptively easy, so don’t blink or you’ll miss it.
   </p>
   <p>
@@ -336,7 +336,7 @@ dotnet run
 </code></pre>
   <p>
     That’s all we need from the back-end. We don’t need to write any code
-    to handle group membership and distribution—again that’s all handled
+    to handle group membership and distribution—<wbr>again that’s all handled
     by the <code>Hub</code> base class.
   </p>
   <p>

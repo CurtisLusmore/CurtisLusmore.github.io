@@ -91,7 +91,8 @@
   <p>
     The reason why it’s so hard to track the “make a web request” capability in
     most modern programming languages is that it’s widely available through
-    initial conditions—it’s a public class available to the entire program.
+    initial conditions—<wbr>it’s a public class available to the entire
+    program.
   </p>
   <p>
     Imagine instead if the only place that you were able to call the
@@ -103,7 +104,7 @@
   <p>
     If any other part of our program wants to use <code>HttpClient</code>, it
     would need to use some other mechanism for transferring
-    capabilities—parenthood, endowment, or introduction. Any library which
+    capabilities—<wbr>parenthood, endowment, or introduction. Any library which
     needs a <code>HttpClient</code> would essentially need to request
     permission for one via a constructor or method argument. We could track the
     flow of <code>HttpClient</code>s via constructor and method signatures,
@@ -112,14 +113,14 @@
   <p>
     This is very similar to how dependency injection and inversion of control
     work in object-oriented programming languages, but we usually only use
-    these techniques for our own code—the public classes in the language’s
+    these techniques for our own code—<wbr>the public classes in the language’s
     standard library usually don’t work this way.
   </p>
   <p>
     Another key point in the object capability model is that references to
     objects should be unforgeable. Unless an object is given a reference
-    through one of the four means above—initial conditions, parenthood,
-    endowment, or introduction—it can’t possibly forge its own copy.
+    through one of the four means above—<wbr>initial conditions, parenthood,
+    endowment, or introduction—<wbr>it can’t possibly forge its own copy.
   </p>
   <p>
     Most programming languages don’t allow you to forge object references. Some
@@ -144,7 +145,7 @@
   <p>
     Unfortunately they can also be hard-coded into the program source anywhere,
     or reconstructed from a template and environment name, etc. These
-    references are forgeable—they break the rules of the object-capability
+    references are forgeable—<wbr>they break the rules of the object-capability
     model, and make it impossible to track usage of the capability.
   </p>
   <p>

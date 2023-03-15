@@ -23,7 +23,7 @@
 <main>
   <p>
     The static keyword has origins as far back as C, and has carried
-    across to C++, Java and C#, among others—although its meaning has
+    across to C++, Java and C#, among others—<wbr>although its meaning has
     changed a bit along the way. In C# and Java, one of the common uses
     is for class-level sharing of members. Static members don’t belong to
     any instance, and can only be accessed directly from the class or
@@ -63,7 +63,7 @@ new Sub2().Display(); // >>> Base
     We would like to be able to override one or both of the
     <code>Value</code> and <code>Display</code> members, but
     unfortunately this won’t compile because static members can’t be
-    virtual. Python, on the other hand, got this exactly right—thanks
+    virtual. Python, on the other hand, got this exactly right—<wbr>thanks
     to the <code>classmethod</code> decorator.
   </p>
   <pre class="csharp">
@@ -92,7 +92,7 @@ Sub2().display() # >>> Base
     decorator benefits from the fact that it is passed a reference to
     the class, whereas in the case of the <code>staticmethod</code> decorator you
     need to hard-code it into source. This distinction really
-    highlights the real meaning of the word static—the static of static
+    highlights the real meaning of the word static—<wbr>the static of static
     analysis, static type checking, static libraries, and static memory
     allocation. Static as in not dynamic, known before run-time, often
     at compile-time.
