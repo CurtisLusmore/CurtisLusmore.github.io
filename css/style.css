@@ -1,10 +1,17 @@
 :root {
-  --color-black: #000810;
-  --color-white: #eff7ff;
+  --color-black: #000000;
+  --color-white: #ffffff;
   --color-accent-1: #0080ff;
   --color-accent-2: #ff4040;
   --color-text: var(--color-black);
   --color-background: var(--color-white);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text: var(--color-white);
+    --color-background: var(--color-black);
+  }
 }
 
 @font-face {
@@ -55,7 +62,7 @@ blockquote, pre {
 }
 
 figure { width: 100%; margin: 0; }
-figure > * { max-width: 100%; margin: auto; display: block; }
+figure img, figure table { max-width: 100%; margin: auto; display: block; }
 
 table { border-spacing: 1ch 2px; }
 
