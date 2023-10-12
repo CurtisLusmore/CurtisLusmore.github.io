@@ -18,10 +18,6 @@
     <h1>Meeting Companion</h1>
     <h2>Building a Real-Time Chatroom with SignalR and React</h2>
   </hgroup>
-  <address>
-    <img class="author" src="/imgs/author.png" title="Curtis Lusmore" alt="Photo of Curtis Lusmore">
-    Curtis Lusmore, <time datetime="2020-04-22">22 April 2020</time>
-  </address>
 </header>
 <main>
   <p>
@@ -174,7 +170,7 @@ namespace meeting_companion
 </code></pre>
   <p>
     Now we’ll import the <code>signalr</code> package and create a
-    connection to our hub. We're also going to create a helper object to
+    connection to our hub. We’re also going to create a helper object to
     hide some of the details of interacting with the connection from the
     rest of our application. Open <code>src/index.js</code> and make the
     following two changes.
@@ -394,6 +390,10 @@ dotnet run
   </p>
 </main>
 <footer>
+  <address>
+    <img class="author" src="/imgs/author.png" title="Curtis Lusmore" alt="Photo of Curtis Lusmore">
+    Curtis Lusmore, <time datetime="2020-04-22">22 April 2020</time>
+  </address>
   <menu>
     <li>← <a rel="next" href="/posts/good-intentions">Good Intentions</a></li>
     <li>→ <a rel="prev" href="/posts/make-it-work-make-it-right-make-it-fast">Make it Work, Make it Right, Make it Fast</a></li>
@@ -402,9 +402,9 @@ dotnet run
 <nav>
   <menu>
     <li><a href="/">Home</a></li>
-    <li><a href="/about">About</a></li>
+    <li><a href="/posts">Posts</a></li>
     <li><a href="/external">External</a></li>
-    <li><a href="/subscribe">Subscribe</a></li>
+    <li><a href="/rss.xml">RSS</a></li>
   </menu>
 </nav>
 </body>

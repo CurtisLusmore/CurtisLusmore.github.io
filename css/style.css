@@ -52,8 +52,8 @@ body {
   color: var(--color-text);
 }
 
-header address { font-style: normal; margin: 0; }
-header address img { height: 1.5em; float: left; margin-right: 1ch; }
+footer address { font-style: normal; margin: 0; }
+footer address img { height: 1.5em; float: left; margin-right: 1ch; }
 
 blockquote, pre {
   border-left: 2px solid var(--color-accent-1);
