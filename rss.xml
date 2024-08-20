@@ -624,25 +624,6 @@
       <link>https://lusmo.re/posts/whats-in-a-language</link>
       <guid>https://lusmo.re/posts/whats-in-a-language</guid>
       <description>
-        What’s the purpose of a programming language?
-        A programming language is an interface between humans and computers,
-        that allows us to program computers to perform some task. The purpose
-        of the task is usually to solve some particular problem that the human
-        has. Most languages are Turing complete, which essentially means that
-        they are mostly all equivalent. So what’s the point of creating a new
-        programming language if it’s equivalent to ones that already exist?
-        Turing completeness means that languages are equivalent in terms of the
-        programs they are able to express, but it says nothing about the
-        journey of getting to the finished program.
-      </description>
-      <pubDate>Tue, 6 September 2016 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>What’s in a Language?</title>
-      <link>https://lusmo.re/posts/whats-in-a-language</link>
-      <guid>https://lusmo.re/posts/whats-in-a-language</guid>
-      <description>
-        What’s the purpose of a programming language?
         A programming language is an interface between humans and computers,
         that allows us to program computers to perform some task. The purpose
         of the task is usually to solve some particular problem that the human

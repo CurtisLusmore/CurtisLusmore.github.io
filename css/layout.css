@@ -1,12 +1,23 @@
+body {
+  width: 60ch;
+  max-width: calc(100% - 2ch);
+  margin: auto;
+}
+
 @media (max-width: 900px) {
-  body { max-width: calc(100vw - 2ch); }
-
-  pre { max-width: calc(100vw - 2ch); overflow-x: auto; box-sizing: border-box; }
+  body {
+    hyphens: auto;
+  }
 }
 
-@media (min-width: 901px) {
-  body { max-width: 800px; margin: auto; }
-  pre { max-width: 800px; overflow-x: auto; }
+menu {
+  display: flex;
+  justify-content: space-between;
+  padding-inline-start: 0;
+  column-gap: 2ch;
+  flex-wrap: wrap;
 }
 
-nav menu { display: flex; justify-content: space-between; }
+menu li {
+  display: inline;
+}

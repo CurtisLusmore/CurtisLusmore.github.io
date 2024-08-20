@@ -1,4 +1,3 @@
 https://lusmo.re
-https://lusmo.re/about
-https://lusmo.re/external
+https://lusmo.re/posts
 https://lusmo.re/subscribe
