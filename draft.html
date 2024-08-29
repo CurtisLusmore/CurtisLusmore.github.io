@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Draft">
+  <meta property="og:image" content="https://lusmo.re/imgs/cover.jpg">
+  <title>Draft | lusmore</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <style>
+    *[contenteditable="true"] {
+      outline: none;
+    }
+
+    *[contenteditable="true"] *::before {
+      color: #888888;
+      text-align: right;
+      display: inline-block;
+      width: 3rem;
+      padding-right: 1rem;
+      margin-left: -4rem;
+    }
+
+    *[contenteditable="true"] h1::before { content: 'h1'; }
+    *[contenteditable="true"] p::before { content: 'p'; }
+  </style>
+  <script>
+    window.addEventListener('load', function (event) {
+      const elem = document.querySelector('footer p time');
+      const date = new Date();
+      elem.setAttribute('datetime', date.toISOString().substring(0, 10));
+      const months = [
+        'January', 'February', 'March', 'April', 'May', 'June', 'July',
+        'August', 'September', 'October', 'November', 'December'
+      ];
+      elem.innerText = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+
+      document.querySelector('main > article > header').addEventListener('input', function (event) {
+        const title = event.target.innerText;
+        document.querySelector('head > meta[property="og:title"]').content = title;
+        document.title = `${title} | lusmo.re`;
+      });
+    });
+    let file;
+    async function save(selectFile) {
+      const doc = document.documentElement.cloneNode(true);
+      doc.querySelector('head > style').remove();
+      doc.querySelector('head > script').remove();
+      doc.querySelector('main > article > header').removeAttribute('contenteditable');
+      doc.querySelector('main > article > header').removeAttribute('autofocus');
+      doc.querySelector('main > article > section').removeAttribute('contenteditable');
+
+      if (selectFile || !file) {
+        const title = document.querySelector('main > article > header').innerText
+          .trim().toLowerCase()
+          .replace(/ +/g, '-').replace(/[^a-z0-9-]/g, '');
+        file = await window.showSaveFilePicker(
+          {
+            id: 'draft',
+            suggestedName: title,
+            types: [
+              {
+                description: 'HTML file (.html)',
+                accept: { 'text/html': [ '.html' ] }
+              }
+            ]
+          });
+      }
+
+      const writable = await file.createWritable();
+      await writable.write(doc.outerHTML);
+      await writable.close();
+    }
+    window.addEventListener('keydown', function (event) {
+      if (event.ctrlKey && event.key === 's') {
+        event.preventDefault();
+        save();
+      } else if (event.ctrlKey && event.shiftKey && event.key === 'S') {
+        event.preventDefault();
+        save(true);
+      }
+    });
+  </script>
+</head>
+
+<body>
+
+<main>
+<article>
+<header contenteditable="true" autofocus>
+  <h1></h1>
+</header>
+<section contenteditable="true">
+  <p></p>
+</section>
+<footer>
+  <p>
+    <img class="author" src="/imgs/author.png" title="Curtis Lusmore" alt="Photo of Curtis Lusmore">
+    Curtis Lusmore, <time datetime="2021-04-26">26 April 2021</time>
+  </p>
+</footer>
+</article>
+</main>
+<nav>
+  <menu>
+    <li><a href="/">Home</a></li>
+    <li><a href="/posts">Posts</a></li>
+    <li><a href="/rss.xml">RSS</a></li>
+  </menu>
+</nav>
+
+</body>
+
+</html>
